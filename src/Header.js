@@ -16,6 +16,8 @@ export const Header = () => {
       <NavLink to="Usuarios">Usuários</NavLink>
       {"  "}
       <NavLink to="Atividades">Atividades</NavLink>
+      {"  "}
+      <NavLink to="Perfil">Perfil</NavLink>
 
     </header>
   );

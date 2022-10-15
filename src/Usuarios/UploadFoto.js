@@ -2,13 +2,15 @@ import {
   uploadBytesResumable,
   ref,
   getDownloadURL,
-  listAll
+  listAll, 
+  deleteObject
 } from "@firebase/storage";
 import { useState } from "react";
 import { storage } from "../firebase";
 
 export const UploadFoto = (props) => {
   const [imgURL, setImgURL] = useState("");
+  const [image, setImage] = useState('')
   const [progress, setProgress] = useState(0);
   const id = props.id;
 
@@ -44,16 +46,39 @@ export const UploadFoto = (props) => {
   listAll(listRef)
     .then((res) => {
       res.prefixes.forEach((folderRef) => {
+        console.log(getDownloadURL(folderRef))
         // All the prefixes under listRef.
         // You may call listAll() recursively on them.
       });
       res.items.forEach((itemRef) => {
         // All the items under listRef.
-      });
+
+        //console.log(getDownloadURL(itemRef))
+      }).then((response) => setImage(response));
     })
     .catch((error) => {
       // Uh-oh, an error occurred!
     });
+
+
+    const listImg= ref(storage, "/usuarios/330f693213a");
+    getDownloadURL(listImg).then((url)=>{
+      setImage(url)
+      console.log(url)
+    }).catch(error => console.log(error.message))
+
+    /*
+    
+    deleteObject(listImg).then(()=> {
+      console.log('file deleted')
+    }).catch((error) => {
+      console.log(error, 'Error with file deletion')
+    })
+*/
+
+      
+    
+    
 
   return (
     <div>
@@ -65,6 +90,8 @@ export const UploadFoto = (props) => {
       <br />
       {!imgURL && <progress value={progress} max="100" />}
       {imgURL && <img src={imgURL} alt="imagem " height={150} />}
+      {image && <img src={image} alt="imagem " height={150} />}
+
     </div>
   );
 };

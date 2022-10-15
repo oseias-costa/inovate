@@ -8,6 +8,7 @@ import { createUserWithEmailAndPassword } from "@firebase/auth";
 import { uploadBytesResumable, getDownloadURL } from "@firebase/storage";
 import { UploadFoto } from "./UploadFoto";
 import { ListaUsuarios } from "./ListaUsuarios";
+import { Upload } from "./Upload";
 
 export const AddUsuarios = () => {
   const [id, setId] = useState("");
@@ -66,6 +67,7 @@ export const AddUsuarios = () => {
       <br />
       <UploadFoto id={id} />
       <ListaUsuarios />
+      <Upload />
     </div>
   );
 };

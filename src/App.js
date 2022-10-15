@@ -11,6 +11,7 @@ import {
   AuthProvider
 } from "./context/UserAuthContext";
 import { PrivateRoutes } from "./context/PrivateRoutes";
+import { Perfil } from "./Perfil/Perfil";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="empresas" element={<Empresas />} />
             <Route path="Usuarios" element={<Usuarios />} />
             <Route path="Atividades" element={<Atividades />} />
+            <Route path="Perfil" element={<Perfil />} />
             <Route path="*" element={<NaoEncontrada />} />
           </Route>
         </Routes>
