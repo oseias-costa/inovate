@@ -1,16 +1,48 @@
+import { onValue, ref } from "firebase/database";
 import { createContext, useEffect, useState } from "react";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
+  const [list, setList] = useState([]);
+  const [userLogged, setUserLogged] = useState([]);
 
   useEffect(() => {
     auth.onAuthStateChanged(setCurrentUser);
   }, []);
+
+  useEffect(() => {
+    onValue(ref(db, "/usuarios"), (snapshot) => {
+      setList([]);
+      const data = snapshot.val();
+      if (data !== null) {
+        Object.values(data).map((list) => {
+          setList((oldArray) => [...oldArray, list]);
+        });
+        
+      }
+    })    
+
+  }, []);
+
+  const response = JSON.stringify(currentUser);
+  const convertedResponse = { ...JSON.parse(response) };
+  const email = convertedResponse.email
+  
+  useEffect (() => {
+    
+    function getData(id){
+    const novo = list.filter(item => item.email.includes(id))
+    setUserLogged(novo)
+  }
+    getData(email)
+  },[list])
+
+
   return (
-    <AuthContext.Provider value={{ currentUser }}>
+    <AuthContext.Provider value={{ userLogged, currentUser }}>
       {children}
     </AuthContext.Provider>
   );
