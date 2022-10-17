@@ -1,0 +1,32 @@
+.nav-link {
+  text-decoration: none;
+  align-items: center;
+  display: flex;
+  height: 4rem;
+  flex-direction: row-reverse;
+}
+
+.nav-item {
+  display: flex;
+  margin: 4px;
+  border-radius: 0.4em;
+}
+
+.link-text {
+  display: none;
+  margin-left: 1rem;
+  transition: 1s ease;
+}
+
+.nav-link svg {
+  min-width: 2rem;
+  margin: 0 0.3rem;
+}
+
+navbar:hover {
+  width: 16rem;
+}
+
+.nav-item:hover {
+  background-color: var(--body-bg);
+}

@@ -10,7 +10,7 @@ import { Atividades } from "./Atividades/Atividades";
 import { AuthProvider } from "./context/UserAuthContext";
 import { PrivateRoutes } from "./context/PrivateRoutes";
 import { Perfil } from "./Perfil/Perfil";
-import { MenuSideBar } from "./menu/MenuSideBar";
+import { MenuSideBar } from "./Menu/MenuSideBar";
 
 function App() {
   return (
@@ -18,22 +18,23 @@ function App() {
       <AuthProvider>
         <Header />
         <div className="LayoutPrincipal">
-          <div className="MenuSideBar"><MenuSideBar /></div>
+          <div className="MenuSideBar">
+            <MenuSideBar />
+          </div>
           <div className="MainContainer">
-          <Routes>
+            <Routes>
               <Route path="/Login" element={<Login />} />
               <Route element={<PrivateRoutes />}>
-              <Route path="/" element={<Home />} />
-              <Route path="empresas" element={<Empresas />} />
-              <Route path="Usuarios" element={<Usuarios />} />
-              <Route path="Atividades" element={<Atividades />} />
-              <Route path="*" element={<NaoEncontrada />} />
-              <Route path="Perfil" element={<Perfil />} />
-            </Route>
-          </Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="empresas" element={<Empresas />} />
+                <Route path="Usuarios" element={<Usuarios />} />
+                <Route path="Atividades" element={<Atividades />} />
+                <Route path="*" element={<NaoEncontrada />} />
+                <Route path="Perfil" element={<Perfil />} />
+              </Route>
+            </Routes>
           </div>
         </div>
-        
       </AuthProvider>
     </BrowserRouter>
   );

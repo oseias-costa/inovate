@@ -1,12 +1,11 @@
 export const TabelaAtividades = ({ data, callback, deletItem }) => {
   const dataHoje = new Date();
-  console.log(dataHoje.getTime());
+  console.log("", dataHoje);
 
   const difference = (item, dataHoje) => {
     const past = new Date(item).getTime();
     return past;
-  };
-
+  }; 
   return (
     <>
       <table>

@@ -1,0 +1,20 @@
+/* Color Theme Swatches in Hex */
+.Ice-age-1-hex { color: #1B3946; }
+.Ice-age-2-hex { color: #4B757B; }
+.Ice-age-3-hex { color: #3F6973; }
+.Ice-age-4-hex { color: #7BA6A6; }
+.Ice-age-5-hex { color: #D3D1C4; }
+
+/* Color Theme Swatches in RGBA */
+.Ice-age-1-rgba { color: rgba(27, 57, 70, 1); }
+.Ice-age-2-rgba { color: rgba(75, 117, 123, 1); }
+.Ice-age-3-rgba { color: rgba(63, 105, 115, 1); }
+.Ice-age-4-rgba { color: rgba(123, 166, 166, 1); }
+.Ice-age-5-rgba { color: rgba(211, 209, 196, 1); }
+
+/* Color Theme Swatches in HSLA */
+.Ice-age-1-hsla { color: hsla(198, 44, 19, 1); }
+.Ice-age-2-hsla { color: hsla(187, 24, 38, 1); }
+.Ice-age-3-hsla { color: hsla(191, 29, 34, 1); }
+.Ice-age-4-hsla { color: hsla(180, 19, 56, 1); }
+.Ice-age-5-hsla { color: hsla(52, 14, 79, 1); }

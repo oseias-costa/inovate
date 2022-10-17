@@ -1,19 +1,34 @@
 :root {
-  --body-bg: #fafafa
+  --body-bg: #fafafa;
 }
 
-.dark-mode:root{
-  --body-bg: #212529
+.dark-mode:root {
+  --body-bg: #212529;
 }
 
 .LayoutPrincipal {
   display: flex;
 }
 
-.MenuSideBar{
-  background-color: aqua;
+.MenuSideBar {
+  width: 3rem;
+  height: 100vh;
+  position: fixed;
+  background-color: var(--bg-primary);
+  transition: width 200ms ease;
+  border-radius: 10px;
+  margin-left: 1em;
+  margin-top: 1em;
 }
 
-.MainContainer{
-  margin-left: 100px;
+.MenuSideBar:hover {
+  width: 16rem;
+}
+
+.MenuSideBar:hover .link-text {
+  display: flex;
+}
+
+.MainContainer {
+  margin-left: 5rem;
 }

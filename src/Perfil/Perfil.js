@@ -9,12 +9,11 @@ export const Perfil = () => {
   const [list, setList] = useState([]);
   const [user, setUser] = useState([]);
   const { userLogged } = useContext(AuthContext);
-  
 
   return (
     <div>
       <h1>Perfil</h1>
-      <p>{userLogged[0].email}</p>
+
       <Upload />
       <ListActivities />
     </div>
