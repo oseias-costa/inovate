@@ -16,9 +16,9 @@ export const Upload = () => {
 
     useEffect(()=>{
          const listImg = ref(storage, `/usuarios/${userLogged[0].id}`);
-      getDownloadURL(listImg).then((url)=>{
-        setImage(url)
-        console.log(url)
+      getDownloadURL(listImg).then((url)=>{       
+          setImage(url)
+        
       }).catch(error => console.log(error.message))
     },[imgURL])
    

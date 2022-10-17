@@ -3,7 +3,6 @@ import { db } from "./firebase";
 import { uid } from "uid";
 import { set, ref, onValue, remove, update } from "firebase/database";
 import { useEffect, useState } from "react";
-import { Login } from "./Login";
 
 export const Empresas = () => {
   const [empresas, setEmpresas] = useState([]);
