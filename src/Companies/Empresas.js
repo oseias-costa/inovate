@@ -4,6 +4,7 @@ import { uid } from "uid";
 import { set, ref, onValue, remove, update } from "firebase/database";
 import { useEffect, useState } from "react";
 import styles from './Empresas.module.css'
+import { DropMenu } from "../Components/DropMenu";
 
 export const Empresas = () => {
   const [empresas, setEmpresas] = useState([]);
@@ -105,6 +106,7 @@ export const Empresas = () => {
     <div>
       <Head title="Inovate - Empresas" />
       <h1>Empresas</h1>
+      <DropMenu />
       {/* <input
         type="text"
         value={nome}
