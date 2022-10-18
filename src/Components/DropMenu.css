@@ -3,14 +3,25 @@
 }
 
 .dropMenu{
+    display: flex;
+    flex-direction: column;
     position: absolute;
     width: 150px;
     border: 1px solid #CCC;
+    background-color: var(--bg-primary);
+    z-index: 100;
+    border-radius: 0.4em;
+    right: 2em;
 }
 
 .dropMenu a{
     display: block;
     padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.dropMenu a:hover{
+    font-weight: bold;
 }
 .hidden{
     display: none;

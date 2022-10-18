@@ -1,0 +1,12 @@
+.DropIcon__svg{
+    fill: var(--grey-medium);
+    transition: 0.3s ease;
+    padding: 4px;
+    border-radius: 14px;
+    cursor: pointer;
+}
+
+.DropIcon__svg:hover{
+    background-color: var(--grey-medium);
+    fill: #fff;
+}

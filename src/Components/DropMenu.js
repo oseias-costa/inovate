@@ -1,20 +1,19 @@
 import style from './DropMenu.css'
 import {useState} from 'react'
+import { DropSettingIcon } from './icons/DropSettingIcon'
 
-export const DropMenu = () => {
-    const [test, setTest] = useState('dropMenu')
+export const DropMenu = ({itens, deletItemCallback, editItemCallback}) => {
+    const [classDrop, setTClassDrop] = useState('hidden')
     const abrir = () => {
-        test == 'dropMenu' ? setTest('hidden') : setTest('dropMenu')
+        classDrop == 'dropMenu' ? setTClassDrop('hidden') : setTClassDrop('dropMenu')
     }
-    
     return(
 
         <div className='drop'>
-            <button className='btn' onClick={abrir}>Drop</button>
-            <div className={test}>
-                <a href="#">Link</a>
-                <a href="#">Link</a>
-                <a href="#">Link</a>
+            <a onClick={abrir}><DropSettingIcon /></a>
+            <div className={classDrop}>
+                <a onClick={() => deletItemCallback(itens)}>Deletar</a>
+                <a onClick={() => editItemCallback(itens)}>Editar</a>
             </div>
         </div>
     )

@@ -3,7 +3,7 @@ import { db } from "../firebase";
 import { uid } from "uid";
 import { set, ref, onValue, remove, update } from "firebase/database";
 import { useEffect, useState } from "react";
-import styles from './Empresas.module.css'
+import './Empresas.css'
 import { DropMenu } from "../Components/DropMenu";
 
 export const Empresas = () => {
@@ -15,6 +15,7 @@ export const Empresas = () => {
   const [cidade, setCidade] = useState("");
   const [editar, setEditar] = useState(false);
   const [clique, setClique] = useState(false);
+  const [modal, setModal] = useState('hidden')
 
   const escreverNaBase = () => {
     const id = uid();
@@ -50,6 +51,14 @@ export const Empresas = () => {
     }
   });
 
+  const deletItemCallback = (itens) =>{
+    deletarEmpresa(itens)
+  }
+
+  const editItemCallback = (itens) => {
+    editarEmpresa(itens)
+  }
+
   const selectEmpresas = empresas.map((itens) => {
     return <option key={itens.id}>{itens.nome}</option>;
   });
@@ -60,8 +69,12 @@ export const Empresas = () => {
       <td>{itens.cnpj}</td>
       <td>{itens.cidade}</td>
       <td>
-        <button onClick={() => deletarEmpresa(itens)}>Deletar</button>
-        <button onClick={() => editarEmpresa(itens)}>Editar</button>
+        <DropMenu 
+        itens={itens} 
+        deletItemCallback={deletItemCallback}
+        editItemCallback={editItemCallback} 
+        />
+
       </td>
     </tr>
   ));
@@ -78,6 +91,7 @@ export const Empresas = () => {
   };
 
   const editarEmpresa = (itens) => {
+    modalShow()
     setEditar(true);
     setEditarId(itens.id);
     setNome(itens.nome);
@@ -100,41 +114,56 @@ export const Empresas = () => {
   const cancelarEdicao = () => {
     setEditar(false);
     limparInput();
+    modalShow()
   };
+
+  const modalShow = () => {
+    modal == 'hidden' ? setModal('CompaniesModal') : setModal('hidden')
+  }
 
   return (
     <div>
       <Head title="Inovate - Empresas" />
       <h1>Empresas</h1>
-      <DropMenu />
-      {/* <input
+      <div className={modal}>
+        <div className="CompaniesModal__container">
+          {!editar ? (
+            <h2>Adicionar Empresa</h2> 
+          ) : (
+            <h2>Editar Empresa</h2>
+          )}
+       <input
         type="text"
+        placeholder="Nome da Empresa"
         value={nome}
         onChange={(e) => setNome(e.target.value)}
       />
-      <br />
       <input
+        placeholder="CNPJ"
         type="text"
         value={cnpj}
         onChange={(e) => setCnpj(e.target.value)}
       />
-      <br />
       <input
+      placeholder="Cidade"
         type="text"
         value={cidade}
         onChange={(e) => setCidade(e.target.value)}
       />
-      <br />
       {!editar ? (
+        <>
         <button onClick={escreverNaBase}>Salvar</button>
+        <button onClick={cancelarEdicao}>Cancelar</button>
+        </>
       ) : (
         <>
           <button onClick={salvarEdicao}>Salvar Edição</button>
           <button onClick={cancelarEdicao}>Cancelar</button>
         </>
-      )}  */}
-
-      <table className={styles.companies}>
+      )} 
+        </div>
+      </div>
+      <table className='companies'>
         <thead>
           <tr>
             <th>Empresa</th>
