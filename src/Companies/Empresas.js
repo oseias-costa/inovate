@@ -51,12 +51,16 @@ export const Empresas = () => {
     }
   });
 
+
+
   const deletItemCallback = (itens) =>{
     deletarEmpresa(itens)
+   
   }
 
   const editItemCallback = (itens) => {
     editarEmpresa(itens)
+   
   }
 
   const selectEmpresas = empresas.map((itens) => {
@@ -116,6 +120,8 @@ export const Empresas = () => {
     limparInput();
     modalShow()
   };
+
+  
 
   const modalShow = () => {
     modal == 'hidden' ? setModal('CompaniesModal') : setModal('hidden')
