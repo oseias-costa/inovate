@@ -2,7 +2,7 @@ import { db } from "./firebase";
 import { uid } from "uid";
 import { set, ref, onValue, remove, update } from "firebase/database";
 import { useState, useEffect, useContext } from "react";
-import { Head } from "./Head";
+import { Head } from "./Components/Head";
 import { auth } from "./firebase";
 import { signOut } from "@firebase/auth";
 import { useNavigate } from "react-router";

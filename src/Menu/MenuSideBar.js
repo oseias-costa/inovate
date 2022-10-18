@@ -7,23 +7,8 @@ export const MenuSideBar = () => {
   return (
     <nav className="navbar">
       <ul className="navbarNav">
-        <li className="nav-item">
-          <NavLink className="nav-link" to="/" end>
-            <span className="link-text logo-text">Menu</span>
-            <svg
-              width="46"
-              height="46"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M20.25 11.25H3.75a.75.75 0 1 0 0 1.5h16.5a.75.75 0 1 0 0-1.5Z"></path>
-              <path d="M3.75 6.75h16.5a.75.75 0 1 0 0-1.5H3.75a.75.75 0 0 0 0 1.5Z"></path>
-              <path d="M20.25 17.25H3.75a.75.75 0 1 0 0 1.5h16.5a.75.75 0 1 0 0-1.5Z"></path>
-            </svg>
-          </NavLink>
           {/*https://iconer.app/phosphor*/}
-        </li>
+  
         <li className="nav-item">
           <NavLink className="nav-link" to="/" end>
             <span className="link-text">Início</span>

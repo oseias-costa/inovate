@@ -1,6 +1,6 @@
 import { onValue, ref } from "firebase/database";
 import { useEffect, useState } from "react";
-import { SelectEmpresas } from "../Empresas/SelectEmpresas";
+import { SelectEmpresas } from "../Companies/SelectEmpresas";
 import { db } from "../firebase";
 import { SelecUsuarios } from "../Usuarios/SelectUsuarios";
 import { TabelaAtividades } from "./TabelaAtividades";

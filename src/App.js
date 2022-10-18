@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import { Empresas } from "./Empresas";
+import { Empresas } from "./Companies/Empresas";
 import { Header } from "./Header/Header";
 import { Home } from "./Home";
 import { Login } from "./Login";

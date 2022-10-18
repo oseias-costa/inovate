@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 
 export const Head = (props) => {
-    useEffect(()=>{
+    useEffect(() => {
         document.title = props.title
     }, [props])
 }

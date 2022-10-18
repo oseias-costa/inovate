@@ -8,21 +8,26 @@
 
 .LayoutPrincipal {
   display: flex;
+  background-color: var(--bg-grey);
+  border-top: 1px solid  rgba(60, 64, 67, 0.3);
+  min-height: 93vh;
 }
 
 .MenuSideBar {
   width: 3rem;
-  height: 100vh;
   position: fixed;
   background-color: var(--bg-primary);
   transition: width 200ms ease;
   border-radius: 10px;
   margin-left: 1em;
-  margin-top: 1em;
+
+  margin-top: 17vh;
+
+  box-shadow: var(--b-shadow);
 }
 
 .MenuSideBar:hover {
-  width: 16rem;
+  width: 12rem;
 }
 
 .MenuSideBar:hover .link-text {
@@ -31,4 +36,5 @@
 
 .MainContainer {
   margin-left: 5rem;
+  padding: 2rem;
 }

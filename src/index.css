@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Arimo&display=swap');
+
 * {
   padding: 0;
   list-style: none;
@@ -7,10 +9,13 @@
 
 :root {
   --bg-color: #212529;
+  --bg-grey: #f4f4f4;
+  
 
-  --bg-primary: #b1c9cc;
+  --bg-primary: #f9feff;
   --blue-strong: #1b3946;
   --bege-light: #d3d1c4;
+  --b-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 body {
@@ -26,3 +31,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+h1 {
+  font-family: 'Arimo', sans-serif;
+  color: #404040;
+}
+
+/* Color Theme Swatches in Hex */
+.texture-of-the-gray-concrete-wall-1-hex { color: #F2F2F2; }
+.texture-of-the-gray-concrete-wall-2-hex { color: #D9D9D9; }
+.texture-of-the-gray-concrete-wall-3-hex { color: #BFBFBF; }
+.texture-of-the-gray-concrete-wall-4-hex { color: #8C8C8C; }
+.texture-of-the-gray-concrete-wall-5-hex { color: #404040; }
+
+/* Color Theme Swatches in RGBA */
+.texture-of-the-gray-concrete-wall-1-rgba { color: rgba(242, 242, 242, 1); }
+.texture-of-the-gray-concrete-wall-2-rgba { color: rgba(216, 216, 216, 1); }
+.texture-of-the-gray-concrete-wall-3-rgba { color: rgba(191, 191, 191, 1); }
+.texture-of-the-gray-concrete-wall-4-rgba { color: rgba(140, 140, 140, 1); }
+.texture-of-the-gray-concrete-wall-5-rgba { color: rgba(63, 63, 63, 1); }
+
+/* Color Theme Swatches in HSLA */
+.texture-of-the-gray-concrete-wall-1-hsla { color: hsla(0, 0, 95, 1); }
+.texture-of-the-gray-concrete-wall-2-hsla { color: hsla(0, 0, 85, 1); }
+.texture-of-the-gray-concrete-wall-3-hsla { color: hsla(0, 0, 75, 1); }
+.texture-of-the-gray-concrete-wall-4-hsla { color: hsla(0, 0, 55, 1); }
+.texture-of-the-gray-concrete-wall-5-hsla { color: hsla(0, 0, 25, 1); }

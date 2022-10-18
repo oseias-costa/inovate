@@ -1,12 +1,7 @@
 .icon {
-  width: 40px;
+  width: 30px;
   color: var(--bege-light);
   margin-top: 10px;
   border-radius: 5px;
   transition: 0.3s ease-out;
-}
-
-.icon:hover {
-  background-color: var(--bege-light);
-  color: var(--blue-strong);
 }

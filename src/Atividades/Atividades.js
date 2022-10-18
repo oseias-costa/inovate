@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { SelectEmpresas } from "../Empresas/SelectEmpresas";
+import { SelectEmpresas } from "../Companies/SelectEmpresas";
 import { SelecUsuarios } from "../Usuarios/SelectUsuarios";
 import { EnviarBotao } from "./EnviarBotao";
 import { FiltroSelect } from "./FiltroSelect";

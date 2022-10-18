@@ -1,8 +1,9 @@
-import { Head } from "./Head";
-import { db } from "./firebase";
+import { Head } from "../Components/Head";
+import { db } from "../firebase";
 import { uid } from "uid";
 import { set, ref, onValue, remove, update } from "firebase/database";
 import { useEffect, useState } from "react";
+import styles from './Empresas.module.css'
 
 export const Empresas = () => {
   const [empresas, setEmpresas] = useState([]);
@@ -13,8 +14,6 @@ export const Empresas = () => {
   const [cidade, setCidade] = useState("");
   const [editar, setEditar] = useState(false);
   const [clique, setClique] = useState(false);
-
-  const [seleOp, setSeleOp] = useState("");
 
   const escreverNaBase = () => {
     const id = uid();
@@ -104,9 +103,9 @@ export const Empresas = () => {
 
   return (
     <div>
-      <Head title="Empresas" />
+      <Head title="Inovate - Empresas" />
       <h1>Empresas</h1>
-      <input
+      {/* <input
         type="text"
         value={nome}
         onChange={(e) => setNome(e.target.value)}
@@ -131,16 +130,9 @@ export const Empresas = () => {
           <button onClick={salvarEdicao}>Salvar Edição</button>
           <button onClick={cancelarEdicao}>Cancelar</button>
         </>
-      )}
+      )}  */}
 
-      <select value={seleOp} onChange={(e) => setSeleOp(e.target.value)}>
-        <option disabled value="">
-          Selecione
-        </option>
-        {selectEmpresas}
-      </select>
-      <h2>{seleOp}</h2>
-      <table>
+      <table className={styles.companies}>
         <thead>
           <tr>
             <th>Empresa</th>

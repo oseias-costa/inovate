@@ -2,7 +2,7 @@
   text-decoration: none;
   align-items: center;
   display: flex;
-  height: 4rem;
+  height: 3rem;
   flex-direction: row-reverse;
 }
 
@@ -23,10 +23,13 @@
   margin: 0 0.3rem;
 }
 
-navbar:hover {
-  width: 16rem;
-}
+
 
 .nav-item:hover {
-  background-color: var(--body-bg);
+  background-color: var(--blue-strong);
+}
+
+.active svg{
+  fill:red;
+  color:red;
 }
