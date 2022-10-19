@@ -10,13 +10,14 @@
 :root {
   --bg-color: #212529;
   --bg-grey: #f4f4f4;
-  
   --grey-medium: #40404075;
+  
   --bg-primary: #f9feff;
   --blue-strong: #1b3946;
   --bege-light: #d3d1c4;
   --b-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   --font-primary: 'Arimo', sans-serif;
+  --blue-btn: #154DA4;
 }
 
 body {

@@ -4,6 +4,7 @@
   display: flex;
   height: 3rem;
   flex-direction: row-reverse;
+  color: rgb(135, 135, 135);
 }
 
 .nav-item {
@@ -26,10 +27,13 @@
 
 
 .nav-item:hover {
-  background-color: var(--blue-strong);
+  background-color: var(--grey-medium);
+  color: #fff
 }
 
 .active svg{
-  fill:red;
-  color:red;
+  fill:var(--blue-btn);
+}
+.active{
+  color: var(--blue-btn);
 }

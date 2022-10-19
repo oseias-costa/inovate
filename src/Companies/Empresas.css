@@ -1,5 +1,11 @@
 
-.companies{
+.Companies__Top{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.Companies__Table{
     background-color: var(--bg-primary);
     border-radius: 0.4em;
     padding: 1em;
@@ -9,11 +15,11 @@
     font-size: 10pt;
     font-family: var(--font-primary);
     color: #404040;
-    
+    min-width: 50em;
 }
 
 
-.companies th{
+.Companies__Table th{
     text-align: start;
     padding: 0.65em 1.5em 0.65em 1.5em;
     border-bottom: 1px solid rgba(60, 64, 67, 0.1);
@@ -23,7 +29,7 @@
     text-transform: uppercase;
 }
 
-.companies td{
+.Companies__Table td{
     border-bottom: 1px solid rgba(60, 64, 67, 0.15);
     padding: 0.55em 1.5em 0.55em 1.5em;
 }
@@ -74,4 +80,22 @@ textarea:focus, input:focus {
 
 .hidden{
     display: none;
+}
+
+.Companies__Top-btnBlue{
+    background-color: var(--blue-btn);
+    color: var(--bg-primary);
+    font-family: var(--font-primary);
+    padding: 0.2em 0.5em;
+    border-radius: 0.2em;
+    font-size: 0.9em;
+    box-shadow: var(--b-shadow);
+    border: 1px solid var(--blue-btn);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.Companies__Top-btnBlue:hover{
+    background-color: var(--bg-grey);
+    color: var(--blue-btn);
 }

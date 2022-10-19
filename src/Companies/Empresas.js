@@ -123,20 +123,21 @@ export const Empresas = () => {
   const modalShow = () => {
     modal == 'hidden' ? setModal('CompaniesModal') : setModal('hidden')
   }
-
-  const handlecloseDropMenu = (event) => {
-    const currentEvent = event.target.value
-    if(!currentEvent){
-      setCloseDropMenu(true)
+  const handleOutsideClick = (event) => {
+    if(event.target === event.currentTarget){
+      modalShow()
     }
+    
   }
 
   return (
-    <div onClick={handlecloseDropMenu}>
+    <div>
       <Head title="Inovate - Empresas" />
+      <div className="Companies__Top">
       <h1>Empresas</h1>
-      <a onClick={modalShow}>Adicionar</a>
-      <div className={modal}>
+      <a onClick={modalShow} className='Companies__Top-btnBlue'>Adicionar</a>
+      </div>
+      <div className={modal} onClick={handleOutsideClick}>
         <div className="CompaniesModal__container">
           {!editar ? (
             <h2>Adicionar Empresa</h2> 
@@ -174,7 +175,7 @@ export const Empresas = () => {
       )} 
         </div>
       </div>
-      <table className='companies'>
+      <table className='Companies__Table'>
         <thead>
           <tr>
             <th>Empresa</th>

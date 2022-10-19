@@ -13,8 +13,9 @@ export const Header = () => {
         data-name="Layer 1"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 412 1100 430"
+        fill="#154DA4"
       >
-        <title>a89e2008-6037-4b21-a247-774ca24af5bf</title>
+        <title>Inovate Ambiental</title>
         <g>
           <g>
             <path d="M35.96,532.789H7.3c-4.436,0-7.3,2.955-7.3,7.528v167.43c0,4.574,2.866,7.529,7.3,7.529H35.96c4.436,0,7.3-2.955,7.3-7.529V540.316C43.263,535.744,40.4,532.789,35.96,532.789Z" />
