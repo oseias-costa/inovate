@@ -34,7 +34,7 @@
     padding: 0.55em 1.5em 0.55em 1.5em;
 }
 
-.CompaniesModal{
+.Companies__Modal{
     position: fixed;
     top: 0;
     left: 0;
@@ -47,7 +47,7 @@
     justify-content: center;
 }
 
-.CompaniesModal__container{
+.Companies__Modal-container{
     background-color: var(--bg-primary);
     width: 30em;
     height: 20em;
@@ -55,21 +55,21 @@
     box-shadow: var(--b-shadow);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    padding: 1.5em;
+
 }
 
-.CompaniesModal__container h2{
+.Companies__Modal-container h2{
     padding-bottom: 1em;
 }
 
-.CompaniesModal__container input{
+.Companies__Modal-container input{
     margin-bottom: 0.6em;
     border-radius: 0.2em;
     padding: 0.2em;
-    border-color: var(--grey-medium);
     font-family: var(--font-primary);
     font-size: 11pt;
+    border: 0.5px solid var(--grey-medium);
     
     
 }
@@ -98,4 +98,40 @@ textarea:focus, input:focus {
 .Companies__Top-btnBlue:hover{
     background-color: var(--bg-grey);
     color: var(--blue-btn);
+}
+
+.Companies__Modal-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 5em;
+}
+
+.Companies__Modal-topX{
+    position: relative;
+    left: 0.5em;
+    bottom: 0.5em;
+}
+
+.Companies__Modal-content{
+    display: flex;
+    height: 60%;
+    align-items:flex-start;
+    justify-content: space-around;
+}
+
+.Companies__Modal-iconFactory{
+    width: 100px;
+    fill: #404040;
+    margin-right: 3em;
+}
+
+.Companies__Modal-inputs{
+    width: 50%;
+}
+
+.Companies__Modal-btns{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 2em;
 }

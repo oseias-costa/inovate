@@ -5,6 +5,8 @@ import { set, ref, onValue, remove, update } from "firebase/database";
 import { useEffect, useState } from "react";
 import './Empresas.css'
 import { DropMenu } from "../Components/DropMenu";
+import { CloseX } from "../Components/icons/CloseX";
+import { FactoryIcon } from "../Menu/Icons/FactoryIcon";
 
 export const Empresas = () => {
   const [empresas, setEmpresas] = useState([]);
@@ -121,7 +123,7 @@ export const Empresas = () => {
   };
 
   const modalShow = () => {
-    modal == 'hidden' ? setModal('CompaniesModal') : setModal('hidden')
+    modal == 'hidden' ? setModal('Companies__Modal') : setModal('hidden')
   }
   const handleOutsideClick = (event) => {
     if(event.target === event.currentTarget){
@@ -138,42 +140,57 @@ export const Empresas = () => {
       <a onClick={modalShow} className='Companies__Top-btnBlue'>Adicionar</a>
       </div>
       <div className={modal} onClick={handleOutsideClick}>
-        <div className="CompaniesModal__container">
+        <div className="Companies__Modal-container">
+          <div className="Companies__Modal-top">
+            {!editar ? (
+              <h2>Adicionar Empresa</h2> 
+            ) : (
+              <h2>Editar Empresa</h2>
+            )}
+            <div className="Companies__Modal-topX" onClick={modalShow}>
+              <CloseX />
+            </div>
+          </div>
+        <div className="Companies__Modal-content">
+        <div className="Companies__Modal-iconFactory"><FactoryIcon /></div>
+        <div className="Companies__Modal-inputs">
+          <span>Empresa</span>
+            <input
+              type="text"
+              placeholder="Nome da Empresa"
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
+            />
+            <span>CNPJ</span>
+            <input
+              placeholder="CNPJ"
+              type="text"
+              value={cnpj}
+              onChange={(e) => setCnpj(e.target.value)}
+            />
+            <span>Cidade</span>
+            <input
+            placeholder="Cidade"
+              type="text"
+              value={cidade}
+              onChange={(e) => setCidade(e.target.value)}
+            />
+      </div>
+      </div>
+      <div className="Companies__Modal-btns">
           {!editar ? (
-            <h2>Adicionar Empresa</h2> 
+            <>
+            <button onClick={escreverNaBase}>Salvar</button>
+            <button onClick={cancelarEdicao}>Cancelar</button>
+            </>
           ) : (
-            <h2>Editar Empresa</h2>
-          )}
-       <input
-        type="text"
-        placeholder="Nome da Empresa"
-        value={nome}
-        onChange={(e) => setNome(e.target.value)}
-      />
-      <input
-        placeholder="CNPJ"
-        type="text"
-        value={cnpj}
-        onChange={(e) => setCnpj(e.target.value)}
-      />
-      <input
-      placeholder="Cidade"
-        type="text"
-        value={cidade}
-        onChange={(e) => setCidade(e.target.value)}
-      />
-      {!editar ? (
-        <>
-        <button onClick={escreverNaBase}>Salvar</button>
-        <button onClick={cancelarEdicao}>Cancelar</button>
-        </>
-      ) : (
-        <>
-          <button onClick={salvarEdicao}>Salvar Edição</button>
-          <button onClick={cancelarEdicao}>Cancelar</button>
-        </>
-      )} 
-        </div>
+            <>
+              <button onClick={salvarEdicao}>Salvar Edição</button>
+              <button onClick={cancelarEdicao}>Cancelar</button>
+            </>
+          )} 
+      </div>
+      </div>
       </div>
       <table className='Companies__Table'>
         <thead>

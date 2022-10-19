@@ -1,0 +1,11 @@
+.CloseX {
+    fill:var(--grey-medium);
+    border-radius: 5em;
+    width: 35px;
+    height: 35px;
+    transition: all 0.2s ease-in;
+}
+
+.CloseX:hover{
+    fill: var(--blue-btn);
+}
