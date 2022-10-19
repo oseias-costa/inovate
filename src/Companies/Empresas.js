@@ -16,6 +16,7 @@ export const Empresas = () => {
   const [editar, setEditar] = useState(false);
   const [clique, setClique] = useState(false);
   const [modal, setModal] = useState('hidden')
+  const [closeDropMenu, setCloseDropMenu] = useState(false)
 
   const escreverNaBase = () => {
     const id = uid();
@@ -51,11 +52,8 @@ export const Empresas = () => {
     }
   });
 
-
-
   const deletItemCallback = (itens) =>{
     deletarEmpresa(itens)
-   
   }
 
   const editItemCallback = (itens) => {
@@ -77,6 +75,7 @@ export const Empresas = () => {
         itens={itens} 
         deletItemCallback={deletItemCallback}
         editItemCallback={editItemCallback} 
+        closeDropMenu={closeDropMenu}
         />
 
       </td>
@@ -121,16 +120,22 @@ export const Empresas = () => {
     modalShow()
   };
 
-  
-
   const modalShow = () => {
     modal == 'hidden' ? setModal('CompaniesModal') : setModal('hidden')
   }
 
+  const handlecloseDropMenu = (event) => {
+    const currentEvent = event.target.value
+    if(!currentEvent){
+      setCloseDropMenu(true)
+    }
+  }
+
   return (
-    <div>
+    <div onClick={handlecloseDropMenu}>
       <Head title="Inovate - Empresas" />
       <h1>Empresas</h1>
+      <a onClick={modalShow}>Adicionar</a>
       <div className={modal}>
         <div className="CompaniesModal__container">
           {!editar ? (

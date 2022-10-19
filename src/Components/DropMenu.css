@@ -12,12 +12,22 @@
     z-index: 100;
     border-radius: 0.4em;
     right: 2em;
+    transition: 300ms ease;
+    opacity: 1;
+    transform: translateY(0);
 }
+
 
 .dropMenu a{
     display: block;
     padding: 0.5rem 1rem;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.dropMenu svg{
+    margin-right: 6px;
 }
 
 .dropMenu a:hover{
@@ -25,4 +35,7 @@
 }
 .hidden{
     display: none;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: 300ms ease;
 }
