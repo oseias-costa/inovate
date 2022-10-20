@@ -56,7 +56,15 @@
     display: flex;
     flex-direction: column;
     padding: 1.5em;
+    transform: scale(.5);
+    animation: scaleUp 0.3s forwards;
+}
 
+@keyframes scaleUp {
+    to{
+        opacity: initial;
+        transform: initial;
+    }
 }
 
 .Companies__Modal-container h2{
@@ -66,7 +74,7 @@
 .Companies__Modal-container input{
     margin-bottom: 0.6em;
     border-radius: 0.2em;
-    padding: 0.2em;
+    padding: 0.4em;
     font-family: var(--font-primary);
     font-size: 11pt;
     border: 0.5px solid var(--grey-medium);
@@ -83,21 +91,44 @@ textarea:focus, input:focus {
 }
 
 .Companies__Top-btnBlue{
-    background-color: var(--blue-btn);
+    background-color: var(--blueLight-btn);
     color: var(--bg-primary);
     font-family: var(--font-primary);
     padding: 0.2em 0.5em;
     border-radius: 0.2em;
     font-size: 0.9em;
     box-shadow: var(--b-shadow);
-    border: 1px solid var(--blue-btn);
+    border: 1px solid var(--blueLight-btn);
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+    text-align: center;
+    width: 6em;
+}
+
+.Companies__Top-btnCancel{
+    background-color: var(--bege-light);
+    color: var(--bg-color);
+    font-family: var(--font-primary);
+    padding: 0.2em 0.5em;
+    border-radius: 0.2em;
+    font-size: 0.9em;
+    box-shadow: var(--b-shadow);
+    border: 1px solid var(--bege-light);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    width: 6em;
+    margin-left: .1em;
+    margin-right: .1em;
+}
+
+.Companies__Top-btnCancel:hover{
+    background-color: var(--bg-greyDark);
+    border: var(--bg-greyDark);
 }
 
 .Companies__Top-btnBlue:hover{
-    background-color: var(--bg-grey);
-    color: var(--blue-btn);
+    background-color: var(--blueDark-btn);
 }
 
 .Companies__Modal-top{
@@ -115,9 +146,10 @@ textarea:focus, input:focus {
 
 .Companies__Modal-content{
     display: flex;
-    height: 60%;
+    height: 80%;
     align-items:flex-start;
     justify-content: space-around;
+
 }
 
 .Companies__Modal-iconFactory{
@@ -128,10 +160,21 @@ textarea:focus, input:focus {
 
 .Companies__Modal-inputs{
     width: 50%;
+    display: flex;
+    flex-direction: column;
+
 }
 
 .Companies__Modal-btns{
     display: flex;
     justify-content: flex-end;
     margin-right: 2em;
+}
+
+@media (max-width: 800px){
+
+    .Companies__Table{
+        
+        min-width: auto;
+    }
 }

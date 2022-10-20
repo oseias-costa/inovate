@@ -24,8 +24,6 @@
   margin: 0 0.3rem;
 }
 
-
-
 .nav-item:hover {
   background-color: var(--grey-medium);
   color: #fff
@@ -36,4 +34,21 @@
 }
 .active{
   color: var(--blue-btn);
+}
+
+@media (max-width: 720px){
+  .MenuSideBar{
+    bottom: 0;
+    width: auto;
+    display: flex;
+    margin-bottom: 0.5em;
+    margin-left: 20vw;
+    margin-right: 20vw;
+  }
+  .navbarNav{
+    display: flex;
+  }
+  .link-text:hover{
+    display: none;
+  }
 }

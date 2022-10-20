@@ -123,6 +123,8 @@ export const Empresas = () => {
   };
 
   const modalShow = () => {
+    limparInput();
+    setEditar(false)
     modal == 'hidden' ? setModal('Companies__Modal') : setModal('hidden')
   }
   const handleOutsideClick = (event) => {
@@ -180,13 +182,13 @@ export const Empresas = () => {
       <div className="Companies__Modal-btns">
           {!editar ? (
             <>
-            <button onClick={escreverNaBase}>Salvar</button>
-            <button onClick={cancelarEdicao}>Cancelar</button>
+            <button onClick={cancelarEdicao} className='Companies__Top-btnCancel'>Cancelar</button>
+            <button onClick={escreverNaBase} className='Companies__Top-btnBlue'>Salvar</button>
             </>
           ) : (
             <>
-              <button onClick={salvarEdicao}>Salvar Edição</button>
-              <button onClick={cancelarEdicao}>Cancelar</button>
+              <button onClick={cancelarEdicao} className='Companies__Top-btnCancel'>Cancelar</button>
+              <button onClick={salvarEdicao} className='Companies__Top-btnBlue'>Editar</button>
             </>
           )} 
       </div>

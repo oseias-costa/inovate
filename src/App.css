@@ -20,9 +20,7 @@
   transition: width 200ms ease;
   border-radius: 10px;
   margin-left: 1em;
-
   margin-top: 17vh;
-
   box-shadow: var(--b-shadow);
 }
 
@@ -37,4 +35,18 @@
 .MainContainer {
   margin-left: 5rem;
   padding: 2rem;
+}
+
+@media (max-width: 720px){
+  .LayoutPrincipal{
+    position:relative;
+    right: 4em;
+  }
+
+  .MenuSideBar:hover .link-text{
+    display: none;
+  }
+  .MenuSideBar:hover{
+    width: auto;
+  }
 }

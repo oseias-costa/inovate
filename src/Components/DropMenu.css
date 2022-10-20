@@ -32,6 +32,7 @@
 
 .dropMenu a:hover{
     font-weight: bold;
+    color: var(--blueLight-destak);
 }
 .hidden{
     display: none;
