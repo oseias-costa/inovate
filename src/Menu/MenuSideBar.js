@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import "./MenuSideBar.css";
 import { Dashboard } from "./Icons/Dashboard";
 import { Tasks } from "./Icons/Tasks";
+import { FactoryIconMenu } from "./Icons/FactoryIconMenu";
 
 export const MenuSideBar = () => {
   return (
@@ -24,7 +25,7 @@ export const MenuSideBar = () => {
         <li className="nav-item">
           <NavLink className="nav-link" to="Empresas">
             <span className="link-text">Empresas</span>
-            <Tasks />
+            <FactoryIconMenu />
           </NavLink>
         </li>
         <li className="nav-item">

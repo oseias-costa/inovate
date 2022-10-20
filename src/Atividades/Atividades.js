@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { SelectEmpresas } from "../Companies/SelectEmpresas";
-import { SelecUsuarios } from "../Usuarios/SelectUsuarios";
 import { EnviarBotao } from "./EnviarBotao";
 import { FiltroSelect } from "./FiltroSelect";
 import { ListaAtividades } from "./ListaAtividades";
@@ -10,6 +9,7 @@ import { uid } from "uid";
 import { ref, remove, serverTimestamp, set, update } from "firebase/database";
 import { db } from "../firebase";
 import { MonthData, FrequencyData, StatusData } from "./FilterData/FilterData";
+import { SelecUsuarios } from "../Usuarios/components/SelectUsuarios";
 
 export const Atividades = () => {
   const [id, setId] = useState("");

@@ -55,6 +55,48 @@ span{
   font-size: 9.5pt;
   font-weight: bold;
 }
+
+.btn-blue{
+  background-color: var(--blueLight-btn);
+    color: var(--bg-primary);
+    font-family: var(--font-primary);
+    padding: 0.2em 0.5em;
+    border-radius: 0.2em;
+    font-size: 0.9em;
+    box-shadow: var(--b-shadow);
+    border: 1px solid var(--blueLight-btn);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    width: 6em;
+}
+
+.btn-blue:hover{
+  background-color: var(--blueDark-btn);
+}
+
+.btn-grey{
+  background-color: var(--bege-light);
+    color: var(--bg-color);
+    font-family: var(--font-primary);
+    padding: 0.2em 0.5em;
+    border-radius: 0.2em;
+    font-size: 0.9em;
+    box-shadow: var(--b-shadow);
+    border: 1px solid var(--bege-light);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    width: 6em;
+    margin-left: .1em;
+    margin-right: .1em;
+}
+
+.btn-grey:hover{
+    background-color: var(--bg-greyDark);
+    border: var(--bg-greyDark);
+}
+
 /* Color Theme Swatches in Hex */
 .texture-of-the-gray-concrete-wall-1-hex { color: #F2F2F2; }
 .texture-of-the-gray-concrete-wall-2-hex { color: #D9D9D9; }

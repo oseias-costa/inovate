@@ -2,7 +2,6 @@ import { onValue, ref } from "firebase/database";
 import { useEffect, useState } from "react";
 import { SelectEmpresas } from "../Companies/SelectEmpresas";
 import { db } from "../firebase";
-import { SelecUsuarios } from "../Usuarios/SelectUsuarios";
 import { TabelaAtividades } from "./TabelaAtividades";
 import { FiltroSelect } from "./FiltroSelect";
 import {
@@ -12,6 +11,7 @@ import {
   YearData
 } from "./FilterData/FilterData";
 import { EnviarBotao } from "./EnviarBotao";
+import { SelecUsuarios } from "../Usuarios/components/SelectUsuarios";
 
 export const ListaAtividades = ({ onSubmit, deletAtiv }) => {
   const [company, setCompany] = useState("");

@@ -1,40 +1,10 @@
-
-.Companies__Top{
+.Users__Top{
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
 }
 
-.Companies__Table{
-    background-color: var(--bg-primary);
-    border-radius: 0.4em;
-    padding: 1em;
-    box-shadow: var(--b-shadow);
-    margin-top: 1em;
-    border-collapse: collapse;
-    font-size: 10pt;
-    font-family: var(--font-primary);
-    color: #404040;
-    min-width: 50em;
-}
-
-
-.Companies__Table th{
-    text-align: start;
-    padding: 0.65em 1.5em 0.65em 1.5em;
-    border-bottom: 1px solid rgba(60, 64, 67, 0.1);
-    background-color: rgba(71, 71, 71, 0.086);
-    border-radius: 0.4em 0.4em 0 0;
-    font-size: 9pt;
-    text-transform: uppercase;
-}
-
-.Companies__Table td{
-    border-bottom: 1px solid rgba(60, 64, 67, 0.15);
-    padding: 0.55em 1.5em 0.55em 1.5em;
-}
-
-.Companies__Modal{
+.Users__Modal{
     position: fixed;
     top: 0;
     left: 0;
@@ -47,10 +17,10 @@
     justify-content: center;
 }
 
-.Companies__Modal-container{
+.Users__Modal-container{
     background-color: var(--bg-primary);
     width: 30em;
-    height: 20em;
+    height: 22em;
     border-radius: 0.4em;
     box-shadow: var(--b-shadow);
     display: flex;
@@ -67,19 +37,13 @@
     }
 }
 
-.Companies__Modal-container h2{
-    padding-bottom: 1em;
-}
-
-.Companies__Modal-container input{
+.Users__Modal-container input{
     margin-bottom: 0.6em;
     border-radius: 0.2em;
     padding: 0.4em;
     font-family: var(--font-primary);
     font-size: 11pt;
-    border: 0.5px solid var(--grey-medium);
-    
-    
+    border: 0.5px solid var(--grey-medium);    
 }
 textarea:focus, input:focus {
     box-shadow: 0 0 0 0;
@@ -90,50 +54,52 @@ textarea:focus, input:focus {
     display: none;
 }
 
-.Companies__Modal-top{
+.Users__Modal-top{
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     height: 5em;
 }
 
-.Companies__Modal-topX{
+.Users__Modal-topX{
     position: relative;
     left: 0.5em;
     bottom: 0.5em;
 }
 
-.Companies__Modal-content{
+.Users__Modal-content{
     display: flex;
-    height: 80%;
+    height: 100%;
     align-items:flex-start;
     justify-content: space-around;
-
+    
 }
 
-.Companies__Modal-iconFactory{
+.Users__Modal-iconUsers{
     width: 100px;
     fill: #404040;
     margin-right: 3em;
 }
 
-.Companies__Modal-inputs{
+.Users__Modal-inputs{
     width: 50%;
     display: flex;
     flex-direction: column;
 
 }
 
-.Companies__Modal-btns{
+.Users__Modal-inputs select{
+    margin-bottom: 0.6em;
+    border-radius: 0.2em;
+    padding: 0.3em;
+    font-family: var(--font-primary);
+    font-size: 11pt;
+    border: 0.5px solid var(--grey-medium);
+    width: 13.8em;
+}
+
+.Users__Modal-btns{
     display: flex;
     justify-content: flex-end;
     margin-right: 2em;
-}
-
-@media (max-width: 800px){
-
-    .Companies__Table{
-        
-        min-width: auto;
-    }
 }

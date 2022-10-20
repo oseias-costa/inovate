@@ -15,7 +15,7 @@ export const DropMenu = ({ itens, deletItemCallback, editItemCallback}) => {
                 setClassDrop(false)
             }
         })
-    })
+    },[])
     
     return(
 

@@ -8,7 +8,6 @@ import { DropMenu } from "../Components/DropMenu";
 import { CloseX } from "../Components/icons/CloseX";
 import { FactoryIcon } from "../Menu/Icons/FactoryIcon";
 import { TableCompanies } from "./components/TableCompanies";
-import { ModalCompanies } from "./components/ModalCompanies";
 
 export const Empresas = () => {
   const [empresas, setEmpresas] = useState([]);
@@ -33,6 +32,7 @@ export const Empresas = () => {
     setClique(true);
     limparInput();
     setClique(false);
+    modalShow()
   };
   useEffect(() => {
     onValue(ref(db, "empresas"), (snapshot) => {
@@ -116,6 +116,7 @@ export const Empresas = () => {
     setEditar(false);
     limparInput();
     console.log(editar);
+    modalShow()
   };
 
   const cancelarEdicao = () => {
@@ -127,7 +128,7 @@ export const Empresas = () => {
   const modalShow = () => {
     limparInput();
     setEditar(false)
-    modal == 'hidden' ? setModal('Companies__Modal') : setModal('hidden')
+    modal === 'hidden' ? setModal('Companies__Modal') : setModal('hidden')
   }
   const handleOutsideClick = (event) => {
     if(event.target === event.currentTarget){
@@ -141,9 +142,62 @@ export const Empresas = () => {
       <Head title="Inovate - Empresas" />
       <div className="Companies__Top">
       <h1>Empresas</h1>
-      <a onClick={modalShow} className='Companies__Top-btnBlue'>Adicionar</a>
+      <a onClick={modalShow} className='btn-blue'>Adicionar</a>
       </div>
-            <ModalCompanies editar={editar} />
+      <div className={modal} onClick={handleOutsideClick}>
+        <div className="Companies__Modal-container">
+          <div className="Companies__Modal-top">
+            {!editar ? (
+              <h2>Adicionar Empresa</h2> 
+            ) : (
+              <h2>Editar Empresa</h2>
+            )}
+            <div className="Companies__Modal-topX" onClick={modalShow}>
+              <CloseX />
+            </div>
+          </div>
+        <div className="Companies__Modal-content">
+        <div className="Companies__Modal-iconFactory"><FactoryIcon /></div>
+        <div className="Companies__Modal-inputs">
+          <span>Empresa</span>
+            <input
+              type="text"
+              placeholder="Nome da Empresa"
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
+            />
+            <span>CNPJ</span>
+            <input
+              placeholder="CNPJ"
+              type="text"
+              value={cnpj}
+              onChange={(e) => setCnpj(e.target.value)}
+            />
+            <span>Cidade</span>
+            <input
+            placeholder="Cidade"
+              type="text"
+              value={cidade}
+              onChange={(e) => setCidade(e.target.value)}
+            />
+      </div>
+      </div>
+      <div className="Companies__Modal-btns">
+          {!editar ? (
+            <>
+            <button onClick={cancelarEdicao} className='btn-grey'>Cancelar</button>
+            <button onClick={escreverNaBase} className='btn-blue'>Salvar</button>
+            </>
+          ) : (
+            <>
+              <button onClick={cancelarEdicao} className='btn-grey'>Cancelar</button>
+              <button onClick={salvarEdicao} className='btn-blue'>Editar</button>
+            </>
+          )} 
+      </div>
+      </div>
+      </div>
+
             <TableCompanies listaEmpresas={listaEmpresas} />
       <br />
     </div>

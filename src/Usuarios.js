@@ -1,9 +1,9 @@
-import { AddUsuarios } from "./Usuarios/AddUsuarios";
+import { Users } from "./Usuarios/Users";
 
 export const Usuarios = () => {
   return (
     <>
-      <AddUsuarios />
+      <Users />
     </>
   );
 };
