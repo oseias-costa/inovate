@@ -11,7 +11,7 @@ export const DropMenu = ({ itens, deletItemCallback, editItemCallback}) => {
     let menuRef = useRef()
     useEffect(() => {
         document.addEventListener('mousedown', (event) => {
-            if(!menuRef.current.contains(event.target)){
+            if(menuRef.current){
                 setClassDrop(false)
             }
         })
