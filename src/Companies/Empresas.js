@@ -7,6 +7,8 @@ import './Empresas.css'
 import { DropMenu } from "../Components/DropMenu";
 import { CloseX } from "../Components/icons/CloseX";
 import { FactoryIcon } from "../Menu/Icons/FactoryIcon";
+import { TableCompanies } from "./components/TableCompanies";
+import { ModalCompanies } from "./components/ModalCompanies";
 
 export const Empresas = () => {
   const [empresas, setEmpresas] = useState([]);
@@ -141,71 +143,8 @@ export const Empresas = () => {
       <h1>Empresas</h1>
       <a onClick={modalShow} className='Companies__Top-btnBlue'>Adicionar</a>
       </div>
-      <div className={modal} onClick={handleOutsideClick}>
-        <div className="Companies__Modal-container">
-          <div className="Companies__Modal-top">
-            {!editar ? (
-              <h2>Adicionar Empresa</h2> 
-            ) : (
-              <h2>Editar Empresa</h2>
-            )}
-            <div className="Companies__Modal-topX" onClick={modalShow}>
-              <CloseX />
-            </div>
-          </div>
-        <div className="Companies__Modal-content">
-        <div className="Companies__Modal-iconFactory"><FactoryIcon /></div>
-        <div className="Companies__Modal-inputs">
-          <span>Empresa</span>
-            <input
-              type="text"
-              placeholder="Nome da Empresa"
-              value={nome}
-              onChange={(e) => setNome(e.target.value)}
-            />
-            <span>CNPJ</span>
-            <input
-              placeholder="CNPJ"
-              type="text"
-              value={cnpj}
-              onChange={(e) => setCnpj(e.target.value)}
-            />
-            <span>Cidade</span>
-            <input
-            placeholder="Cidade"
-              type="text"
-              value={cidade}
-              onChange={(e) => setCidade(e.target.value)}
-            />
-      </div>
-      </div>
-      <div className="Companies__Modal-btns">
-          {!editar ? (
-            <>
-            <button onClick={cancelarEdicao} className='Companies__Top-btnCancel'>Cancelar</button>
-            <button onClick={escreverNaBase} className='Companies__Top-btnBlue'>Salvar</button>
-            </>
-          ) : (
-            <>
-              <button onClick={cancelarEdicao} className='Companies__Top-btnCancel'>Cancelar</button>
-              <button onClick={salvarEdicao} className='Companies__Top-btnBlue'>Editar</button>
-            </>
-          )} 
-      </div>
-      </div>
-      </div>
-      <table className='Companies__Table'>
-        <thead>
-          <tr>
-            <th>Empresa</th>
-            <th>CNPJ</th>
-            <th>Cidade</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>{listaEmpresas}</tbody>
-      </table>
-
+            <ModalCompanies editar={editar} />
+            <TableCompanies listaEmpresas={listaEmpresas} />
       <br />
     </div>
   );
