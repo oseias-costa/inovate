@@ -11,6 +11,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     auth.onAuthStateChanged(setCurrentUser);
+    setCurrentUser(null)
   }, []);
 
   useEffect(() => {
@@ -21,10 +22,8 @@ export const AuthProvider = ({ children }) => {
         Object.values(data).map((list) => {
           setList((oldArray) => [...oldArray, list]);
         });
-        
       }
     })    
-
   }, []);
 
   const response = JSON.stringify(currentUser);
@@ -32,12 +31,11 @@ export const AuthProvider = ({ children }) => {
   const email = convertedResponse.email
   
   useEffect (() => {
-    
     function getData(id){
     const novo = list.filter(item => item.email.includes(id))
     setUserLogged(novo)
   }
-    getData(email)
+    getData(email) 
   },[list])
 
   return (

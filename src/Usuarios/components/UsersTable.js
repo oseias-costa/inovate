@@ -1,9 +1,13 @@
 import { onValue, ref } from "firebase/database";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../context/UserAuthContext";
 import { db } from "../../firebase";
+import { PhotoUser } from "../../Header/PhotoProfile";
 import './UsersTable.css'
+import {SpanInput} from './SpanInput'
 
 export const UsersTable = () => {
+  const { userLogged } = useContext(AuthContext)
   const [lista, setLista] = useState([]);
 
   useEffect(() => {
@@ -27,11 +31,13 @@ export const UsersTable = () => {
   });
 
   const usuariosLista = lista.map((itens) => {
+    console.log(itens.id)
     return (
       <tr key={itens.id}>
+        <td><img src={itens.image} className="Users__Table-photo" /></td>
         <td>{itens.nome}</td>
         <td>{itens.email}</td>
-        <td>{itens.senha}</td>
+        <td>{ userLogged[0].nivel === "Administrador" ? itens.senha : '***********'}</td>
         <td>{itens.nivel}</td>
       </tr>
     );
@@ -42,6 +48,7 @@ export const UsersTable = () => {
       <table className="Users__Table">
         <thead>
           <tr>
+            <th></th>
             <th>Nome</th>
             <th>Email</th>
             <th>Senha</th>

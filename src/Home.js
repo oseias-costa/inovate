@@ -15,7 +15,9 @@ export const Home = () => {
   const [tempUuid, setTempUuid] = useState();
   const navigate = useNavigate();
 
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, userLogged } = useContext(AuthContext);
+
+  console.log(userLogged)
 
   const handleTodoChange = (e) => {
     setTodo(e.target.value);
