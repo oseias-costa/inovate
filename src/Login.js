@@ -27,6 +27,7 @@ export const Login = () => {
   const handleOnChangePassword = (e) => {
     setPassword(e.target.value);
   };
+
   const entrar = async () => {
     await signInWithEmailAndPassword(auth, email, password)
       .then(() => {
