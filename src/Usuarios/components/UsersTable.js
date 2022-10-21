@@ -1,10 +1,13 @@
 import { onValue, ref } from "firebase/database";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/UserAuthContext";
-import { db } from "../../firebase";
+import { auth, db, secondaryApp } from "../../firebase";
 import { PhotoUser } from "../../Header/PhotoProfile";
 import './UsersTable.css'
 import {SpanInput} from './SpanInput'
+import { DropMenuUser } from "./DropMenuUser";
+import { deleteUser, getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { initializeApp } from "firebase/app";
 
 export const UsersTable = () => {
   const { userLogged } = useContext(AuthContext)
@@ -30,7 +33,29 @@ export const UsersTable = () => {
     }
   });
 
+  const deletItemCallback = (itens) => {
+    console.log(itens)
+    deleteUser(itens)
+  }
+   const deleteUser = (itens) => {
+    signInWithEmailAndPassword(auth, itens.email, itens.senha)
+    .then(res => console.log('resposta: ', res))
+
+    const user = auth.currentUser;
+    deleteUser(user).then(() => {
+      // User deleted
+      console.log('usuario deletado')
+    }).catch((error) => {
+      // An error ocurred
+      // ...
+    });
+
+
+
+   }
+
   const usuariosLista = lista.map((itens) => {
+
     console.log(itens.id)
     return (
       <tr key={itens.id}>
@@ -39,9 +64,12 @@ export const UsersTable = () => {
         <td>{itens.email}</td>
         <td>{ userLogged[0].nivel === "Administrador" ? itens.senha : '***********'}</td>
         <td>{itens.nivel}</td>
+        <td><DropMenuUser itens={itens} deletItemCallback={deletItemCallback}/></td>
       </tr>
     );
   });
+
+  
 
   return (
     <>
@@ -53,6 +81,7 @@ export const UsersTable = () => {
             <th>Email</th>
             <th>Senha</th>
             <th>Nível</th>
+            <th>Ações</th>
           </tr>
         </thead>
         <tbody>{usuariosLista}</tbody>
