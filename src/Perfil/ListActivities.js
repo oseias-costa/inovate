@@ -1,6 +1,6 @@
 import { onValue, ref } from "firebase/database";
 import { useContext, useEffect, useState } from "react";
-import { TabelaAtividades } from "../Atividades/TabelaAtividades"
+import { TabelaAtividades } from "../Atividades/TableTasks"
 import { AuthContext } from "../context/UserAuthContext";
 import { db } from "../firebase";
 

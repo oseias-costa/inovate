@@ -10,6 +10,7 @@ import { ref, remove, serverTimestamp, set, update } from "firebase/database";
 import { db } from "../firebase";
 import { MonthData, FrequencyData, StatusData } from "./FilterData/FilterData";
 import { SelecUsuarios } from "../Usuarios/components/SelectUsuarios";
+import './Tasks.css'
 
 export const Atividades = () => {
   const [id, setId] = useState("");
@@ -25,6 +26,7 @@ export const Atividades = () => {
   const [ano, setAno] = useState("");
   const [editar, setEditar] = useState(false);
   const [delet, setDelet] = useState(false);
+  const [modal, setModal] = useState('hidden');
 
   const novaData = new Date(prazo);
 
@@ -118,6 +120,7 @@ export const Atividades = () => {
   };
 
   const clearInputs = () => {
+    setModal('hidden')
     setEmpresa("");
     setAtividade("");
     setSituacao("");
@@ -156,51 +159,59 @@ export const Atividades = () => {
     );
   }
 
+  const showModal = () => {
+    modal = 'hidden' ? setModal('Tasks__Modal') : setModal('hidden')
+  }
+
   return (
     <div>
-      <p>{idedit}</p>
-      <h1>Atividades</h1>
-      <SelectEmpresas
-        value={empresa}
-        onChange={(e) => setEmpresa(e.target.value)}
-      />
-      <TextInput
-        id="Atividade"
-        value={atividade}
-        onChange={(e) => setAtividade(e.target.value)}
-      />
-      <TextInput
-        id="Situaçãp"
-        value={situacao}
-        onChange={(e) => setSituacao(e.target.value)}
-      />
-      <SelecUsuarios
-        value={responsavel}
-        onChange={(e) => setResponsavel(e.target.value)}
-      />
-      <FiltroSelect
-        id="Status"
-        data={StatusData}
-        value={realizado}
-        onChange={(e) => setRealizado(e.target.value)}
-      />
-      <FiltroSelect
-        id="Frequência"
-        data={FrequencyData}
-        value={frequencia}
-        onChange={(e) => setFrequencia(e.target.value)}
-      />
-      <input
-        type="date"
-        value={prazo}
-        onChange={(e) => setPrazo(e.target.value)}
-      />
-      <RecebeDadosInput value={mes} />
-      <RecebeDadosInput value={ano} />
-      {buttonForm}
-      <p>{responsavel}</p>
-      <p>{mes}</p>
-      <p>{id}</p>
+      <div className="Tasks__Top">
+        <h1>Atividades</h1>
+        <button className="btn-blue" onClick={showModal}>Adicionar</button>
+      </div>
+      <div className={modal}>
+        <div className="Tasks__Modal-container">
+            <SelectEmpresas
+              value={empresa}
+              onChange={(e) => setEmpresa(e.target.value)}
+            />
+            <TextInput
+              id="Atividade"
+              value={atividade}
+              onChange={(e) => setAtividade(e.target.value)}
+            />
+            <TextInput
+              id="Situaçãp"
+              value={situacao}
+              onChange={(e) => setSituacao(e.target.value)}
+            />
+            <SelecUsuarios
+              value={responsavel}
+              onChange={(e) => setResponsavel(e.target.value)}
+            />
+            <FiltroSelect
+              id="Status"
+              data={StatusData}
+              value={realizado}
+              onChange={(e) => setRealizado(e.target.value)}
+            />
+            <FiltroSelect
+              id="Frequência"
+              data={FrequencyData}
+              value={frequencia}
+              onChange={(e) => setFrequencia(e.target.value)}
+            />
+            <input
+              type="date"
+              value={prazo}
+              onChange={(e) => setPrazo(e.target.value)}
+            />
+            <RecebeDadosInput value={mes} />
+            <RecebeDadosInput value={ano} />
+            {buttonForm}
+      
+        </div>
+      </div>
       <ListaAtividades onSubmit={getData} deletAtiv={deleteData} />
     </div>
   );

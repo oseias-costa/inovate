@@ -2,7 +2,7 @@ import { onValue, ref } from "firebase/database";
 import { useEffect, useState } from "react";
 import { SelectEmpresas } from "../Companies/SelectEmpresas";
 import { db } from "../firebase";
-import { TabelaAtividades } from "./TabelaAtividades";
+import { TabelaAtividades } from "./TableTasks";
 import { FiltroSelect } from "./FiltroSelect";
 import {
   MonthData,
@@ -50,6 +50,7 @@ export const ListaAtividades = ({ onSubmit, deletAtiv }) => {
   const callback = (item) => {
     setEditarAtividade(item);
     onSubmit(item);
+    console.log(item)
   };
   const deletItem = (item) => {
     deletAtiv(item);
@@ -100,12 +101,6 @@ export const ListaAtividades = ({ onSubmit, deletAtiv }) => {
         onChange={(e) => setYear(e.target.value)}
       />
       <EnviarBotao id="Limpar" onClick={cleanFilter} />
-
-      <br />
-      <p>
-        {year},{frequency},{month}
-      </p>
-      <br />
 
       <TabelaAtividades
         data={busca(list)}

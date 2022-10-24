@@ -1,7 +1,7 @@
 import { onValue, ref } from "firebase/database";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/UserAuthContext";
-import { auth, db, secondaryApp } from "../../firebase";
+import { auth, db } from "../../firebase";
 import { PhotoUser } from "../../Header/PhotoProfile";
 import './UsersTable.css'
 import {SpanInput} from './SpanInput'
@@ -10,7 +10,7 @@ import { deleteUser, getAuth, signInWithEmailAndPassword, signOut } from "fireba
 import { initializeApp } from "firebase/app";
 
 export const UsersTable = () => {
-  const { userLogged } = useContext(AuthContext)
+  const { userLogged, currentUser } = useContext(AuthContext)
   const [lista, setLista] = useState([]);
 
   useEffect(() => {
@@ -33,26 +33,37 @@ export const UsersTable = () => {
     }
   });
 
-  const deletItemCallback = (itens) => {
-    console.log(itens)
-    deleteUser(itens)
+  const deletItemCallback =  () => {
+    delUser()
   }
-   const deleteUser = (itens) => {
+   const deleteU = (itens) => {
     signInWithEmailAndPassword(auth, itens.email, itens.senha)
     .then(res => console.log('resposta: ', res))
+    delUser()
+   } 
 
-    const user = auth.currentUser;
-    deleteUser(user).then(() => {
-      // User deleted
+   const delUser = () => {
+    const auth = getAuth();
+    const user = auth.currentUser
+
+deleteUser(user).then(() => {
+      // User deleted.
       console.log('usuario deletado')
     }).catch((error) => {
+      ('usuario nao pode ser deletado')
       // An error ocurred
       // ...
     });
-
-
-
    }
+  //  const delUser = (user) => {
+  //   deleteUser(user).then(() => {
+  //     // User deleted
+  //     console.log('usuario deletado')
+  //   }).catch((error) => {
+  //     // An error ocurred
+  //     // ...
+  //   });
+  //  }
 
   const usuariosLista = lista.map((itens) => {
 

@@ -1,4 +1,8 @@
+import './TableTasks.css'
+import { DropMenu } from "../Components/DropMenu";
+
 export const TabelaAtividades = ({ data, callback, deletItem }) => {
+
   const dataHoje = new Date();
   console.log("", dataHoje);
 
@@ -6,21 +10,27 @@ export const TabelaAtividades = ({ data, callback, deletItem }) => {
     const past = new Date(item).getTime();
     return past;
   }; 
+
+  const deletItemCallback = (itens) =>{
+    callback(itens)
+  }
+
+  const editItemCallback = (itens) => {
+    deletItem(itens)
+   
+  }
   return (
     <>
-      <table>
+      <table className='Tasks__Table'>
         <thead>
           <tr>
             <th>Empresa</th>
             <th>Atividade</th>
             <th>Situação</th>
-            <th>Responsável</th>
             <th>Realizado</th>
             <th>Frequência</th>
             <th>Prazo</th>
             <th>Dias</th>
-            <th>Mês</th>
-            <th>Ano</th>
             <th>Ações</th>
           </tr>
         </thead>
@@ -28,10 +38,9 @@ export const TabelaAtividades = ({ data, callback, deletItem }) => {
           {data.map((item) => (
             <tr key={item.id} id={item.id}>
               <td>{item.empresa}</td>
-              <td>{item.atividade}</td>
+              <td><div className='Tasks__Table-resp'><p>{item.atividade}</p><p className='Tasks__Table-name'>{item.responsavel}</p></div></td>
               <td>{item.situacao}</td>
-              <td>{item.responsavel}</td>
-              <td>{item.realizado}</td>
+              <td><p className={'Tasks__' + item.realizado}>{item.realizado}</p></td>
               <td>{item.frequencia}</td>
               <td>{item.prazo}</td>
               <td>
@@ -39,11 +48,14 @@ export const TabelaAtividades = ({ data, callback, deletItem }) => {
                   (difference(item.prazo) - dataHoje) / 1000 / 60 / 60 / 24
                 )}
               </td>
-              <td>{item.mes}</td>
-              <td>{item.ano}</td>
               <td>
                 <button onClick={() => callback(item)}>Editar</button>
                 <button onClick={() => deletItem(item)}>Excluir</button>
+                <DropMenu 
+                itens={item} 
+                callback={deletItemCallback}
+                deletItem={editItemCallback} 
+                />
               </td>
             </tr>
           ))}
