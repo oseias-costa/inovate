@@ -1,6 +1,6 @@
 import { onValue, ref } from "firebase/database";
 import { useContext, useEffect, useState } from "react";
-import { TabelaAtividades } from "../Atividades/TableTasks"
+import { TableTasks } from "../Atividades/TableTasks"
 import { AuthContext } from "../context/UserAuthContext";
 import { db } from "../firebase";
 
@@ -28,7 +28,7 @@ export const ListActivities = () => {
         console.log(userLogged[0].nome)
     return(
         <>
-        { list ? <TabelaAtividades data={search(list)}/> : 'Loading...'}
+        { list ? <TableTasks data={search(list)}/> : 'Loading...'}
         </>
     )
 }

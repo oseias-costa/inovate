@@ -2,7 +2,7 @@ import { onValue, ref } from "firebase/database";
 import { useEffect, useState } from "react";
 import { SelectEmpresas } from "../Companies/SelectEmpresas";
 import { db } from "../firebase";
-import { TabelaAtividades } from "./TableTasks";
+import { TableTasks } from "./TableTasks";
 import { FiltroSelect } from "./FiltroSelect";
 import {
   MonthData,
@@ -46,14 +46,13 @@ export const ListaAtividades = ({ onSubmit, deletAtiv }) => {
         item.frequencia.includes(frequency)
     );
 
-  console.log(list);
   const callback = (item) => {
     setEditarAtividade(item);
     onSubmit(item);
-    console.log(item)
   };
   const deletItem = (item) => {
     deletAtiv(item);
+    console.log('lista de atividades', item)
   };
 
   const cleanFilter = () => {
@@ -102,7 +101,7 @@ export const ListaAtividades = ({ onSubmit, deletAtiv }) => {
       />
       <EnviarBotao id="Limpar" onClick={cleanFilter} />
 
-      <TabelaAtividades
+      <TableTasks
         data={busca(list)}
         callback={callback}
         deletItem={deletItem}

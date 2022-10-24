@@ -58,6 +58,7 @@ export const Empresas = () => {
 
   const deletItemCallback = (itens) =>{
     deletarEmpresa(itens)
+    console.log(itens)
   }
 
   const editItemCallback = (itens) => {

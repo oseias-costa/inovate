@@ -1,7 +1,7 @@
 import './TableTasks.css'
 import { DropMenu } from "../Components/DropMenu";
 
-export const TabelaAtividades = ({ data, callback, deletItem }) => {
+export const TableTasks = ({ data, callback, deletItem }) => {
 
   const dataHoje = new Date();
   console.log("", dataHoje);
@@ -11,13 +11,14 @@ export const TabelaAtividades = ({ data, callback, deletItem }) => {
     return past;
   }; 
 
-  const deletItemCallback = (itens) =>{
-    callback(itens)
+  const deletItemCallback = (item) =>{
+    deletItem(item)
+    console.log('tableTasks', item)
   }
 
-  const editItemCallback = (itens) => {
-    deletItem(itens)
-   
+  const editItemCallback = (item) => {
+    deletItem(item)
+    console.log('item para editar ' + item )
   }
   return (
     <>
@@ -53,8 +54,8 @@ export const TabelaAtividades = ({ data, callback, deletItem }) => {
                 <button onClick={() => deletItem(item)}>Excluir</button>
                 <DropMenu 
                 itens={item} 
-                callback={deletItemCallback}
-                deletItem={editItemCallback} 
+                deletItemCallback={deletItemCallback}
+                editItemCallback={editItemCallback} 
                 />
               </td>
             </tr>
