@@ -9,7 +9,7 @@ import {
   FrequencyData,
   StatusData,
   YearData
-} from "./FilterData/FilterData";
+} from "./components/FilterData";
 import { EnviarBotao } from "./EnviarBotao";
 import { SelecUsuarios } from "../Usuarios/components/SelectUsuarios";
 

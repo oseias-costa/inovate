@@ -1,10 +1,24 @@
 import './TableTasks.css'
 import { DropMenu } from "../Components/DropMenu";
+import { TaskModal } from './TaskModal';
+import { useState } from 'react';
 
-export const TableTasks = ({ data, callback, deletItem }) => {
+export const TableTasks = ({ data }) => {
+  const [open, setOpen] = useState(false)
+  const [deleteAtiv, setDeleteAtiv] = useState('')
+  const [editAtiv, setEditAtiv] = useState('')
+
+  const openModal = () => {
+    setOpen(true)
+  }
+
+  const handleModal = () => {
+    setOpen(false)
+    setDeleteAtiv('')
+    setEditAtiv('')
+  }
 
   const dataHoje = new Date();
-  console.log("", dataHoje);
 
   const difference = (item, dataHoje) => {
     const past = new Date(item).getTime();
@@ -12,16 +26,22 @@ export const TableTasks = ({ data, callback, deletItem }) => {
   }; 
 
   const deletItemCallback = (item) =>{
-    deletItem(item)
-    console.log('tableTasks', item)
+    openModal()
+    setDeleteAtiv(item)
   }
 
   const editItemCallback = (item) => {
-    deletItem(item)
-    console.log('item para editar ' + item )
+    openModal()
+    setEditAtiv(item)
   }
   return (
     <>
+      <TaskModal 
+      open={open} 
+      handleModal={handleModal} 
+      deleteAtiv={deleteAtiv} 
+      editAtiv={editAtiv}
+      />
       <table className='Tasks__Table'>
         <thead>
           <tr>
@@ -50,8 +70,8 @@ export const TableTasks = ({ data, callback, deletItem }) => {
                 )}
               </td>
               <td>
-                <button onClick={() => callback(item)}>Editar</button>
-                <button onClick={() => deletItem(item)}>Excluir</button>
+               { /*<button onClick={() => callback(item)}>Editar</button>
+                <button onClick={() => deletItem(item)}>Excluir</button>*/}
                 <DropMenu 
                 itens={item} 
                 deletItemCallback={deletItemCallback}

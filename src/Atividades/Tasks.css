@@ -20,7 +20,7 @@
 .Tasks__Modal-container{
     background-color: var(--bg-primary);
     width: 30em;
-    height: 20em;
+    height: auto;
     border-radius: 0.4em;
     box-shadow: var(--b-shadow);
     display: flex;
