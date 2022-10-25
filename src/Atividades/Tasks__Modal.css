@@ -23,7 +23,6 @@
     padding: 1.5em;
     transform: scale(.5);
     animation: scaleUp 0.3s forwards;
-    overflow: auto;
 }
 
 @keyframes scaleUp {
@@ -71,9 +70,9 @@ textarea:focus, input:focus {
 
 .Tasks__Modal-content{
     display: flex;
-    height: 80%;
     align-items:flex-start;
     justify-content: space-around;
+    overflow: auto;
 }
 
 .Tasks__Modal-iconFactory{
@@ -86,12 +85,23 @@ textarea:focus, input:focus {
     width: 50%;
     display: flex;
     flex-direction: column;
+}
 
+.Tasks__Modal-inputs select{
+    margin-bottom: 0.6em;
+    border-radius: 0.2em;
+    padding: 0.3em;
+    font-family: var(--font-primary);
+    font-size: 11pt;
+    border: 0.5px solid var(--grey-medium);
+    width: 13.8em;
 }
 
 .Tasks__Modal-btns{
+    margin-top: 2em;
     display: flex;
     justify-content: flex-end;
     margin-right: 2em;
     padding-top: 2em;
+    width: 100%;
 }

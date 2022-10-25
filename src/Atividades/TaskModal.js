@@ -205,6 +205,9 @@ export const TaskModal = ({open, handleModal, deleteAtiv, editAtiv}) => {
               <CloseX />
             </div>
         </div>
+        <div className="Tasks__Modal-content">
+          <div><p>Ilustracao</p></div>
+          <div className="Tasks__Modal-inputs">
           <SpanModal value='Empresa' />
             <SelectEmpresas
               value={empresa}
@@ -251,8 +254,10 @@ export const TaskModal = ({open, handleModal, deleteAtiv, editAtiv}) => {
             <RecebeDadosInput value={mes} />
             <SpanModal value='Ano' />
             <RecebeDadosInput value={ano} />
+            </div>
+            </div>
             <div className="Tasks__Modal-btn">
-            {buttonForm}
+              <div>{buttonForm}</div>
             </div>
       
         </div>
