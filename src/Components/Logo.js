@@ -1,29 +1,13 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../context/UserAuthContext";
-import  "./Header.css";
-import { PhotoUser } from './PhotoProfile'
-
-export const Header = () => {
-  const { currentUser } = useContext(AuthContext);
-  const [headerStyle, setHeaderStyle] = useState('hidden')
-
-  useEffect(() => {
-    if(currentUser !== null){
-      setHeaderStyle('show')
-    } else {
-      setHeaderStyle('hidden')
-    }
-  },[currentUser])
-
-  return (
-    <header className={headerStyle}>
-      <svg
+export const Logo = ({fill}) => {
+    return(
+      <>
+        <svg
         width="130px"
         id="Layer_1"
         data-name="Layer 1"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 412 1100 430"
-        fill="#154DA4"
+        fill={fill}
       >
         <title>Inovate Ambiental</title>
         <g>
@@ -38,6 +22,6 @@ export const Header = () => {
           </g>
         </g>
       </svg>
-    </header>
-  );
-};
+      </>
+    )
+}

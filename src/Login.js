@@ -1,11 +1,13 @@
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
+import { signInWithEmailAndPassword,
 } from "@firebase/auth";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { InputLogin } from "./Components/InputText";
 import { AuthContext } from "./context/UserAuthContext";
 import { auth } from "./firebase";
+import './Login.css'
+import { SpanInput } from "./Usuarios/components/SpanInput";
+import { Logo } from './Components/Logo'
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -52,14 +54,6 @@ export const Login = () => {
         }
       });
   };
-  const registrar = async () => {
-    await createUserWithEmailAndPassword(auth, email, password).catch(
-      (error) => {
-        console.log(error.message);
-      }
-    );
-    limpaCampo();
-  };
 
   const limpaCampo = () => {
     setEmail("");
@@ -71,25 +65,29 @@ export const Login = () => {
   }
 
   return (
-    <div>
-      <h1>Entrar</h1>
-      {error}
-      <input
-        type="email"
-        placeholder="email"
-        value={email}
-        onChange={handleOnChangeEmail}
-      />
-      <br />
-      <input
-        type="password"
-        placeholder="password"
-        value={password}
-        onChange={handleOnChangePassword}
-      />
-      <br />
-      <button onClick={entrar}>Login</button>
-      <button onClick={registrar}>Registrar</button>
+    <div className="Login">
+      <div className="Login__Container">
+        <div className="Login__Logo">
+            <Logo fill='#fff'/>
+        </div>
+        <div className="Login__Form">
+            <p>{error}</p>
+            <h1>Entrar</h1>
+            <SpanInput content='Email' />
+            <InputLogin 
+            type='email'
+            value={email}
+            onChange={handleOnChangeEmail}
+            />
+            <SpanInput content='Senha' />
+            <InputLogin 
+            type='password'
+            value={password}
+            onChange={handleOnChangePassword}
+            />
+            <button onClick={entrar} className='btn-blue'>Login</button>
+        </div>
+      </div>
     </div>
   );
 };

@@ -3,10 +3,22 @@ import "./MenuSideBar.css";
 import { Dashboard } from "./Icons/Dashboard";
 import { Tasks } from "./Icons/Tasks";
 import { FactoryIconMenu } from "./Icons/FactoryIconMenu";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../context/UserAuthContext";
 
 export const MenuSideBar = () => {
+  const { currentUser } = useContext(AuthContext)
+  const [ menuShow, setMenuShow ] = useState('')
+
+  useEffect(() => {
+    if(currentUser){
+      setMenuShow('navbar')
+    } else {
+      setMenuShow('hidden')
+    }
+  },[currentUser])
   return (
-    <nav className="navbar">
+    <nav className={menuShow} >
       <ul className="navbarNav">
           {/*https://iconer.app/phosphor*/}
   
