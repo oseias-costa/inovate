@@ -10,12 +10,13 @@ import { SpanInput } from "./Usuarios/components/SpanInput";
 import { Logo } from './Components/Logo'
 
 export const Login = () => {
+  const { currentUser } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState([]);
   const [error, setError] = useState("");
+  const [ errorStyle, setErrorStyle ] = useState('hidden')
   const navigate = useNavigate();
-  const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -38,7 +39,7 @@ export const Login = () => {
         return navigate("/");
       })
       .catch((err) => {
-        console.log(err.message);
+        setErrorStyle('Login__Form-error')
         switch (err.message) {
           case "Firebase: Error (auth/invalid-email).":
             setError("Email inválido");
@@ -71,7 +72,7 @@ export const Login = () => {
             <Logo fill='#fff'/>
         </div>
         <div className="Login__Form">
-            <p>{error}</p>
+            <p className={errorStyle}>{error}</p>
             <h1>Entrar</h1>
             <SpanInput content='Email' />
             <InputLogin 
