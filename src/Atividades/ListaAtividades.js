@@ -99,7 +99,7 @@ export const ListaAtividades = ({ onSubmit, deletAtiv }) => {
         value={year}
         onChange={(e) => setYear(e.target.value)}
       />
-      <EnviarBotao id="Limpar" onClick={cleanFilter} />
+      <EnviarBotao id="Limpar" onClick={cleanFilter} className='btn-grey'/>
 
       <TableTasks
         data={busca(list)}

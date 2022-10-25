@@ -1,12 +1,22 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/UserAuthContext";
-import styles from "./Header.module.css";
-import { PhotoProfile } from "./PhotoProfile";
+import  "./Header.css";
+import { PhotoUser } from './PhotoProfile'
 
 export const Header = () => {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, userLogged } = useContext(AuthContext);
+  const [headerStyle, setHeaderStyle] = useState('hidden')
+
+  useEffect(() => {
+    if(currentUser){
+      setHeaderStyle('show')
+    } else {
+      setHeaderStyle('hidden')
+    }
+  },[])
+
   return (
-    <header>
+    <header className={headerStyle}>
       <svg
         width="130px"
         id="Layer_1"

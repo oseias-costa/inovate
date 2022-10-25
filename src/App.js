@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import { Empresas } from "./Companies/Empresas";
-import { Header } from "./Header/Header";
 import { Home } from "./Home";
 import { Login } from "./Login";
 import { NaoEncontrada } from "./NaoEncontrada";
@@ -11,6 +10,7 @@ import { AuthProvider } from "./context/UserAuthContext";
 import { PrivateRoutes } from "./context/PrivateRoutes";
 import { Perfil } from "./Perfil/Perfil";
 import { MenuSideBar } from "./Menu/MenuSideBar";
+import { Header } from './Header/Header'
 
 function App() {
   return (

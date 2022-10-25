@@ -1,4 +1,5 @@
-header{
+.show{
+    display: block;
     height: 7vh;
     width: 100%;
     display: flex;
@@ -7,4 +8,3 @@ header{
     padding-left: 50px;
     padding-right: 50px;
 }
-

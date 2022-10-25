@@ -220,10 +220,9 @@ export const TaskModal = ({open, handleModal, deleteAtiv, editAtiv}) => {
               onChange={(e) => setAtividade(e.target.value)}
             />
             <SpanModal value='Situação' />
-            <TextInput
-              id="Situação"
-              value={situacao}
-              onChange={(e) => setSituacao(e.target.value)}
+            <textarea 
+            value={situacao} 
+            onChange={(e) => setSituacao(e.target.value)} 
             />
             <SpanModal value='Responsável' />
             <SelecUsuarios
@@ -256,7 +255,7 @@ export const TaskModal = ({open, handleModal, deleteAtiv, editAtiv}) => {
             <RecebeDadosInput value={ano} />
             </div>
             </div>
-            <div className="Tasks__Modal-btn">
+            <div className="Tasks__Modal-btns">
               <div>{buttonForm}</div>
             </div>
       

@@ -39,11 +39,11 @@
 .Tasks__Modal-container input{
     margin-bottom: 0.6em;
     border-radius: 0.2em;
-    padding: 0.4em;
+    padding: 0.3em;
     font-family: var(--font-primary);
     font-size: 11pt;
     border: 0.5px solid var(--grey-medium);
-    
+    width: 13.8em;
     
 }
 textarea:focus, input:focus {
@@ -97,11 +97,21 @@ textarea:focus, input:focus {
     width: 13.8em;
 }
 
+.Tasks__Modal-inputs textarea{
+    margin-bottom: 0.6em;
+    border-radius: 0.2em;
+    padding: 0.3em;
+    font-family: var(--font-primary);
+    font-size: 11pt;
+    border: 0.5px solid var(--grey-medium);
+    width: 13.8em;
+    height: auto;
+}
+
 .Tasks__Modal-btns{
-    margin-top: 2em;
     display: flex;
     justify-content: flex-end;
     margin-right: 2em;
-    padding-top: 2em;
+    padding-top: 1em;
     width: 100%;
 }

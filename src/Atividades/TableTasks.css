@@ -30,7 +30,7 @@
 .Tasks__Realizado{
     text-align: center;
     color: #044D29;
-    background-color: #97ED8A;
+    background-color: #b0e9a7;
     padding: 0.2em 0.5em;
     border-radius: 0.3em;
 }
@@ -38,7 +38,7 @@
 .Tasks__Parcial{
     text-align: center;
     color: #624f16;
-    background-color: #F2D43D;
+    background-color: #f5e594;
     padding: 0.2em 0.5em;
     border-radius: 0.3em;
 }
@@ -46,7 +46,7 @@
 .Tasks__Pendente{
     text-align: center;
     color: #D94E41;
-    background-color: #d4b0ac;
+    background-color: #eed1cc;
     padding: 0.2em 0.5em;
     border-radius: 0.3em;
 }
