@@ -1,5 +1,5 @@
-export const EnviarBotao = ({onClick, id}) => {
+export const EnviarBotao = ({onClick, id, className}) => {
     return(
-        <button onClick={onClick} value={id} className='btn-grey'>{id}</button>
+        <button onClick={onClick} value={id} className={className}>{id}</button>
     )
 }

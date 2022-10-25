@@ -12,6 +12,8 @@ import { FiltroSelect } from "./FiltroSelect";
 import './Tasks.css'
 import { CloseX } from "../Components/icons/CloseX";
 import { TitleModal } from "./components/TitleModal";
+import './Tasks__Modal.css'
+import { SpanModal } from "./components/SpanModal";
 
 export const TaskModal = ({open, handleModal, deleteAtiv, editAtiv}) => {
     const [id, setId] = useState("");
@@ -28,7 +30,7 @@ export const TaskModal = ({open, handleModal, deleteAtiv, editAtiv}) => {
     const [editar, setEditar] = useState(false);
     const [delet, setDelet] = useState(false);
     const [modal, setModal] = useState('hidden');
-    const [text, setText] = useState('');
+    const [text, setText] = useState('Adicionar Atividade');
 
     console.log('dados vindo:', editAtiv)
     const showModal = () => {
@@ -36,9 +38,14 @@ export const TaskModal = ({open, handleModal, deleteAtiv, editAtiv}) => {
     }
  
     useEffect(() => { 
-        setText('excluir')
-        if(editAtiv){getData(editAtiv)}
-        if(deleteAtiv){deleteData(deleteAtiv)}          
+      if(editAtiv){
+        getData(editAtiv)
+        setText('Editar Atividade')
+        }
+        if(deleteAtiv){
+          deleteData(deleteAtiv)
+          setText('Excluir Atividade')
+        }          
     },[editAtiv, deleteAtiv])
 
   
@@ -155,82 +162,98 @@ export const TaskModal = ({open, handleModal, deleteAtiv, editAtiv}) => {
     setIdEdit("");
     setEditar(false);
     setDelet(false);
+    setText('Adicionar Atividade')
   };
 
   let buttonForm;
       if (editar) {
           buttonForm = (
               <>
-            <EnviarBotao id="Editar" onClick={saveEdit} />
-            <EnviarBotao id="Cancelar" onClick={clearInputs} />
+            <EnviarBotao id="Editar" onClick={saveEdit} className='btn-blue' />
+            <EnviarBotao id="Cancelar" onClick={clearInputs} className='btn-grey' />
           </>
         );
       } else if (delet) {
         
         buttonForm = (
           <>
-            <EnviarBotao id="Excluir" onClick={deletAtiv} />
-            <EnviarBotao id="Cancelar" onClick={clearInputs} />
+            <EnviarBotao id="Excluir" onClick={deletAtiv} className='btn-blue' />
+            <EnviarBotao id="Cancelar" onClick={clearInputs} className='btn-grey' />
           </>
         );
       } else {
         buttonForm = (
           <>
-            <EnviarBotao id="Adicionar" onClick={addAtividade} />
-            <EnviarBotao id="Cancelar" onClick={clearInputs} />
+            <EnviarBotao id="Adicionar" onClick={addAtividade} className='btn-blue' />
+            <EnviarBotao id="Cancelar" onClick={clearInputs} className='btn-grey' />
           </>
         );
       }
 
+      const handleOutsideClick = (event) => {
+        if(event.target === event.currentTarget){
+          clearInputs()
+        }
+      }
 
-  console.log('text', text)
     return(
-        <div className={modal}>
+        <div className={modal} onClick={handleOutsideClick}>
+        <div className="Tasks__Modal-container">
         <div className="Companies__Modal-top">
-            <h2>{text}</h2>
-            <div className="Companies__Modal-topX">
+            <TitleModal text={text} />
+            <div className="Companies__Modal-topX" onClick={clearInputs}>
               <CloseX />
             </div>
         </div>
-        <div className="Tasks__Modal-container">
+          <SpanModal value='Empresa' />
             <SelectEmpresas
               value={empresa}
               onChange={(e) => setEmpresa(e.target.value)}
             />
+            <SpanModal value='Atividade' />
             <TextInput
               id="Atividade"
               value={atividade}
               onChange={(e) => setAtividade(e.target.value)}
             />
+            <SpanModal value='Situação' />
             <TextInput
-              id="Situaçãp"
+              id="Situação"
               value={situacao}
               onChange={(e) => setSituacao(e.target.value)}
             />
+            <SpanModal value='Responsável' />
             <SelecUsuarios
               value={responsavel}
               onChange={(e) => setResponsavel(e.target.value)}
             />
+            <SpanModal value='Status' />
             <FiltroSelect
               id="Status"
               data={StatusData}
               value={realizado}
               onChange={(e) => setRealizado(e.target.value)}
             />
+            <SpanModal value='Frequência' />
             <FiltroSelect
               id="Frequência"
               data={FrequencyData}
               value={frequencia}
               onChange={(e) => setFrequencia(e.target.value)}
             />
+            <SpanModal value='Prazo' />
             <input
               type="date"
               value={prazo}
               onChange={(e) => setPrazo(e.target.value)}
             />
+            <SpanModal value='Mês' />
             <RecebeDadosInput value={mes} />
+            <SpanModal value='Ano' />
             <RecebeDadosInput value={ano} />
+            <div className="Tasks__Modal-btn">
             {buttonForm}
+            </div>
       
         </div>
       </div>
