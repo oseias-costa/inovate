@@ -7,6 +7,7 @@ import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../context/UserAuthContext"
 import { storage } from "../firebase";
 import {SaveUrl} from './components/SaveUrl'
+import './Upload.css'
 
 
 export const Upload = () => {
@@ -54,13 +55,12 @@ export const Upload = () => {
       return(
         <>
         {image && <SaveUrl image={image} id={userLogged[0].id} />}
-        <h1>{userLogged[0].id}</h1>
         <form onSubmit={enviarFoto}>
         <input type="file" />
         <button>Enviar</button>
       </form>
       {!imgURL && <progress value={progress} max="100" />}
-      {image && <img src={image} height={150} />}
+      {image && <img src={image} height={150} className='Upload__Photo' />}
         </>
     )
 }

@@ -1,0 +1,11 @@
+.Perfil__Top{
+    display: flex;
+    background-color: var(--blue-strong);
+    border-radius: 0.4em;
+    padding: 2em;
+}
+
+.Perfil__Top-photo img{
+    border-radius: 10em;
+    width: 100px;
+}
