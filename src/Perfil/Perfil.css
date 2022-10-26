@@ -1,11 +1,56 @@
 .Perfil__Top{
     display: flex;
-    background-color: var(--blue-strong);
-    border-radius: 0.4em;
-    padding: 2em;
+    background: rgb(30,95,180);
+    background: linear-gradient(180deg, rgba(30,95,180,1) 27%, rgba(37,115,217,1) 86%);
+    border-radius: 0.4em 0.4em 0 0;
+    padding: 2em ;
+    box-shadow: var(--b-shadow);
+}
+
+.Perfil__Top-user{
+    display: flex;
+    padding: 0 2em 0 2em;
+    background-color: var(--bg-primary);
+    box-shadow: var(--b-shadow);
+    border-radius: 0 0 0.4em 0.4em;
+    height: 5.5em;
 }
 
 .Perfil__Top-photo img{
     border-radius: 10em;
     width: 100px;
+    border: 2px solid var(--bg-primary);
+    position: relative;
+    bottom: 2em;
+}
+
+.Perfil__Top-name{
+    margin-left: 0.7em;
+    padding-top: 0.4em;
+}
+
+.Perfil__Top-name p{
+    color: var( --grey-medium);
+    font-family: var(--font-primary);
+}
+
+.Perfil__Top-userData{
+    margin-top: 1.2em;
+    margin-left: 2.5em;
+}
+
+.Perfil__Top-userDataItem{
+    text-align: center;
+}
+
+.Perfil__Top-userDataItem p{
+    text-transform: uppercase;
+    font-size: 8pt;
+    padding-top: 0.1em;
+    color: var(--font-color);
+    font-family: var(--font-primary);
+}
+
+.Perfil__Top-userDataItem strong{
+    color: var(--font-color);
 }

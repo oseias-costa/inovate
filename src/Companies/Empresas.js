@@ -135,7 +135,6 @@ export const Empresas = () => {
     if(event.target === event.currentTarget){
       modalShow()
     }
-    
   }
 
   return (

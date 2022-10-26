@@ -4,7 +4,7 @@ import { TableTasks } from "../Atividades/TableTasks"
 import { AuthContext } from "../context/UserAuthContext";
 import { db } from "../firebase";
 
-export const ListActivities = () => {
+export const ListActivities = ({handleUser}) => {
     const { userLogged } = useContext(AuthContext)
     const [ list, setList ] = useState('')
 
@@ -25,7 +25,7 @@ export const ListActivities = () => {
           (item) =>
             item.responsavel.includes(userLogged[0].nome)
         );
-        console.log(userLogged[0].nome)
+       list && handleUser(search(list))
     return(
         <>
         { list ? <TableTasks data={search(list)}/> : 'Loading...'}
