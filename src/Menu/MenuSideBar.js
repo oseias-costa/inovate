@@ -5,6 +5,8 @@ import { Tasks } from "./Icons/Tasks";
 import { FactoryIconMenu } from "./Icons/FactoryIconMenu";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/UserAuthContext";
+import { UserIconMenu } from "./Icons/UsersIconMenu";
+import { ProfileIconMenu } from "./Icons/ProfileIconMenu";
 
 export const MenuSideBar = () => {
   const { currentUser } = useContext(AuthContext)
@@ -20,8 +22,6 @@ export const MenuSideBar = () => {
   return (
     <nav className={menuShow} >
       <ul className="navbarNav">
-          {/*https://iconer.app/phosphor*/}
-  
         <li className="nav-item">
           <NavLink className="nav-link" to="/" end>
             <span className="link-text">Início</span>
@@ -41,21 +41,15 @@ export const MenuSideBar = () => {
           </NavLink>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link" to="Login">
-            <span className="link-text">Login</span>
-            <Tasks />
-          </NavLink>
-        </li>
-        <li className="nav-item">
           <NavLink className="nav-link" to="Usuarios">
             <span className="link-text">Usuários</span>
-            <Tasks />
-          </NavLink>
+            <UserIconMenu />
+            </NavLink>
         </li>
         <li className="nav-item">
           <NavLink className="nav-link" to="Perfil">
             <span className="link-text">Perfil</span>
-            <Tasks />
+            <ProfileIconMenu />
           </NavLink>
         </li>
       </ul>

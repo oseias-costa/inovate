@@ -51,6 +51,14 @@
     border-radius: 0.3em;
 }
 
+.Tasks__LO{
+    text-align: center;
+    color: var(--blue-strong);
+    background-color: #2573d96b;
+    padding: 0.2em 0.3em;
+    border-radius: 0.3em;
+}
+
 .Tasks__Table-resp{
     display: flex;
     flex-direction: column;

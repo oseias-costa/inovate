@@ -1,5 +1,6 @@
 .icon {
   width: 30px;
+  fill: var(--bege-light);
   color: var(--bege-light);
   margin-top: 10px;
   border-radius: 5px;
