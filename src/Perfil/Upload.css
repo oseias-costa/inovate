@@ -1,3 +1,21 @@
 .Upload__Photo{
     border-radius: 10em;
 }
+
+input[type='file']{
+    color: var(--font-midle);
+    background-color: antiquewhite;
+    display: none;
+}
+
+.Upload__Form{
+    
+}
+
+.Upload__Label{
+    padding: 0.5em;
+    border-radius: 0.4em;
+    background-color: var(--bg-grey);
+    border: 1px solid var(--font-midle);
+    color: var(--font-color);
+}

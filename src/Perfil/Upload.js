@@ -3,6 +3,7 @@ import {
     ref,
     getDownloadURL
   } from "@firebase/storage";
+import { stripBasename } from "@remix-run/router";
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../context/UserAuthContext"
 import { storage } from "../firebase";
@@ -10,11 +11,12 @@ import {SaveUrl} from './components/SaveUrl'
 import './Upload.css'
 
 
-export const Upload = () => {
+export const Upload = ({modal}) => {
     const {userLogged} = useContext(AuthContext)
     const [progress, setProgress] = useState('')
     const [imgURL, setImgURL] = useState('')
     const [image, setImage] = useState(null)
+    const [name, setName ] = useState('')
 
     useEffect(()=>{
          const listImg = ref(storage, `/usuarios/${userLogged[0].id}`);
@@ -24,7 +26,9 @@ export const Upload = () => {
       }).catch(error => console.log(error.message))
     },[imgURL])
    
-
+    useEffect(() => {
+      setName('')
+    }, [modal])
 
     const enviarFoto = (event) => {
         const file = event.target[0]?.files[0];
@@ -51,15 +55,23 @@ export const Upload = () => {
         );
       };
 
+      const selectPhoto = (event) => {
+        const inputTarget = event.target
+        const file = inputTarget.files[0]
+        setName(file.name)
+        }
+      
       
       return(
         <>
-        {image && <SaveUrl image={image} id={userLogged[0].id} />}
-        <form onSubmit={enviarFoto}>
-        <input type="file" />
-        <button>Enviar</button>
+        <form onSubmit={enviarFoto} className='Upload__Form'>
+        <label className="Upload__Label" for='upload'>Selecione a imagem</label>  
+        <p>{name}</p>
+        <input type="file" id='upload' onChange={selectPhoto} />
+        <button className="btn-blue">Enviar</button>
       </form>
-      {!imgURL && <progress value={progress} max="100" />}
+       <progress value={progress} max="100" />
+      {image && <SaveUrl image={image} id={userLogged[0].id} />}
       {image && <img src={image} height={150} className='Upload__Photo' />}
         </>
     )

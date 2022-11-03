@@ -6,20 +6,29 @@ import { ListActivities } from "./ListActivities";
 import { Upload } from "./Upload";
 import './Perfil.css'
 import { parcialTask, finishedTask } from "./utils/data";
+import { ButtonStatus } from "./components/ButtonStatus";
+import { ModalPerfil } from "./components/ModalPerfil";
 
 export const Perfil = () => {
   const { userLogged } = useContext(AuthContext);
   const [tasks, setTasks] = useState('')
+  const [ filterType, setFilterType ] = useState('')
+  const [open, setOpen] = useState(true)
+
+  const dataUser = (result) => {
+    tasks === '' && setTasks(result)
+  }
   
-const dataUser = (result) => {
- tasks === '' && setTasks(result)
-}
-
-const realizado = finishedTask(tasks)
-const parcial = parcialTask(tasks)
-const total = tasks !== '' && tasks.length
-
-console.log('teste cpd', realizado)
+  const realizado = finishedTask(tasks)
+  const parcial = parcialTask(tasks)
+  const total = tasks !== '' && tasks.length
+  
+  const openModal = () => {
+    setOpen(true)
+  }
+  const handleModal = () => {
+    setOpen(false)
+  }
   return (
     <div>
       <div className="Perfil__Top">
@@ -31,6 +40,7 @@ console.log('teste cpd', realizado)
         <div className="Perfil__Top-name">
           <h2>{userLogged[0].nome}</h2>
           <p>{userLogged[0].email}</p>
+          <a className="Perfil__Top-link" onClick={openModal}>Editar Perfil</a>
         </div>
         <div className="Perfil__Top-userData">
           <div className="Perfil__Top-userDataItem">
@@ -39,7 +49,26 @@ console.log('teste cpd', realizado)
           </div>
         </div>
         </div>
-      <ListActivities handleUser={dataUser} />
+        <ModalPerfil open={open} handleModal={handleModal} />
+        <ul className="Perfil__Menu">
+          <li><ButtonStatus text='Realizado' 
+              atividade={filterType} onClick={() => 
+              setFilterType('Realizado')} />
+          </li>
+          <li><ButtonStatus text='Parcial' 
+              atividade={filterType} 
+              onClick={() => setFilterType('Parcial')}/>
+          </li>
+          <li><ButtonStatus text='Pendente' 
+              atividade={filterType} 
+              onClick={() => setFilterType('Pendente')}/>
+          </li>
+          <li><ButtonStatus text='LO' 
+              atividade={filterType} 
+              onClick={() => setFilterType('LO')}/>
+          </li>
+        </ul>
+      <ListActivities handleUser={dataUser} type={filterType} />
     </div>
   );
 };

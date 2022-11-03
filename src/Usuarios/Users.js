@@ -99,8 +99,6 @@ export const Users = () => {
         </div>
       </div>
       <UsersTable />
-      {/*<UploadFoto id={id} />
-      <Upload />*/}
     </div>
   );
 };

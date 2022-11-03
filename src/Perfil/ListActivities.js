@@ -4,7 +4,7 @@ import { TableTasks } from "../Atividades/TableTasks"
 import { AuthContext } from "../context/UserAuthContext";
 import { db } from "../firebase";
 
-export const ListActivities = ({handleUser}) => {
+export const ListActivities = ({handleUser, type}) => {
     const { userLogged } = useContext(AuthContext)
     const [ list, setList ] = useState('')
 
@@ -23,7 +23,8 @@ export const ListActivities = ({handleUser}) => {
       const search = () =>
         list.filter(
           (item) =>
-            item.responsavel.includes(userLogged[0].nome)
+            item.responsavel.includes(userLogged[0].nome) &&
+            item.realizado.includes(type) 
         );
        list && handleUser(search(list))
     return(
