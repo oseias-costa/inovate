@@ -63,16 +63,18 @@ export const Upload = ({modal}) => {
       
       
       return(
-        <>
-        <form onSubmit={enviarFoto} className='Upload__Form'>
-        <label className="Upload__Label" for='upload'>Selecione a imagem</label>  
-        <p>{name}</p>
-        <input type="file" id='upload' onChange={selectPhoto} />
-        <button className="btn-blue">Enviar</button>
-      </form>
-       <progress value={progress} max="100" />
-      {image && <SaveUrl image={image} id={userLogged[0].id} />}
-      {image && <img src={image} height={150} className='Upload__Photo' />}
-        </>
+        <div className='Upload__Form'>
+            <form onSubmit={enviarFoto} className='Upload__Form-form'>
+                <label className="Upload__Label" for='upload'>Selecione a imagem</label>  
+                <p className="Upload__Form-name">{name.substring(0,30)}</p>
+                <input type="file" id='upload' onChange={selectPhoto} />
+                <button className="Upload__button btn-blue">Enviar</button>
+            </form>
+            <div className="Upload__Bloco-Foto">
+                <progress value={progress} max="100" className={ imgURL && 'Upload__Foto-Progress' } />
+                {image && <SaveUrl image={image} id={userLogged[0].id} className='Upload__Photo' />}
+                {image && <img src={image} className='Upload__Photo' />}
+            </div>
+      </div>
     )
 }

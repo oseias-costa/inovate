@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { CloseX } from "../../Components/icons/CloseX"
 import { Upload } from "../Upload";
 import './ModalPerfil.css'
+import { UpdatePassword } from "./UpdatePassword";
 
 export const ModalPerfil = ({open, handleModal}) => {
   const [modal, setModal] = useState('Perfil__Modal');
@@ -15,7 +16,6 @@ export const ModalPerfil = ({open, handleModal}) => {
     }
   },[open])
 
-
     return(
         <div className={modal}>
         <div className="Perfil__Modal-container">
@@ -26,13 +26,18 @@ export const ModalPerfil = ({open, handleModal}) => {
             </div>
           </div>
           <div className="Perfil__Modal-content"> 
-                <span>Alterar Foto de Perfil</span>      
-                <Upload modal={modal} />
-            
+                <div>
+                  <span>Alterar Foto de Perfil</span>      
+                  <Upload modal={modal} />
+                </div>
+                <div>
+                  <span>Alterar Senha</span>
+                  <UpdatePassword />
+                </div>
             </div>
             <div className="Perfil__Modal-btns">
-              <button  className='btn-grey' onClick={modalShow}>Cancelar</button>
-              <button  className='btn-blue'>Adicionar</button>
+              <button className='btn-grey' onClick={modalShow}>Cancelar</button>
+              <button className='btn-blue'>Adicionar</button>
             </div>
         </div>
       </div>

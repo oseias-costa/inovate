@@ -1,5 +1,7 @@
 .Upload__Photo{
     border-radius: 10em;
+    width: 150px;
+    height: 150px;
 }
 
 input[type='file']{
@@ -9,13 +11,39 @@ input[type='file']{
 }
 
 .Upload__Form{
-    
+    position: relative;
+    top: 1em;
+    display: flex;
+    height: 10em;
+}
+
+.Upload__Form-name{
+    position: relative;
+    top: 1em;
+    color: var(--blue-btn);
+    font-size: 8pt;
 }
 
 .Upload__Label{
     padding: 0.5em;
     border-radius: 0.4em;
     background-color: var(--bg-grey);
-    border: 1px solid var(--font-midle);
+    border: 1px dashed var(--font-midle);
     color: var(--font-color);
+}
+
+.Upload__button{
+    margin-top: 1em;
+}
+
+.Upload__Bloco-Foto{
+    position: relative;
+    bottom: 1em;
+    display: flex;
+    align-items: center;
+    flex-direction: column-reverse;
+    width: 40%;
+    padding-top: 0.4em;
+    left: 2em;
+    padding-bottom: 0.5em;
 }

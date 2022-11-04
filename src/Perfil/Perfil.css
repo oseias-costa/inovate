@@ -97,3 +97,12 @@
     cursor: pointer;
     padding-top: 0.5em;
 }
+
+.Perfil__Modal-content > div{
+    border-bottom: 1px solid var(--font-light);
+    padding-bottom: 1.5em;
+}
+
+.Perfil__Modal-content > div:nth-of-type(2){
+    margin-top: 1.5em;
+}
