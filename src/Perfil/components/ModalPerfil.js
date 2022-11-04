@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { useEffect, useState } from "react";
 import { CloseX } from "../../Components/icons/CloseX"
 import { Upload } from "../Upload";
@@ -8,12 +9,11 @@ export const ModalPerfil = ({open, handleModal}) => {
   const [modal, setModal] = useState('Perfil__Modal');
 
   const modalShow = () => {
-    modal === 'hidden' ?  setModal('Perfil__Modal') : setModal('hidden')
+  modal === 'hidden' ?  setModal('Perfil__Modal') : setModal('hidden')
   }
+
   useEffect(()=> {
-    if(open) {
-        modalShow()
-    }
+    modalShow()
   },[open])
 
     return(
@@ -37,7 +37,6 @@ export const ModalPerfil = ({open, handleModal}) => {
             </div>
             <div className="Perfil__Modal-btns">
               <button className='btn-grey' onClick={modalShow}>Cancelar</button>
-              <button className='btn-blue'>Adicionar</button>
             </div>
         </div>
       </div>

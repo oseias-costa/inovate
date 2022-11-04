@@ -13,7 +13,7 @@ export const Perfil = () => {
   const { userLogged } = useContext(AuthContext);
   const [tasks, setTasks] = useState('')
   const [ filterType, setFilterType ] = useState('')
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
 
   const dataUser = (result) => {
     tasks === '' && setTasks(result)

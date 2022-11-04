@@ -30,6 +30,8 @@ input[type='file']{
     background-color: var(--bg-grey);
     border: 1px dashed var(--font-midle);
     color: var(--font-color);
+    font-family: var(--font-primary);
+    font-size: 11pt;
 }
 
 .Upload__button{
