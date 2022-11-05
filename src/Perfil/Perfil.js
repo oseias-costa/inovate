@@ -8,12 +8,16 @@ import './Perfil.css'
 import { parcialTask, finishedTask } from "./utils/data";
 import { ButtonStatus } from "./components/ButtonStatus";
 import { ModalPerfil } from "./components/ModalPerfil";
+import { Nut } from "../Components/icons/Nut";
 
 export const Perfil = () => {
-  const { userLogged } = useContext(AuthContext);
+  const { userLogged, currentUser } = useContext(AuthContext);
   const [tasks, setTasks] = useState('')
-  const [ filterType, setFilterType ] = useState('')
+  const [filterType, setFilterType] = useState('')
   const [open, setOpen] = useState(false)
+  const [user, setUser] = useState({})
+
+  console.log('currentUser: ', currentUser)
 
   const dataUser = (result) => {
     tasks === '' && setTasks(result)
@@ -22,6 +26,18 @@ export const Perfil = () => {
   const realizado = finishedTask(tasks)
   const parcial = parcialTask(tasks)
   const total = tasks !== '' && tasks.length
+
+  useEffect(() => {
+    if(userLogged[0] !== undefined){
+    setUser(
+      {
+        image : <img src={userLogged[0].image} />,
+        nome: userLogged[0].nome,
+        email: userLogged[0].email
+      }
+    )
+  }
+  }, [userLogged])
   
   const openModal = () => {
     setOpen(true)
@@ -35,12 +51,12 @@ export const Perfil = () => {
       </div>
       <div className="Perfil__Top-user">
         <div className="Perfil__Top-photo">
-          <img src={userLogged[0].image} />
+          { user.image }
         </div>
         <div className="Perfil__Top-name">
-          <h2>{userLogged[0].nome}</h2>
-          <p>{userLogged[0].email}</p>
-          <a className="Perfil__Top-link" onClick={openModal}>Editar Perfil</a>
+          <h2>{user.nome}</h2>
+          <p>{user.email}</p>
+          <a className="Perfil__Top-link" onClick={openModal}> <Nut /> Editar Perfil</a>
         </div>
         <div className="Perfil__Top-userData">
           <div className="Perfil__Top-userDataItem">

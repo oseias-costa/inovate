@@ -6,6 +6,9 @@
   flex-direction: row-reverse;
   color: rgb(135, 135, 135);
 }
+.nav-item:hover > .link-text {
+  color: #fff;
+}
 
 .nav-item {
   display: flex;
@@ -24,9 +27,13 @@
   margin: 0 0.3rem;
 }
 
-.nav-item:hover {
+.nav-item:hover{
   background-color: var(--grey-medium);
   color: #fff
+}
+
+.nav-item:hover > .link-text{
+  color: #fff;
 }
 
 .active svg{

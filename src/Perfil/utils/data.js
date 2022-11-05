@@ -24,3 +24,4 @@ export const finishedTask = (array) =>
         }
         return acc
     }, 0)
+

@@ -19,11 +19,13 @@ export const Upload = ({modal}) => {
     const [name, setName ] = useState('')
 
     useEffect(()=>{
-         const listImg = ref(storage, `/usuarios/${userLogged[0].id}`);
-      getDownloadURL(listImg).then((url)=>{       
+        if(userLogged[0] !== undefined){
+          const listImg = ref(storage, `/usuarios/${userLogged[0].id}`);
+          getDownloadURL(listImg).then((url)=>{       
           setImage(url)
         
-      }).catch(error => console.log(error.message))
+          }).catch(error => console.log(error.message))
+        }
     },[imgURL])
    
     useEffect(() => {

@@ -16,12 +16,23 @@ export const ModalPerfil = ({open, handleModal}) => {
     modalShow()
   },[open])
 
+  const clearInputs = () => {
+    handleModal(open)
+  }
+
+  const handleOutsideClick = (event) => {
+    if(event.target === event.currentTarget){
+      clearInputs()
+    }
+  }
+
+
     return(
-        <div className={modal}>
+        <div className={modal} onClick={handleOutsideClick}>
         <div className="Perfil__Modal-container">
           <div className="Perfil__Modal-top">
             <h2>Alterar Informações</h2>
-            <div className="Perfil__Modal-topX" onClick={handleModal(open)}>
+            <div className="Perfil__Modal-topX" onClick={clearInputs}>
               <CloseX />
             </div>
           </div>
@@ -36,7 +47,7 @@ export const ModalPerfil = ({open, handleModal}) => {
                 </div>
             </div>
             <div className="Perfil__Modal-btns">
-              <button className='btn-grey' onClick={modalShow}>Cancelar</button>
+              <button className='btn-grey' onClick={clearInputs}>Cancelar</button>
             </div>
         </div>
       </div>

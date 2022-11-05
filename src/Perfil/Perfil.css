@@ -92,11 +92,25 @@
 }
 
 .Perfil__Top-link{
-    color: var(--blueLight-btn);
+    color: #2573d9ba;
     font-size: 0.8em;
     cursor: pointer;
     padding-top: 0.5em;
+    display: flex;
+    align-items: center;
+    transition: 0.3s ease-in;
 }
+
+.Perfil__Top-link:hover{
+    color: var(--blueLight-btn);
+}
+
+.Perfil__Top-link > svg{
+    position: relative;
+    top: 0.06em;
+    margin-right: 0.2em;
+}
+
 
 .Perfil__Modal-content > div{
     border-bottom: 1px solid var(--font-light);

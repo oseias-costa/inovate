@@ -32,7 +32,6 @@ export const TaskModal = ({open, handleModal, deleteAtiv, editAtiv}) => {
     const [modal, setModal] = useState('hidden');
     const [text, setText] = useState('Adicionar Atividade');
 
-    console.log('dados vindo:', editAtiv)
     const showModal = () => {
       modal == 'hidden' ? setModal('Tasks__Modal') : setModal('hidden')
     }

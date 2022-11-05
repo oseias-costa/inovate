@@ -9,12 +9,14 @@ export const PhotoUser = () => {
     const [image, setImage] = useState(null)
 
     useEffect(()=>{
+        if(userLogged[0] !== undefined){
          const listImg = ref(storage, `/usuarios/${userLogged[0].id}`);
       getDownloadURL(listImg).then((url)=>{       
           setImage(url)
         
       }).catch(error => console.log(error.message))
-    },[])
+    }
+    },[userLogged])
   
     return(
         <>

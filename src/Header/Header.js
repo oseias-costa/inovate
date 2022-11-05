@@ -38,6 +38,7 @@ export const Header = () => {
           </g>
         </g>
       </svg>
+      <PhotoUser />
     </header>
   );
 };

@@ -24,19 +24,20 @@ export const AuthProvider = ({ children }) => {
         });
       }
     })    
-  }, []);
+  }, [currentUser]);
 
-  const response = JSON.stringify(currentUser);
-  const convertedResponse = { ...JSON.parse(response) };
-  const email = convertedResponse.email
   
   useEffect (() => {
+    const response = JSON.stringify(currentUser);
+    const convertedResponse = { ...JSON.parse(response) };
+    const email = convertedResponse.email
+
     function getData(id){
     const novo = list.filter(item => item.email.includes(id))
     setUserLogged(novo)
   }
     getData(email) 
-  },[list])
+  },[currentUser])
 
   return (
     <AuthContext.Provider value={{ userLogged, currentUser }}>
