@@ -4,7 +4,7 @@ import  "./Header.css";
 import { PhotoUser } from './PhotoProfile'
 
 export const Header = () => {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, userLogged } = useContext(AuthContext);
   const [headerStyle, setHeaderStyle] = useState('hidden')
 
   useEffect(() => {
@@ -38,7 +38,17 @@ export const Header = () => {
           </g>
         </g>
       </svg>
+      <div className="Header__User">
       <PhotoUser />
+      <div className="Header__ModalPerfil">
+        <div className="Header__ModalPerfil-top"></div>
+        <div className="Header__ModalPerfil-data">
+          <img src={userLogged[0].image} />
+          <p>{userLogged[0].nome}</p>
+          <p>{userLogged[0].email}</p>
+        </div>
+      </div>
+      </div>
     </header>
   );
 };

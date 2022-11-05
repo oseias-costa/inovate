@@ -8,3 +8,43 @@
     padding-left: 50px;
     padding-right: 50px;
 }
+
+.Header__User{
+    display: flex;
+    flex-direction:row-reverse;
+   
+}
+
+.Header__ModalPerfil{
+    font-family: var(--font-primary);
+    background-color: var( --bg-primary);
+    border: 1px solid var(--font-light);
+    border-radius: 0.4em;
+    position: absolute;
+    top: 2.5em;
+    right: 6em;
+}
+
+.Header__ModalPerfil-top{
+    background: rgb(30,95,180);
+    background: linear-gradient(180deg, rgba(30,95,180,1) 27%, rgba(37,115,217,1) 86%);
+    border-radius: 0.2em 0.2em 0 0;
+    margin: 0.2em;
+    height: 3em;
+    width: 8em;
+}
+
+.Header__ModalPerfil-data{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    bottom: 2em;
+}
+
+.Header__ModalPerfil-data > img {
+    width: 3.5em;
+    height: 3.5em;
+    border-radius: 10em;
+    border: 2px solid var(--bg-primary);
+}
