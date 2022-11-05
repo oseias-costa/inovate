@@ -12,7 +12,8 @@
 .Header__User{
     display: flex;
     flex-direction:row-reverse;
-   
+    align-items: center;
+    text-align: center;
 }
 
 .Header__ModalPerfil{
@@ -35,11 +36,25 @@
 }
 
 .Header__ModalPerfil-data{
+    margin: 0.2em;
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
+    padding-bottom: 0.5em;
     bottom: 2em;
+    font-family: var(--font-primary);
+    border-bottom: 1px solid var(--bege-light);
+}
+
+.Header__ModalPerfil-data > p:first-of-type{
+    color: var(--font-color);
+}
+
+.Header__ModalPerfil-data > p:last-of-type{
+    color: var(--font-midle);
+    font-size: 0.6em;
+    text-align: center;
 }
 
 .Header__ModalPerfil-data > img {
@@ -47,4 +62,8 @@
     height: 3.5em;
     border-radius: 10em;
     border: 2px solid var(--bg-primary);
+}
+
+.Header__User-NavLink {
+    color: #2573d9ba;
 }

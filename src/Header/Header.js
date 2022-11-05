@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import { AuthContext } from "../context/UserAuthContext";
 import  "./Header.css";
 import { PhotoUser } from './PhotoProfile'
@@ -6,6 +7,7 @@ import { PhotoUser } from './PhotoProfile'
 export const Header = () => {
   const { currentUser, userLogged } = useContext(AuthContext);
   const [headerStyle, setHeaderStyle] = useState('hidden')
+  const [user, setUser] = useState({})
 
   useEffect(() => {
     if(currentUser !== null){
@@ -14,6 +16,18 @@ export const Header = () => {
       setHeaderStyle('hidden')
     }
   },[currentUser])
+
+  useEffect(() => {
+    if(userLogged[0] !== undefined){
+    setUser(
+      {
+        image : <img src={userLogged[0].image} />,
+        nome: userLogged[0].nome,
+        email: userLogged[0].email
+      }
+    )
+  }
+  }, [userLogged])
 
   return (
     <header className={headerStyle}>
@@ -43,10 +57,11 @@ export const Header = () => {
       <div className="Header__ModalPerfil">
         <div className="Header__ModalPerfil-top"></div>
         <div className="Header__ModalPerfil-data">
-          <img src={userLogged[0].image} />
-          <p>{userLogged[0].nome}</p>
-          <p>{userLogged[0].email}</p>
+          {user.image}
+          <p>{user.nome}</p>
+          <p>{user.email}</p>
         </div>
+      <NavLink className='Header__User-NavLink' to='./Perfil'>Meu Perfil</NavLink>
       </div>
       </div>
     </header>
