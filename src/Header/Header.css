@@ -64,6 +64,30 @@
     border: 2px solid var(--bg-primary);
 }
 
+.Header__ModalPerfil-menu{
+    position: relative;
+    bottom: 1.3em;    
+}
+
 .Header__User-NavLink {
     color: #2573d9ba;
+    font-size: 0.8em;
+    text-decoration: none;
+    transition: 0.1s ease-in;
+    cursor: pointer ;
+}
+
+.Header__User-NavLink:hover{
+    color: var(--blueLight-destak);
+    font-weight: bold;
+}
+
+.Header__ModalPerfil-menu > li:last-of-type{
+    position: relative;
+    top: 0.6em;
+}
+
+.Header__User-NavLink > svg{
+    position: relative;
+    top: 0.5em
 }

@@ -24,20 +24,26 @@ export const AuthProvider = ({ children }) => {
         });
       }
     })    
-  }, [currentUser]);
+  }, []);
 
+  console.log('essa é a lista ' , list)
+  console.log('esse é o currentUser ' , currentUser)
+  console.log('esse é o userLogged ' , userLogged)
   
   useEffect (() => {
-    const response = JSON.stringify(currentUser);
-    const convertedResponse = { ...JSON.parse(response) };
-    const email = convertedResponse.email
+    if(currentUser){
+       const response = JSON.stringify(currentUser);
+      const convertedResponse = { ...JSON.parse(response) };
+      const email = convertedResponse.email
 
-    function getData(id){
-    const novo = list.filter(item => item.email.includes(id))
-    setUserLogged(novo)
-  }
-    getData(email) 
-  },[currentUser])
+      function getData(id){
+      const novo = list.filter(item => item.email.includes(id))
+      setUserLogged(novo)
+      }
+      getData(email) 
+    }
+   
+  },[list])
 
   return (
     <AuthContext.Provider value={{ userLogged, currentUser }}>

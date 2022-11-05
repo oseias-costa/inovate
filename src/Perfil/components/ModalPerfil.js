@@ -1,4 +1,3 @@
-import { useCallback } from "react";
 import { useEffect, useState } from "react";
 import { CloseX } from "../../Components/icons/CloseX"
 import { Upload } from "../Upload";

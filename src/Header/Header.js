@@ -1,13 +1,21 @@
+import { signOut } from "firebase/auth";
 import { useContext, useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { Nut } from "../Components/icons/Nut";
+import { OutIcon } from "../Components/icons/OutIcon";
+import { LogoutSessao } from "../Components/utils/services";
 import { AuthContext } from "../context/UserAuthContext";
+import { auth } from "../firebase";
+import { ModalPerfil } from "../Perfil/components/ModalPerfil";
 import  "./Header.css";
 import { PhotoUser } from './PhotoProfile'
 
 export const Header = () => {
   const { currentUser, userLogged } = useContext(AuthContext);
   const [headerStyle, setHeaderStyle] = useState('hidden')
+  const [modalPerfil, setModalPerfil] = useState('hidden')
   const [user, setUser] = useState({})
+  const navigate = useNavigate()
 
   useEffect(() => {
     if(currentUser !== null){
@@ -28,6 +36,22 @@ export const Header = () => {
     )
   }
   }, [userLogged])
+
+  
+  const logoutSessao = () => {
+    signOut(auth).catch((error) => {
+      console.log(error);
+    });
+    return navigate("/Login");
+  };
+
+  const handleModal = () => {
+    modalPerfil == 'hidden' ? setModalPerfil('Header__ModalPerfil') : setModalPerfil('hidden')
+  }
+
+  const handleOutsideClick = (event) => {
+    console.log(event.currentTarget)
+    }
 
   return (
     <header className={headerStyle}>
@@ -52,16 +76,32 @@ export const Header = () => {
           </g>
         </g>
       </svg>
-      <div className="Header__User">
+      <div className="Header__User" onClick={handleModal}>
       <PhotoUser />
-      <div className="Header__ModalPerfil">
+      <div className={modalPerfil} onClick={handleOutsideClick}>
         <div className="Header__ModalPerfil-top"></div>
         <div className="Header__ModalPerfil-data">
           {user.image}
           <p>{user.nome}</p>
           <p>{user.email}</p>
         </div>
-      <NavLink className='Header__User-NavLink' to='./Perfil'>Meu Perfil</NavLink>
+        <ul className="Header__ModalPerfil-menu">
+          <li>
+            <NavLink className='Header__User-NavLink' to='./Perfil'>
+              Meu Perfil
+            </NavLink>
+          </li>
+          <li>
+            <NavLink className='Header__User-NavLink' to='./Atividades'>
+              Atividades
+            </NavLink>
+          </li>
+          <li>
+          <a onClick={logoutSessao} className='Header__User-NavLink'>
+          <OutIcon /> Sair
+        </a>
+          </li>
+        </ul>
       </div>
       </div>
     </header>
