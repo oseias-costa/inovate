@@ -67,4 +67,53 @@
 .Tasks__Table-name{
     text-transform: uppercase;
     font-size: 0.9em;
+    color: var(--font-midle);
+}
+
+.Task__Pagination{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.Task__Pagination > p{
+    font-family: var(--font-primary);
+    padding-right: 0.4em;
+    padding-left: 2em;
+    color: var(--font-midle);
+    font-size: 0.9em;
+}
+
+.Task__Pagination-Active{
+    background-color: var(--blueLight-btn);
+    color: var(--bg-primary);
+    font-family: var(--font-primary);
+    padding: 0.2em 0.5em;
+    border-radius: 0.2em;
+    font-size: 0.8em;
+    border: 1px solid var(--blueLight-btn);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    margin-right: 0.2em;
+}
+
+.Task__Pagination-btn{
+    color: var(--font-midle);
+    font-family: var(--font-primary);
+    padding: 0.2em 0.5em;
+    border-radius: 0.2em;
+    font-size: 0.8em;
+    border: 1px solid var(--font-light);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    margin-right: 0.2em;
+    background-color: var(--bg-primary);
+}
+
+.Task__Pagination-select{
+    font-size: 0.8em;
+    color: var(--font-color);
 }

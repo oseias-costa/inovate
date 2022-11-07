@@ -1,5 +1,5 @@
 import { signOut } from "firebase/auth";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Nut } from "../Components/icons/Nut";
 import { OutIcon } from "../Components/icons/OutIcon";
@@ -37,6 +37,7 @@ export const Header = () => {
   }
   }, [userLogged])
 
+  const myRef = useRef()
   
   const logoutSessao = () => {
     signOut(auth).catch((error) => {
@@ -45,16 +46,23 @@ export const Header = () => {
     return navigate("/Login");
   };
 
-  const handleModal = () => {
-    modalPerfil == 'hidden' ? setModalPerfil('Header__ModalPerfil') : setModalPerfil('hidden')
-  }
+  const goLink = (path) => {
+    navigate('/'+ path)
+    setModalPerfil('hidden')
+  } 
+  
+  useEffect(() => {
+    document.addEventListener('click', handleOutsideClick)
+  },[])
 
   const handleOutsideClick = (event) => {
-    console.log(event.currentTarget)
-    }
+    myRef.current.contains(event.target) 
+    ? setModalPerfil('Header__ModalPerfil')
+    : setModalPerfil('hidden')
+  }
 
   return (
-    <header className={headerStyle}>
+    <header className={headerStyle} onClick={handleOutsideClick}>
       <svg
         width="130px"
         id="Layer_1"
@@ -76,9 +84,9 @@ export const Header = () => {
           </g>
         </g>
       </svg>
-      <div className="Header__User" onClick={handleModal}>
+      <div className="Header__User" onClick={() => setModalPerfil('Header__ModalPerfil')} ref={myRef}>
       <PhotoUser />
-      <div className={modalPerfil} onClick={handleOutsideClick}>
+      <div className={modalPerfil} >
         <div className="Header__ModalPerfil-top"></div>
         <div className="Header__ModalPerfil-data">
           {user.image}
@@ -87,9 +95,9 @@ export const Header = () => {
         </div>
         <ul className="Header__ModalPerfil-menu">
           <li>
-            <NavLink className='Header__User-NavLink' to='./Perfil'>
+            <a className='Header__User-NavLink' onClick={() => goLink('Perfil')}>
               Meu Perfil
-            </NavLink>
+            </a>
           </li>
           <li>
             <NavLink className='Header__User-NavLink' to='./Atividades'>

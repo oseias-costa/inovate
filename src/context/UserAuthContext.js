@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }) => {
       getData(email) 
     }
    
-  },[list])
+  },[list, currentUser])
 
   return (
     <AuthContext.Provider value={{ userLogged, currentUser }}>

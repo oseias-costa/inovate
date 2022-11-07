@@ -13,6 +13,8 @@ select {
     margin-right: 0.1em;
     text-align: center;
     border: 1px solid rgba(60, 64, 67, 0.15);
+    color: var(--font-color);
+
 }
 
 @media (max-width: 800px){

@@ -7,6 +7,11 @@
     align-items: center;
     padding-left: 50px;
     padding-right: 50px;
+    position: fixed;
+    top: 0;
+    z-index: 150;
+    background-color: var(--bg-primary);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
 .Header__User{
@@ -14,6 +19,13 @@
     flex-direction:row-reverse;
     align-items: center;
     text-align: center;
+    cursor: pointer;
+    border-radius: 10em;
+    border: 2px solid #fff;
+    transition: 0.15s ease-in;
+}
+.Header__User:hover{
+    border: 2px solid var(--blueLight-destak);
 }
 
 .Header__ModalPerfil{
@@ -24,7 +36,10 @@
     position: absolute;
     top: 2.5em;
     right: 6em;
+    z-index: 152;
 }
+
+
 
 .Header__ModalPerfil-top{
     background: rgb(30,95,180);
@@ -32,7 +47,7 @@
     border-radius: 0.2em 0.2em 0 0;
     margin: 0.2em;
     height: 3em;
-    width: 8em;
+    width: 10em;
 }
 
 .Header__ModalPerfil-data{
@@ -49,17 +64,18 @@
 
 .Header__ModalPerfil-data > p:first-of-type{
     color: var(--font-color);
+    margin-top: 0.5em;
 }
 
 .Header__ModalPerfil-data > p:last-of-type{
     color: var(--font-midle);
-    font-size: 0.6em;
+    font-size: 0.7em;
     text-align: center;
 }
 
 .Header__ModalPerfil-data > img {
-    width: 3.5em;
-    height: 3.5em;
+    width: 4em;
+    height: 4em;
     border-radius: 10em;
     border: 2px solid var(--bg-primary);
 }

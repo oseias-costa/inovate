@@ -55,6 +55,7 @@ export const Upload = ({modal}) => {
             });
           }
         );
+
       };
 
       const selectPhoto = (event) => {

@@ -13,7 +13,7 @@
     background-color: var(--bg-primary);
     box-shadow: var(--b-shadow);
     border-radius: 0 0 0.4em 0.4em;
-    height: 5.5em;
+    height: 9.5em;
 }
 
 .Perfil__Top-photo img{
@@ -89,6 +89,9 @@
 .Perfil__Menu{
     display: flex;
     margin-top: 1em;   
+    position: relative;
+    bottom: 4em;
+    left: 1em;
 }
 
 .Perfil__Top-link{

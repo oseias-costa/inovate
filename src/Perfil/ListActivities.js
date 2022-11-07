@@ -1,5 +1,5 @@
 import { onValue, ref } from "firebase/database";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { TableTasks } from "../Atividades/TableTasks"
 import { AuthContext } from "../context/UserAuthContext";
 import { db } from "../firebase";
@@ -8,8 +8,7 @@ import { search } from "./utils/data";
 export const ListActivities = ({handleUser, type}) => {
     const { userLogged } = useContext(AuthContext)
     const [ list, setList ] = useState('')
-
-
+   
     useEffect(() => {
         onValue(ref(db, "atividades"), (snapshot) => {
           setList([]);
@@ -21,7 +20,6 @@ export const ListActivities = ({handleUser, type}) => {
           }
         });
       }, []);
-
 
       const search = () =>
           list.filter(

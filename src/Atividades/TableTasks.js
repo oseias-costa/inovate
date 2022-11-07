@@ -1,16 +1,31 @@
 import './TableTasks.css'
 import { DropMenu } from "../Components/DropMenu";
 import { TaskModal } from './TaskModal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const TableTasks = ({ data }) => {
   const [open, setOpen] = useState(false)
   const [deleteAtiv, setDeleteAtiv] = useState('')
   const [editAtiv, setEditAtiv] = useState('')
+  const [itensPerPage, SetItensPerPage] = useState(10)
+  const [currentPage, setCurrentPage] = useState(0)
+  const tasks = data
 
+  const pages = Math.ceil(tasks.length / itensPerPage)
+  const startIndex = currentPage * itensPerPage
+  const endIndex = startIndex + itensPerPage
+  const currentItens = tasks.slice(startIndex, endIndex)
+
+  useEffect(() => { 
+    setCurrentPage(0)
+  },[itensPerPage])
+ 
   const openModal = () => {
     setOpen(true)
   }
+
+
+  console.log('numero de paginas' , pages)
 
   const handleModal = () => {
     setOpen(false)
@@ -34,6 +49,8 @@ export const TableTasks = ({ data }) => {
     openModal()
     setEditAtiv(item)
   }
+
+  console.log('ARRAY PAGES', Array(pages))
   return (
     <>
       <TaskModal 
@@ -42,6 +59,30 @@ export const TableTasks = ({ data }) => {
       deleteAtiv={deleteAtiv} 
       editAtiv={editAtiv}
       />
+      <div className='Task__Pagination'>
+          <p>Página:</p> 
+          <div>{Array.from(Array(pages), (item, index) =>{
+            return (
+              <button 
+                value={index} 
+                onClick={
+                  (e) => setCurrentPage(Number(e.target.value))
+                } 
+                className={ index === currentPage ? 'Task__Pagination-Active' : 'Task__Pagination-btn'}>
+                {index + 1}
+              </button>
+            )
+          })}</div>
+          <p>Itens por página:</p>
+          <div>
+            <select value={itensPerPage} onChange={e => SetItensPerPage(Number(e.target.value))} className='Task__Pagination-select'>
+              <option value={5}>5</option>
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+              <option value={40}>40</option>
+            </select>
+          </div> 
+      </div>
       <table className='Tasks__Table'>
         <thead>
           <tr>
@@ -56,7 +97,7 @@ export const TableTasks = ({ data }) => {
           </tr>
         </thead>
         <tbody>
-          {data.map((item) => (
+          {currentItens.map((item) => (
             <tr key={item.id} id={item.id}>
               <td>{item.empresa}</td>
               <td><div className='Tasks__Table-resp'><p>{item.atividade}</p><p className='Tasks__Table-name'>{item.responsavel}</p></div></td>

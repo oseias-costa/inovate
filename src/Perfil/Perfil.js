@@ -84,6 +84,7 @@ export const Perfil = () => {
               onClick={() => setFilterType('LO')}/>
           </li>
         </ul>
+       
       <ListActivities handleUser={dataUser} type={filterType} />
     </div>
   );
