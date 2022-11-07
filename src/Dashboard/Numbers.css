@@ -1,0 +1,21 @@
+
+.Numbers{
+    padding: 2em;
+    box-shadow: var(--b-shadow);
+    width: 9em;
+    height: 9em;
+    border-radius: 0.4em;
+    text-align: center;
+    margin-right: 1em;
+}
+
+.Numbers__value{
+    font-family: 'Arimo', sans-serif;
+    color: var(--font-midle);
+    font-size: 2.6em;
+    font-weight: bold;
+}
+
+.Numbers__span{
+    color: var(--font-light);
+}

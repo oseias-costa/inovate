@@ -60,9 +60,9 @@
     color: var(--font-midle);
     font-family: var(--font-primary);
     padding: 0.2em 0.5em;
-    border-radius: 0.2em;
     font-size: 0.9em;
-    border: 1px solid var(--font-light);
+    border: 3px solid var(--bg-primary);
+    border-bottom: 3px solid var(--font-light);
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     text-align: center;
@@ -72,13 +72,14 @@
 }
 
 .Filter__Active{
-    background-color: var(--blueLight-btn);
-    color: var(--bg-primary);
+    background-color: var(--bg-primary);
+    color: var(--blueLight-btn);
     font-family: var(--font-primary);
     padding: 0.2em 0.5em;
     border-radius: 0.2em;
     font-size: 0.9em;
-    border: 1px solid var(--blueLight-btn);
+    border: 3px solid var(--bg-primary);
+    border-bottom: 4px solid var(--blueLight-btn);
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     text-align: center;

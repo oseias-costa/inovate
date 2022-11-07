@@ -17,6 +17,15 @@
     border-radius: 0.4em;
     box-shadow: var(--b-shadow);
     display: flex;
+    transform: scale(.5);
+    animation: scaleUp 0.3s forwards;
+}
+
+@keyframes scaleUp {
+to{
+    opacity: initial;
+    transform: initial;
+    }
 }
 
 .Login__Logo{

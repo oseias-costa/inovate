@@ -1,139 +1,64 @@
-import { db } from "./firebase";
-import { uid } from "uid";
-import { set, ref, onValue, remove, update } from "firebase/database";
 import { useState, useEffect, useContext } from "react";
 import { Head } from "./Components/Head";
-import { auth } from "./firebase";
-import { signOut } from "@firebase/auth";
 import { useNavigate } from "react-router";
 import { AuthContext } from "./context/UserAuthContext";
+import { onValue, ref } from "firebase/database";
+import { db } from "./firebase";
+import { Numbers } from "./Dashboard/Numbers";
+import './Home.css'
 
 export const Home = () => {
-  const [todo, setTodo] = useState("");
-  const [todos, setTodos] = useState([]);
-  const [isEdit, setIsEdit] = useState(false);
-  const [tempUuid, setTempUuid] = useState();
-  const navigate = useNavigate();
-
   const { currentUser, userLogged } = useContext(AuthContext);
+  const [ user, setUser] = useState({})
+  const [ list, setList ] = useState([])
 
-  console.log(userLogged)
+  const total = list.length
+  const pendentes = list.filter(item => item.realizado.includes('Pendente')).length
+  const parcial = list.filter(item => item.realizado.includes('Parcial')).length
+  const lo = list.filter(item => item.realizado.includes('LO')).length
 
-  const handleTodoChange = (e) => {
-    setTodo(e.target.value);
-  };
-
-  //read
+  const somaMonthTask = list.filter(item => console.log('esse item', item.ano.toString().includes('2022')))
 
   useEffect(() => {
-    onValue(ref(db, "teste"), (snapshot) => {
-      setTodos([]);
+    onValue(ref(db, "atividades"), (snapshot) => {
+      setList([]);
       const data = snapshot.val();
       if (data !== null) {
-        Object.values(data).map((todo) => {
-          setTodos((oldArray) => [...oldArray, todo]);
+        Object.values(data).map((lista) => {
+          setList((oldArray) => [...oldArray, lista]);
         });
       }
     });
-  }, []);
+  }, [userLogged]);
 
-  // delete
+ 
 
-  const handleDelete = (todo) => {
-    remove(ref(db, `/teste/${todo.uuid}`));
-  };
+  console.log('list dash: ', list )
+  console.log('sumMonth: ', somaMonthTask )
 
-  // update
-
-  const handleUpdate = (todo) => {
-    setIsEdit(true);
-    setTempUuid(todo.uuid);
-    setTodo(todo.todo);
-  };
-
-  const handleSubmitChange = () => {
-    update(ref(db, `/teste/${tempUuid}`), {
-      todo,
-      uuid: tempUuid
-    });
-
-    setTodo("");
-    setIsEdit(false);
-  };
-
-  // write
-
-  const writeToDatabase = () => {
-    const uuid = uid();
-    set(ref(db, `/teste/${uuid}`), {
-      todo,
-      uuid
-    });
-    setTodo("");
-  };
-
-  const logoutSessao = () => {
-    signOut(auth).catch((error) => {
-      console.log(error);
-    });
-    return navigate("/Login");
-  };
-
-  const response = JSON.stringify(currentUser);
-  const transformResponse = {
-    ...JSON.parse(response)
-  };
-
-  console.log(transformResponse.email);
+  useEffect(() => {
+    if(userLogged[0] !== undefined){
+    setUser(
+      {
+        image : <img src={userLogged[0].image} />,
+        nome: userLogged[0].nome,
+        email: userLogged[0].email
+      }
+    )
+  }
+  }, [userLogged])
 
   return (
-    <div className="App">
+    <div>
       <Head title="Home" />
-
-      <header className="App-header">
-        <button type="button" onClick={logoutSessao}>
-          Logout
-        </button>
-        <br />
-        <br />
-        <input type="text" value={todo} onChange={handleTodoChange} />
-        {isEdit ? (
-          <>
-            {" "}
-            <button onClick={handleSubmitChange}>Update</button>
-            <button
-              onClick={() => {
-                setIsEdit(false);
-                setTodo("");
-              }}
-            >
-              x
-            </button>
-          </>
-        ) : (
-          <button onClick={writeToDatabase}>submit</button>
-        )}
-        {todos.map((todo) => (
-          <>
-            <li>
-              {todo.todo}
-              <button onClick={() => handleUpdate(todo)}>Update</button>
-              <button onClick={() => handleDelete(todo)}>delete</button>
-            </li>
-          </>
-        ))}
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <span className="Numbers__span">Dashboard</span>
+      <h1>Bem vindo {user.nome}!</h1>
+      <div className="Home">
+        <Numbers text='Atividades' number={total} />
+        <Numbers text='Pendentes' number={pendentes} />
+        <Numbers text='Parcial' number={parcial} />
+        <Numbers text='LO' number={lo} />
+      </div>
     </div>
   );
 };
