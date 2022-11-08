@@ -11,8 +11,11 @@ import './Users.css'
 import { CloseX } from "../Components/icons/CloseX";
 import { SpanInput } from "./components/SpanInput";
 import { AddUserIcon } from "./components/AddUserIcon";
+import { useContext } from "react";
+import { AuthContext } from "../context/UserAuthContext";
 
 export const Users = () => {
+  const { userLogged } = useContext(AuthContext)
   const [id, setId] = useState("");
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
@@ -20,13 +23,14 @@ export const Users = () => {
   const [nivel, setNivel] = useState("");
   const [modal, setModal] = useState('hidden')
 
-  const [file, setFile] = useState("");
 
   useEffect(() => {
     const id = uid();
-    setSenha(id);
     setId(id);
+    setSenha(id)
   }, []);
+
+  
 
   const addUsuario = async () => {
     await createUserWithEmailAndPassword(auth, email, senha).catch((error) =>
@@ -54,12 +58,16 @@ export const Users = () => {
     modal === 'hidden' ?  setModal('Users__Modal') : setModal('hidden')
   }
 
+
+const admButton = userLogged[0].nivel === 'Usuário' ? '' : modalShow
+const admClass = userLogged[0].nivel === 'Usuário' ? 'btn-grey' : 'btn-blue'
+  
   return (
     <div>
       <Head title="Inovate - Usuários" />
       <div className="Users__Top">
         <h1>Usuários</h1>
-        <a onClick={modalShow} className='btn-blue'>Adicionar</a>
+        <a onClick={admButton} className={admClass}>Adicionar</a>
       </div>
       <div className={modal}>
         <div className="Users__Modal-container">
@@ -87,7 +95,7 @@ export const Users = () => {
               onchange={(e) => setEmail(e.target.value)}
             />
             <SpanInput content='Senha' />
-            <TextInput id="Senha" value={senha} readonly />
+            <TextInput id="Senha" value={senha} onchange={e => setSenha(e.target.value)} readonly />
             <SpanInput content='Nivel' />
             <NivelSelect value={nivel} onchange={(e) => setNivel(e.target.value)} />
             </div>
@@ -98,7 +106,7 @@ export const Users = () => {
             </div>
         </div>
       </div>
-      <UsersTable />
+      <UsersTable nivel={userLogged[0].nivel} />
     </div>
   );
 };

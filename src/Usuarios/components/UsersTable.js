@@ -1,16 +1,12 @@
-import { onValue, ref } from "firebase/database";
+import { onValue, ref, remove } from "firebase/database";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/UserAuthContext";
-import { auth, db } from "../../firebase";
-import { PhotoUser } from "../../Header/PhotoProfile";
+import { db } from "../../firebase";
 import './UsersTable.css'
-import {SpanInput} from './SpanInput'
 import { DropMenuUser } from "./DropMenuUser";
-import { deleteUser, getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { initializeApp } from "firebase/app";
+import { UserCircle } from "../../Components/icons/UserCircle";
 
-export const UsersTable = () => {
-  const { userLogged, currentUser } = useContext(AuthContext)
+export const UsersTable = ({nivel}) => {
   const [lista, setLista] = useState([]);
 
   useEffect(() => {
@@ -33,49 +29,23 @@ export const UsersTable = () => {
     }
   });
 
-  const deletItemCallback =  () => {
-    delUser()
+  const deletItemCallback =  (itens) => {
+    delUser(itens)
   }
-   const deleteU = (itens) => {
-    signInWithEmailAndPassword(auth, itens.email, itens.senha)
-    .then(res => console.log('resposta: ', res))
-    delUser()
-   } 
-
-   const delUser = () => {
-    const auth = getAuth();
-    const user = auth.currentUser
-
-deleteUser(user).then(() => {
-      // User deleted.
-      console.log('usuario deletado')
-    }).catch((error) => {
-      ('usuario nao pode ser deletado')
-      // An error ocurred
-      // ...
-    });
+    const delUser = (user) => {
+      remove(ref(db, `usuarios/${user.id}`));
    }
-  //  const delUser = (user) => {
-  //   deleteUser(user).then(() => {
-  //     // User deleted
-  //     console.log('usuario deletado')
-  //   }).catch((error) => {
-  //     // An error ocurred
-  //     // ...
-  //   });
-  //  }
+   const admDelete = nivel === 'Usuário' ? '' : deletItemCallback
 
   const usuariosLista = lista.map((itens) => {
-
-    console.log(itens.id)
     return (
       <tr key={itens.id}>
-        <td><img src={itens.image} className="Users__Table-photo" /></td>
+        <td>{itens.image ? <img src={itens.image} className="Users__Table-photo" /> : <UserCircle />}</td>
         <td>{itens.nome}</td>
         <td>{itens.email}</td>
-        <td>{ userLogged[0].nivel === "Administrador" ? itens.senha : '***********'}</td>
+        <td>{ nivel === "Administrador" ? itens.senha : '***********'}</td>
         <td>{itens.nivel}</td>
-        <td><DropMenuUser itens={itens} deletItemCallback={deletItemCallback}/></td>
+        <td><DropMenuUser itens={itens} deletItemCallback={admDelete}/></td>
       </tr>
     );
   });

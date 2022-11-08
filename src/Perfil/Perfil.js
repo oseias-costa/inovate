@@ -9,6 +9,7 @@ import { parcialTask, finishedTask } from "./utils/data";
 import { ButtonStatus } from "./components/ButtonStatus";
 import { ModalPerfil } from "./components/ModalPerfil";
 import { Nut } from "../Components/icons/Nut";
+import { UserCircle } from "../Components/icons/UserCircle";
 
 export const Perfil = () => {
   const { userLogged, currentUser } = useContext(AuthContext);
@@ -31,7 +32,7 @@ export const Perfil = () => {
     if(userLogged[0] !== undefined){
     setUser(
       {
-        image : <img src={userLogged[0].image} />,
+        image : userLogged[0].image,
         nome: userLogged[0].nome,
         email: userLogged[0].email
       }
@@ -51,7 +52,9 @@ export const Perfil = () => {
       </div>
       <div className="Perfil__Top-user">
         <div className="Perfil__Top-photo">
-          { user.image }
+          { user.image 
+          ? <img className="Perfil__Top-photo" src={user.image} /> 
+          : <UserCircle /> }
         </div>
         <div className="Perfil__Top-name">
           <h2>{user.nome}</h2>

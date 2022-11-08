@@ -3,6 +3,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Nut } from "../Components/icons/Nut";
 import { OutIcon } from "../Components/icons/OutIcon";
+import { UserCircle } from "../Components/icons/UserCircle";
 import { LogoutSessao } from "../Components/utils/services";
 import { AuthContext } from "../context/UserAuthContext";
 import { auth } from "../firebase";
@@ -29,7 +30,7 @@ export const Header = () => {
     if(userLogged[0] !== undefined){
     setUser(
       {
-        image : <img src={userLogged[0].image} />,
+        image : userLogged[0].image,
         nome: userLogged[0].nome,
         email: userLogged[0].email
       }
@@ -85,11 +86,13 @@ export const Header = () => {
         </g>
       </svg>
       <div className="Header__User" onClick={() => setModalPerfil('Header__ModalPerfil')} ref={myRef}>
-      <PhotoUser />
+      { user.image ? <PhotoUser /> : <UserCircle /> }
       <div className={modalPerfil} >
         <div className="Header__ModalPerfil-top"></div>
         <div className="Header__ModalPerfil-data">
-          {user.image}
+          <NavLink to='./Perfil' className='Header__ModalPerfil-dataImg'>
+          { user.image ? <img src={user.image} /> : <UserCircle /> }
+          </NavLink>
           <p>{user.nome}</p>
           <p>{user.email}</p>
         </div>
@@ -106,7 +109,7 @@ export const Header = () => {
           </li>
           <li>
           <a onClick={logoutSessao} className='Header__User-NavLink'>
-          <OutIcon /> Sair
+           Sair
         </a>
           </li>
         </ul>

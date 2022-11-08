@@ -37,3 +37,9 @@
     height: 40px;
     border-radius: 50px;
 }
+
+.Users__Table td > svg{
+    width: 40px;
+    height: 40px;
+    fill: var(--bege-light);
+}

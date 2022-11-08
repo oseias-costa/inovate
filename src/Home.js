@@ -1,8 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { Head } from "./Components/Head";
-import { useNavigate } from "react-router";
 import { AuthContext } from "./context/UserAuthContext";
-import { onValue, push, ref } from "firebase/database";
+import { onValue, ref } from "firebase/database";
 import { db } from "./firebase";
 import { Numbers } from "./Dashboard/Numbers";
 import './Home.css'
@@ -11,32 +10,28 @@ export const Home = () => {
   const { currentUser, userLogged } = useContext(AuthContext);
   const [ user, setUser] = useState({})
   const [ list, setList ] = useState([])
+  const [ yearChart, setYearChart ] = useState(2022)
+  const [ monthCountChart, setMonthCountChart ] = useState({})
 
   const total = list.length
   const pendentes = list.filter(item => item.realizado.includes('Pendente')).length
   const parcial = list.filter(item => item.realizado.includes('Parcial')).length
   const lo = list.filter(item => item.realizado.includes('LO')).length
 
+  const contaMes = list.filter(item => item.ano.toString().includes(2022).length)
   
   let newYear = []
       const resultado = newYear.map( item => {
       list.map((itens) => itens.ano) == item || console.log(true)
       })
 
-  
-
-   let esseAno = list.filter(i => {
-    return i.ano == 2022
+  const yearTasks = list.filter(i => {
+    return i.ano == 2022 
    })
-
-
   
   const anoT = list.map(itens => {
       newYear.some(numero => numero === itens.ano) || newYear.push(itens.ano)    
     })
-
-  
-  
 
   useEffect(() => {
     onValue(ref(db, "atividades"), (snapshot) => {
@@ -50,7 +45,7 @@ export const Home = () => {
     });
   }, [userLogged]);
 
-  console.log('sumMonth: ', esseAno )
+  console.log('conta mês: ', contaMes )
 
   useEffect(() => {
     if(userLogged[0] !== undefined){
@@ -64,6 +59,8 @@ export const Home = () => {
   }
   }, [userLogged])
 
+  console.log('year:', yearChart)
+
   return (
     <div>
       <Head title="Home" />
@@ -75,6 +72,16 @@ export const Home = () => {
         <Numbers text='Parcial' number={parcial} />
         <Numbers text='LO' number={lo} />
       </div>
+      { newYear.map( (item, index) => {
+          return(
+            <button 
+              key={index} 
+              onClick={e => setYearChart(item)}>
+              {item}
+            </button>
+          )
+        })
+      }
     </div>
   );
 };

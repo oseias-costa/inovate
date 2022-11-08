@@ -24,9 +24,6 @@ export const TableTasks = ({ data }) => {
     setOpen(true)
   }
 
-
-  console.log('numero de paginas' , pages)
-
   const handleModal = () => {
     setOpen(false)
     setDeleteAtiv('')

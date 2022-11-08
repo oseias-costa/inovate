@@ -25,6 +25,17 @@
     bottom: 2em;
 }
 
+.Perfil__Top-photo svg{
+    fill: var(--bg-primary);
+    width: 100px;
+    height: 100px;
+    border-radius: 10em;
+    position: relative;
+    bottom: 2em;
+    background-color: var(--bege-light);
+    border: 2px solid var(--bg-primary);
+}
+
 .Perfil__Top-name{
     margin-left: 0.7em;
     padding-top: 0.4em;
