@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { Head } from "./Components/Head";
 import { useNavigate } from "react-router";
 import { AuthContext } from "./context/UserAuthContext";
-import { onValue, ref } from "firebase/database";
+import { onValue, push, ref } from "firebase/database";
 import { db } from "./firebase";
 import { Numbers } from "./Dashboard/Numbers";
 import './Home.css'
@@ -17,7 +17,26 @@ export const Home = () => {
   const parcial = list.filter(item => item.realizado.includes('Parcial')).length
   const lo = list.filter(item => item.realizado.includes('LO')).length
 
-  const somaMonthTask = list.filter(item => console.log('esse item', item.ano.toString().includes('2022')))
+  
+  let newYear = []
+      const resultado = newYear.map( item => {
+      list.map((itens) => itens.ano) == item || console.log(true)
+      })
+
+  
+
+   let esseAno = list.filter(i => {
+    return i.ano == 2022
+   })
+
+
+  
+  const anoT = list.map(itens => {
+      newYear.some(numero => numero === itens.ano) || newYear.push(itens.ano)    
+    })
+
+  
+  
 
   useEffect(() => {
     onValue(ref(db, "atividades"), (snapshot) => {
@@ -31,10 +50,7 @@ export const Home = () => {
     });
   }, [userLogged]);
 
- 
-
-  console.log('list dash: ', list )
-  console.log('sumMonth: ', somaMonthTask )
+  console.log('sumMonth: ', esseAno )
 
   useEffect(() => {
     if(userLogged[0] !== undefined){
