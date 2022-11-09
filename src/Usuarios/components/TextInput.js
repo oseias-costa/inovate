@@ -1,4 +1,4 @@
-export const TextInput = ({ id, value, onchange, type }) => {
+export const TextInput = ({ id, value, onchange, type, onBlur, name }) => {
   return (
     <div>
       <input
@@ -7,6 +7,8 @@ export const TextInput = ({ id, value, onchange, type }) => {
         id={id}
         defaultValue={value}
         onChange={onchange}
+        onBlur={onBlur}
+        name={name}
       />
     </div>
   );

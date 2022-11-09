@@ -22,6 +22,12 @@ export const Users = () => {
   const [senha, setSenha] = useState("");
   const [nivel, setNivel] = useState("");
   const [err, setErr] = useState("");
+  const [errorCheck, setErrorCheck] = useState({
+    Nome: false,
+    Email: false,
+    Senha: false,
+    Nivel: false,
+  });
   const [modal, setModal] = useState('hidden')
 
 
@@ -32,19 +38,45 @@ export const Users = () => {
   }, []);
 
   
- const checkFields = () => {
+  
+  const checkFields = () => {
+    const check = (field) => {
+    const eachField =  field !== '' && field.length >= 6
+    return eachField
+  }
+  
+    const nomeUser = check(nome) ? true : setErr('nao esta ok')
+    const senhaUser = check(senha) 
+    const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    const emailUser = pattern.test(email)
+    const nivelUser = nivel !== ''
 
-  const check = (field) => {
-  const eachField =  field !== '' && field.length >= 6
-  return eachField
-}
+  if(nomeUser && senhaUser && emailUser && nivelUser){
+    console.log('usuario pode ser cadastrado')
 
-  const nomeUser = check(nome) ? true : setErr('nao esta ok')
-  const senhaUser = check(senha) 
-  const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  const emailUser = pattern.test(email)
-  const nivelUser = nivel !== ''
-  console.log(nivelUser)
+  }
+ }
+
+ const handleCheckEmail = () => {
+  
+ }
+
+ console.log(errorCheck)
+
+ const handleCheckFields = (e) => {
+
+  let newProp = errorCheck
+
+  if(e.target.value === ''){
+      newProp[e.target.name] = `O ${e.target.name} não pode ser vazio`
+      setErrorCheck({...newProp,})
+  } else if (e.target.value.length < 6) {
+      newProp[e.target.name] = 'Por favor insira no mínimo 6 caracteres'
+      setErrorCheck({...newProp})
+  } else {
+      newProp[e.target.name] = true
+      setErrorCheck({...newProp})
+    }
  }
 
   const addUser = async () => {
@@ -103,16 +135,29 @@ const admClass = userLogged[0].nivel === 'Usuário' ? 'btn-grey' : 'btn-blue'
               id="Nome"
               value={nome}
               onchange={(e) => setNome(e.target.value)}
+              onBlur={e => handleCheckFields(e)}
+              name='Nome'
             />
+            <p>{ errorCheck.Nome !== '' && errorCheck.Nome}</p>
             <SpanInput content='Email' />
             <TextInput
               id="Email"
               value={email}
               onchange={(e) => setEmail(e.target.value)}
               type='Email'
+              onBlur={e => handleCheckEmail(e)}
+              name='Email'
             />
+            <p>{ errorCheck.Email !== '' && errorCheck.Email}</p>
             <SpanInput content='Senha' />
-            <TextInput id="Senha" value={senha} onchange={e => setSenha(e.target.value)} readonly />
+            <TextInput 
+              id="Senha" 
+              name='Senha' 
+              value={senha} 
+              onchange={e => setSenha(e.target.value)} 
+              onBlur={e => handleCheckFields(e)}
+              readonly 
+            />
             <SpanInput content='Nivel' />
             <NivelSelect value={nivel} onchange={(e) => setNivel(e.target.value)} />
             </div>
