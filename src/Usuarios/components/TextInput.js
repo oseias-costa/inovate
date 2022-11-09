@@ -1,8 +1,8 @@
-export const TextInput = ({ id, value, onchange }) => {
+export const TextInput = ({ id, value, onchange, type }) => {
   return (
     <div>
       <input
-        type="text"
+        type={type}
         placeholder={id}
         id={id}
         defaultValue={value}

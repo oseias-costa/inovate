@@ -21,6 +21,7 @@ export const Users = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [nivel, setNivel] = useState("");
+  const [err, setErr] = useState("");
   const [modal, setModal] = useState('hidden')
 
 
@@ -31,8 +32,22 @@ export const Users = () => {
   }, []);
 
   
+ const checkFields = () => {
 
-  const addUsuario = async () => {
+  const check = (field) => {
+  const eachField =  field !== '' && field.length >= 6
+  return eachField
+}
+
+  const nomeUser = check(nome) ? true : setErr('nao esta ok')
+  const senhaUser = check(senha) 
+  const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  const emailUser = pattern.test(email)
+  const nivelUser = nivel !== ''
+  console.log(nivelUser)
+ }
+
+  const addUser = async () => {
     await createUserWithEmailAndPassword(auth, email, senha).catch((error) =>
       console.log(error.message)
     );
@@ -80,6 +95,7 @@ const admClass = userLogged[0].nivel === 'Usuário' ? 'btn-grey' : 'btn-blue'
           <div className="Users__Modal-content">
             <div className="Users__Modal-iconUsers">
               <AddUserIcon />
+              <p>{err}</p>
             </div>
             <div className="Users__Modal-inputs">
             <SpanInput content='Nome' />
@@ -93,6 +109,7 @@ const admClass = userLogged[0].nivel === 'Usuário' ? 'btn-grey' : 'btn-blue'
               id="Email"
               value={email}
               onchange={(e) => setEmail(e.target.value)}
+              type='Email'
             />
             <SpanInput content='Senha' />
             <TextInput id="Senha" value={senha} onchange={e => setSenha(e.target.value)} readonly />
@@ -102,7 +119,7 @@ const admClass = userLogged[0].nivel === 'Usuário' ? 'btn-grey' : 'btn-blue'
             </div>
             <div className="Users__Modal-btns">
               <button onClick={modalShow} className='btn-grey'>Cancelar</button>
-              <button onClick={addUsuario} className='btn-blue'>Adicionar</button>
+              <button onClick={checkFields} className='btn-blue'>Adicionar</button>
             </div>
         </div>
       </div>
