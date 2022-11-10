@@ -101,7 +101,7 @@ export const TableTasks = ({ data }) => {
               <td>{item.situacao}</td>
               <td><p className={'Tasks__' + item.realizado}>{item.realizado}</p></td>
               <td>{item.frequencia}</td>
-              <td>{item.prazo}</td>
+              <td>{new Intl.DateTimeFormat('pt-BR').format(new Date(item.prazo))}</td>
               <td>
                 {Math.ceil(
                   (difference(item.prazo) - dataHoje) / 1000 / 60 / 60 / 24

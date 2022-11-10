@@ -63,7 +63,7 @@ export const TaskModal = ({open, handleModal, deleteAtiv, editAtiv}) => {
   });
 
   useEffect(() => {
-    const pegaMes = MonthData[novaData.getMonth() + 1];
+    const pegaMes = MonthData[novaData.getMonth()];
     if (pegaMes) {
       return setMes(pegaMes);
     }
