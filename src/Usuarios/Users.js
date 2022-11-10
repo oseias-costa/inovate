@@ -21,7 +21,6 @@ export const Users = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [nivel, setNivel] = useState("");
-  const [err, setErr] = useState("");
   const [errorCheck, setErrorCheck] = useState({
     Nome: false,
     Email: false,
@@ -30,45 +29,36 @@ export const Users = () => {
   });
   const [modal, setModal] = useState('hidden')
 
-
   useEffect(() => {
     const id = uid();
     setId(id);
-    setSenha(id)
   }, []);
 
-  
-  
-  const checkFields = () => {
-    const check = (field) => {
-    const eachField =  field !== '' && field.length >= 6
-    return eachField
-  }
-  
-    const nomeUser = check(nome) ? true : setErr('nao esta ok')
-    const senhaUser = check(senha) 
+ const handleCheckEmail = (e) => {
+
     const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    const emailUser = pattern.test(email)
-    const nivelUser = nivel !== ''
+    const emailUser = pattern.test(e.target.value)
+ 
+    let newProp = errorCheck
 
-  if(nomeUser && senhaUser && emailUser && nivelUser){
-    console.log('usuario pode ser cadastrado')
-
-  }
+    if(!emailUser){
+      newProp[e.target.name] = 'O email não é válido' 
+      setErrorCheck({...newProp})
+    } else if(e.target.value === '') {
+      newProp[e.target.name] = 'O email não pode estar vazio' 
+      setErrorCheck({...newProp})
+    } else {
+      newProp[e.target.name] = true 
+      setErrorCheck({...newProp})
+    }
  }
-
- const handleCheckEmail = () => {
-  
- }
-
- console.log(errorCheck)
 
  const handleCheckFields = (e) => {
 
   let newProp = errorCheck
 
   if(e.target.value === ''){
-      newProp[e.target.name] = `O ${e.target.name} não pode ser vazio`
+      newProp[e.target.name] = `O campo não pode estar vazio`
       setErrorCheck({...newProp,})
   } else if (e.target.value.length < 6) {
       newProp[e.target.name] = 'Por favor insira no mínimo 6 caracteres'
@@ -79,7 +69,20 @@ export const Users = () => {
     }
  }
 
+ const handleCheckSelect = (e) => {
+
+  let newProp = errorCheck
+  if(e.target.value === ''){
+    newProp[e.target.name] = 'Por favor selecione um nível'
+      setErrorCheck({...newProp})
+  } else {
+    newProp[e.target.name] = true
+      setErrorCheck({...newProp})
+  }
+ }
+
   const addUser = async () => {
+    if(errorCheck.Nome && errorCheck.Senha && errorCheck.Email && errorCheck.Nivel){
     await createUserWithEmailAndPassword(auth, email, senha).catch((error) =>
       console.log(error.message)
     );
@@ -92,19 +95,24 @@ export const Users = () => {
     });
     limpaInput();
     modalShow()
-  };
-
+    }
+}
   const limpaInput = () => {
     setNome("");
     setEmail("");
     setSenha("");
     setNivel("");
+    setErrorCheck({
+      Nome: false,
+      Email: false,
+      Senha: false,
+      Nivel: false,
+    })
   };
 
   const modalShow = () => {
     modal === 'hidden' ?  setModal('Users__Modal') : setModal('hidden')
   }
-
 
 const admButton = userLogged[0].nivel === 'Usuário' ? '' : modalShow
 const admClass = userLogged[0].nivel === 'Usuário' ? 'btn-grey' : 'btn-blue'
@@ -127,7 +135,6 @@ const admClass = userLogged[0].nivel === 'Usuário' ? 'btn-grey' : 'btn-blue'
           <div className="Users__Modal-content">
             <div className="Users__Modal-iconUsers">
               <AddUserIcon />
-              <p>{err}</p>
             </div>
             <div className="Users__Modal-inputs">
             <SpanInput content='Nome' />
@@ -138,7 +145,7 @@ const admClass = userLogged[0].nivel === 'Usuário' ? 'btn-grey' : 'btn-blue'
               onBlur={e => handleCheckFields(e)}
               name='Nome'
             />
-            <p>{ errorCheck.Nome !== '' && errorCheck.Nome}</p>
+            <p className='Users__Check-error'>{ errorCheck.Nome !== '' && errorCheck.Nome}</p>
             <SpanInput content='Email' />
             <TextInput
               id="Email"
@@ -148,7 +155,7 @@ const admClass = userLogged[0].nivel === 'Usuário' ? 'btn-grey' : 'btn-blue'
               onBlur={e => handleCheckEmail(e)}
               name='Email'
             />
-            <p>{ errorCheck.Email !== '' && errorCheck.Email}</p>
+            <p className='Users__Check-error'>{ errorCheck.Email !== '' && errorCheck.Email}</p>
             <SpanInput content='Senha' />
             <TextInput 
               id="Senha" 
@@ -158,13 +165,20 @@ const admClass = userLogged[0].nivel === 'Usuário' ? 'btn-grey' : 'btn-blue'
               onBlur={e => handleCheckFields(e)}
               readonly 
             />
+            <p className='Users__Check-error'>{ errorCheck.Senha !== '' && errorCheck.Senha}</p>
             <SpanInput content='Nivel' />
-            <NivelSelect value={nivel} onchange={(e) => setNivel(e.target.value)} />
+            <NivelSelect 
+              value={nivel} 
+              onchange={(e) => setNivel(e.target.value)} 
+              name='Nivel'
+              onBlur={handleCheckSelect}
+            />
+            <p className='Users__Check-error'>{ errorCheck.Nivel !== '' && errorCheck.Nivel}</p>
             </div>
             </div>
             <div className="Users__Modal-btns">
               <button onClick={modalShow} className='btn-grey'>Cancelar</button>
-              <button onClick={checkFields} className='btn-blue'>Adicionar</button>
+              <button onClick={addUser} className='btn-blue'>Adicionar</button>
             </div>
         </div>
       </div>
