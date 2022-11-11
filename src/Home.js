@@ -5,6 +5,7 @@ import { onValue, ref } from "firebase/database";
 import { db } from "./firebase";
 import { Numbers } from "./Dashboard/Numbers";
 import './Home.css'
+import { TaskChart } from "./Dashboard/TaskChart";
 
 export const Home = () => {
   const { currentUser, userLogged } = useContext(AuthContext);
@@ -45,7 +46,7 @@ export const Home = () => {
     });
   }, [userLogged]);
 
-  console.log('conta mês: ', contaMes )
+  console.log('conta mês: ', list )
 
   useEffect(() => {
     if(userLogged[0] !== undefined){
@@ -58,8 +59,6 @@ export const Home = () => {
     )
   }
   }, [userLogged])
-
-  console.log('year:', yearChart)
 
   return (
     <div>
@@ -82,6 +81,7 @@ export const Home = () => {
           )
         })
       }
+      <TaskChart list={list} yearChart={yearChart} />
     </div>
   );
 };

@@ -47,7 +47,7 @@ export const TableTasks = ({ data }) => {
     setEditAtiv(item)
   }
 
-  console.log('ARRAY PAGES', Array(pages))
+
   return (
     <>
       <TaskModal 
@@ -101,15 +101,13 @@ export const TableTasks = ({ data }) => {
               <td>{item.situacao}</td>
               <td><p className={'Tasks__' + item.realizado}>{item.realizado}</p></td>
               <td>{item.frequencia}</td>
-              <td>{new Intl.DateTimeFormat('pt-BR').format(new Date(item.prazo))}</td>
+              <td>{new Intl.DateTimeFormat('pt-BR').format(new Date(item.prazo + 'T10:00:00-03:00'))}</td>
               <td>
                 {Math.ceil(
                   (difference(item.prazo) - dataHoje) / 1000 / 60 / 60 / 24
                 )}
               </td>
               <td>
-               { /*<button onClick={() => callback(item)}>Editar</button>
-                <button onClick={() => deletItem(item)}>Excluir</button>*/}
                 <DropMenu 
                 itens={item} 
                 deletItemCallback={deletItemCallback}
