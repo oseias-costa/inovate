@@ -6,26 +6,25 @@ import { db } from "./firebase";
 import { Numbers } from "./Dashboard/Numbers";
 import './Home.css'
 import { TaskChart } from "./Dashboard/TaskChart";
+import { CalendarTasks } from "./Dashboard/CalendarTasks";
 
 export const Home = () => {
   const { currentUser, userLogged } = useContext(AuthContext);
   const [ user, setUser] = useState({})
   const [ list, setList ] = useState([])
   const [ yearChart, setYearChart ] = useState(2022)
-  const [ monthCountChart, setMonthCountChart ] = useState({})
 
   const total = list.length
   const pendentes = list.filter(item => item.realizado.includes('Pendente')).length
   const parcial = list.filter(item => item.realizado.includes('Parcial')).length
   const lo = list.filter(item => item.realizado.includes('LO')).length
-
-  const contaMes = list.filter(item => item.ano.toString().includes(2022).length)
   
   let newYear = []
       const resultado = newYear.map( item => {
       list.map((itens) => itens.ano) == item || console.log(true)
-      })
+      }).sort((a, b) => a - b)
 
+      
   const yearTasks = list.filter(i => {
     return i.ano == 2022 
    })
@@ -46,8 +45,6 @@ export const Home = () => {
     });
   }, [userLogged]);
 
-  console.log('conta mês: ', list )
-
   useEffect(() => {
     if(userLogged[0] !== undefined){
     setUser(
@@ -60,6 +57,7 @@ export const Home = () => {
   }
   }, [userLogged])
 
+
   return (
     <div>
       <Head title="Home" />
@@ -71,17 +69,22 @@ export const Home = () => {
         <Numbers text='Parcial' number={parcial} />
         <Numbers text='LO' number={lo} />
       </div>
+    
+      <TaskChart list={list} yearChart={yearChart} />
       { newYear.map( (item, index) => {
           return(
             <button 
               key={index} 
-              onClick={e => setYearChart(item)}>
+              onClick={e => setYearChart(item)}
+              className={ yearChart === item 
+              ? 'YearChart__Button-active' 
+              : 'YearChart__Button-disable'}>
               {item}
             </button>
           )
         })
       }
-      <TaskChart list={list} yearChart={yearChart} />
+      <CalendarTasks list={list} />
     </div>
   );
 };

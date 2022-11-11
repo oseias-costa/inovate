@@ -1,100 +1,62 @@
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-
+import './TaskChart.css'
 
 export const TaskChart = ({list, yearChart}) => {
 
-
-    const Janeiro = list.filter(item => {
-        return item.ano.toString().includes(yearChart) && item.mes.includes('Janeiro')
-       })
-    const Fevereiro = list.filter(item => {
-        return item.ano.toString().includes(yearChart) && item.mes.includes('Fevereiro')
-       })
-    const Março = list.filter(item => {
-        return item.ano.toString().includes(yearChart) && item.mes.includes('Março')
-       })
-    const Abril = list.filter(item => {
-        return item.ano.toString().includes(yearChart) && item.mes.includes('Abril')
-       })
-    const Maio = list.filter(item => {
-        return item.ano.toString().includes(yearChart) && item.mes.includes('Maio')
-       })
-    const Junho = list.filter(item => {
-        return item.ano.toString().includes(yearChart) && item.mes.includes('Junho')
-       })
-    const Julho = list.filter(item => {
-        return item.ano.toString().includes(yearChart) && item.mes.includes('Julho')
-       })
-    const Agosto = list.filter(item => {
-        return item.ano.toString().includes(yearChart) && item.mes.includes('Agosto')
-       })
-    const Setembro = list.filter(item => {
-        return item.ano.toString().includes(yearChart) && item.mes.includes('Setembro')
-       })
-    const Outubro = list.filter(item => {
-        return item.ano.toString().includes(yearChart) && item.mes.includes('Outubro')
-       })
-    const Novembro = list.filter(item => {
-        return item.ano.toString().includes(yearChart) && item.mes.includes('Novembro')
-       })
-    const Dezembro = list.filter(item => {
-        return item.ano.toString().includes(yearChart) && item.mes.includes('Dezembro')
-       })
+    const monthCount = (mes) => list.filter(item => {
+        return item.ano.toString().includes(yearChart) && item.mes.includes(mes)
+    })  
 
     const data = [
         {
         month: 'Janeiro',
-        tasks: Janeiro.length,
+        Atividades: monthCount('Janeiro').length,
         },
         {
         month: 'Fevereiro',
-        tasks: Fevereiro.length,
+        Atividades: monthCount('Fevereiro').length,
         },
         {
         month: 'Março',
-        tasks: Março.length,
+        Atividades: monthCount('Março').length,
         },
         {
         month: 'Abril',
-        tasks: Abril.length,
+        Atividades: monthCount('Abril').length,
         },
         {
         month: 'Maio',
-        tasks: Maio.length,
+        Atividades: monthCount('Maio').length,
         },
         {
         month: 'Junho',
-        tasks: Junho.length,
+        Atividades: monthCount('Junho').length,
         },
         {
         month: 'Julho',
-        tasks: Julho.length,
+        Atividades: monthCount('Julho').length,
         },
         {
         month: 'Agosto',
-        tasks: Agosto.length,
+        Atividades: monthCount('Agosto').length,
         },
         {
         month: 'Setembro',
-        tasks: Setembro.length,
+        Atividades: monthCount('Setembro').length,
         },
         {
         month: 'Outubro',
-        tasks: Outubro.length,
+        Atividades: monthCount('Outubro').length,
         },
         {
         month: 'Novembro',
-        tasks: Novembro.length,
+        Atividades: monthCount('Novembro').length,
         },
         {
         month: 'Dezembro',
-        tasks: Dezembro.length,
+        Atividades: monthCount('Dezembro').length,
         }
     ]
-
-    
-
-       console.log(Janeiro)
 
     return(
         <div className='TaskChart'>
@@ -105,8 +67,8 @@ export const TaskChart = ({list, yearChart}) => {
           height={400}
           data={data}
           margin={{
-            top: 10,
-            right: 30,
+            top: 0,
+            right: 0,
             left: 0,
             bottom: 0,
           }}
@@ -115,7 +77,7 @@ export const TaskChart = ({list, yearChart}) => {
           <XAxis dataKey="month" />
           <YAxis />
           <Tooltip />
-          <Area type="monotone" dataKey="tasks" stroke="#8884d8" fill="#8884d8" />
+          <Area type="monotone" dataKey="Atividades" stroke="#1e5fb4" fill="rgb(30,95,180)" />
         </AreaChart>
       </ResponsiveContainer>
       </div>
