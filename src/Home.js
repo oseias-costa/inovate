@@ -7,12 +7,14 @@ import { Numbers } from "./Dashboard/Numbers";
 import './Home.css'
 import { TaskChart } from "./Dashboard/TaskChart";
 import { CalendarTasks } from "./Dashboard/CalendarTasks";
+import { Spinner } from "./Components/Spinner";
 
 export const Home = () => {
   const { currentUser, userLogged } = useContext(AuthContext);
   const [ user, setUser] = useState({})
   const [ list, setList ] = useState([])
   const [ yearChart, setYearChart ] = useState(2022)
+  const [ showLoading, setShowLoading ] = useState(false)
 
   const total = list.length
   const pendentes = list.filter(item => item.realizado.includes('Pendente')).length
@@ -85,6 +87,7 @@ export const Home = () => {
         })
       }
       <CalendarTasks list={list} yearChart={yearChart} />
+      { showLoading && <Spinner /> }
     </div>
   );
 };

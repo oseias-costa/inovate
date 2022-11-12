@@ -8,6 +8,7 @@ import { auth } from "./firebase";
 import './Login.css'
 import { SpanInput } from "./Usuarios/components/SpanInput";
 import { Logo } from './Components/Logo'
+import { Spinner } from "./Components/Spinner";
 
 export const Login = () => {
   const { currentUser } = useContext(AuthContext);
@@ -16,6 +17,7 @@ export const Login = () => {
   const [user, setUser] = useState([]);
   const [error, setError] = useState("");
   const [ errorStyle, setErrorStyle ] = useState('hidden')
+  const [ showLoading, setShowLoading ] = useState(false)
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,14 +33,22 @@ export const Login = () => {
     setPassword(e.target.value);
   };
 
+  const login = () => {
+    setShowLoading(true)
+    entrar()
+  }
+
   const entrar = async () => {
+    
     await signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        limpaCampo();
+    .then(() => {
+      
+      limpaCampo();
         setError("");
         return navigate("/");
       })
       .catch((err) => {
+        setShowLoading(false)
         setErrorStyle('Login__Form-error')
         switch (err.message) {
           case "Firebase: Error (auth/invalid-email).":
@@ -59,6 +69,7 @@ export const Login = () => {
   const limpaCampo = () => {
     setEmail("");
     setPassword("");
+    setShowLoading(false)
   };
 
   if (currentUser) {
@@ -86,9 +97,10 @@ export const Login = () => {
             value={password}
             onChange={handleOnChangePassword}
             />
-            <button onClick={entrar} className='btn-blue'>Login</button>
+            <button onClick={login} className='btn-blue'>Login</button>
         </div>
       </div>
+      { showLoading && <Spinner /> }
     </div>
   );
 };

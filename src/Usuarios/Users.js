@@ -13,6 +13,7 @@ import { SpanInput } from "./components/SpanInput";
 import { AddUserIcon } from "./components/AddUserIcon";
 import { useContext } from "react";
 import { AuthContext } from "../context/UserAuthContext";
+import { Spinner } from "../Components/Spinner";
 
 export const Users = () => {
   const { userLogged } = useContext(AuthContext)
@@ -28,6 +29,7 @@ export const Users = () => {
     Nivel: false,
   });
   const [modal, setModal] = useState('hidden')
+  const [ showLoading, setShowLoading ] = useState(false)
 
   useEffect(() => {
     const id = uid();
@@ -82,6 +84,7 @@ export const Users = () => {
  }
 
   const addUser = async () => {
+    setShowLoading(true)
     if(errorCheck.Nome && errorCheck.Senha && errorCheck.Email && errorCheck.Nivel){
     await createUserWithEmailAndPassword(auth, email, senha).catch((error) =>
       console.log(error.message)
@@ -108,6 +111,7 @@ export const Users = () => {
       Senha: false,
       Nivel: false,
     })
+    setShowLoading(false)
   };
 
   const modalShow = () => {
@@ -183,6 +187,7 @@ const admClass = userLogged[0].nivel === 'Usuário' ? 'btn-grey' : 'btn-blue'
         </div>
       </div>
       <UsersTable nivel={userLogged[0].nivel} />
+      { showLoading && <Spinner /> }
     </div>
   );
 };
