@@ -84,10 +84,12 @@ export const Users = () => {
  }
 
   const addUser = async () => {
-    setShowLoading(true)
     if(errorCheck.Nome && errorCheck.Senha && errorCheck.Email && errorCheck.Nivel){
-    await createUserWithEmailAndPassword(auth, email, senha).catch((error) =>
+      setShowLoading(true)
+    await createUserWithEmailAndPassword(auth, email, senha).catch((error) =>{
       console.log(error.message)
+      setShowLoading(false)
+    }
     );
     set(ref(db, `/usuarios/${id}`), {
       id,
@@ -98,6 +100,7 @@ export const Users = () => {
     });
     limpaInput();
     modalShow()
+    setShowLoading(false)
     }
 }
   const limpaInput = () => {

@@ -11,9 +11,10 @@ export const UpdatePassword = () => {
     const [newPassword, setNewPassword] = useState('')
     const [oldPassword, setOldPassword] = useState('')
     const [message, setMessage] = useState('')
+    const [ showLoading, setShowLoading ] = useState(false)
 
     const handleUpdate = () => {
- 
+        
         if(userLogged[0].senha !== oldPassword){
             setMessage('Senha atual incorreta!')
         } else if(newPassword === ''){
@@ -21,6 +22,7 @@ export const UpdatePassword = () => {
         } else if(newPassword.length < 6) {
             setMessage('A senha deve ter pelo menos 6 caracteres!')
         } else {
+            setShowLoading(true)
         updatePassword(currentUser, newPassword).then(()=> {
                 setMessage('Senha Alterada!')
                 update(ref(db, `usuarios/${userLogged[0].id}`),{
@@ -29,15 +31,18 @@ export const UpdatePassword = () => {
                 console.log('senha alterada', newPassword)
                 setNewPassword('')
                 setOldPassword('')
-    
+                setShowLoading(false)
                 
             }).catch((error)=>{
              
                 setMessage(error.message)
                 setNewPassword('')
                 setOldPassword('')
+                setShowLoading(false)
             })
     }
+    
+    
 }
     return(
         <div className="UpdatePassword">
@@ -62,6 +67,7 @@ export const UpdatePassword = () => {
             className="UpdatePassword__Inputs"
             />
             <button className="btn-blue" onClick={handleUpdate}>Alterar</button>
+            { showLoading && <Spinner /> }
         </div>
     )
 }

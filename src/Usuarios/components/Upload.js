@@ -17,13 +17,14 @@ export const Upload = () => {
 
     const handleSubmit = () => {
         const imageRef = ref(storage, 'image')
-        setShowLoading(true)
         uploadBytes(imageRef, img).then(() => {
-            setShowLoading(false)
+            setShowLoading(true)
+           
             getDownloadURL(imageRef).then((url)=>{
                 setUrl(url)
             }).catch((error) => console.log('error url', error.message))
             setImg(null)
+            setShowLoading(false)
         }).catch((error) => console.log('error upload', error.message))
 
     }
