@@ -1,6 +1,7 @@
 import { connectAuthEmulator, updatePassword } from "firebase/auth"
 import { ref, update } from "firebase/database"
 import { useContext, useEffect, useState } from "react"
+import { Spinner } from "../../Components/Spinner"
 import { AuthContext } from "../../context/UserAuthContext"
 import { db } from "../../firebase"
 import './UpdatePassword.css'
@@ -12,6 +13,7 @@ export const UpdatePassword = () => {
     const [message, setMessage] = useState('')
 
     const handleUpdate = () => {
+ 
         if(userLogged[0].senha !== oldPassword){
             setMessage('Senha atual incorreta!')
         } else if(newPassword === ''){
@@ -23,18 +25,20 @@ export const UpdatePassword = () => {
                 setMessage('Senha Alterada!')
                 update(ref(db, `usuarios/${userLogged[0].id}`),{
                     senha: newPassword
-                })
+                }).catch(err => console.log('senha não salva', err))
+                console.log('senha alterada', newPassword)
                 setNewPassword('')
                 setOldPassword('')
-
+    
+                
             }).catch((error)=>{
+             
                 setMessage(error.message)
                 setNewPassword('')
                 setOldPassword('')
             })
-    } 
+    }
 }
-
     return(
         <div className="UpdatePassword">
             { message && 
