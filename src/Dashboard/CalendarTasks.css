@@ -1,19 +1,15 @@
-.TaskChart{
+.CalendarTasks{
+    height: 150px;
     width: 625px;
-    height: 250px; 
     margin-top: 1em;
-    padding: 1em;
+    font-family: var(--font-primary);
     box-shadow: var(--b-shadow);
     border-radius: 0.4em;
     text-align: center;
     background-color: var(--bg-primary);
 }
 
-.TaskChart-container{
-    position: relative;
-    right: 2.6em;
+.CalendarTasks-container{
     width: 100%;
     height: 100%;
-    font-size: 8pt;
-    font-family: var(--font-primary);
 }

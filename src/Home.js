@@ -84,7 +84,7 @@ export const Home = () => {
           )
         })
       }
-      <CalendarTasks list={list} />
+      <CalendarTasks list={list} yearChart={yearChart} />
     </div>
   );
 };

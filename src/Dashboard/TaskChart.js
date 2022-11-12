@@ -7,57 +7,15 @@ export const TaskChart = ({list, yearChart}) => {
         return item.ano.toString().includes(yearChart) && item.mes.includes(mes)
     })  
 
-    const data = [
-        {
-        month: 'Janeiro',
-        Atividades: monthCount('Janeiro').length,
-        },
-        {
-        month: 'Fevereiro',
-        Atividades: monthCount('Fevereiro').length,
-        },
-        {
-        month: 'Março',
-        Atividades: monthCount('Março').length,
-        },
-        {
-        month: 'Abril',
-        Atividades: monthCount('Abril').length,
-        },
-        {
-        month: 'Maio',
-        Atividades: monthCount('Maio').length,
-        },
-        {
-        month: 'Junho',
-        Atividades: monthCount('Junho').length,
-        },
-        {
-        month: 'Julho',
-        Atividades: monthCount('Julho').length,
-        },
-        {
-        month: 'Agosto',
-        Atividades: monthCount('Agosto').length,
-        },
-        {
-        month: 'Setembro',
-        Atividades: monthCount('Setembro').length,
-        },
-        {
-        month: 'Outubro',
-        Atividades: monthCount('Outubro').length,
-        },
-        {
-        month: 'Novembro',
-        Atividades: monthCount('Novembro').length,
-        },
-        {
-        month: 'Dezembro',
-        Atividades: monthCount('Dezembro').length,
-        }
-    ]
+    const monthsOfYear = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
 
+    const data = monthsOfYear.map(item => {
+      return {
+        month : item,
+        Atividades: monthCount(item).length
+      }
+    })
+ 
     return(
         <div className='TaskChart'>
             <div className='TaskChart-container'>
