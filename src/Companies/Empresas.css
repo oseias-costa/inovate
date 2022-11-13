@@ -129,6 +129,13 @@ textarea:focus, input:focus {
     margin-right: 2em;
 }
 
+.Companies__RedMessage{
+    position: relative;
+    bottom: 0.7em;
+    color: #D94E41 ;
+    font-size: 8pt;
+    }
+
 @media (max-width: 800px){
 
     .Companies__Table{

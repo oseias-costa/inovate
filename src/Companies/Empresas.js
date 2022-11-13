@@ -8,6 +8,7 @@ import { DropMenu } from "../Components/DropMenu";
 import { CloseX } from "../Components/icons/CloseX";
 import { FactoryIcon } from "../Menu/Icons/FactoryIcon";
 import { TableCompanies } from "./components/TableCompanies";
+import { Spinner } from "../Components/Spinner";
 
 export const Empresas = () => {
   const [empresas, setEmpresas] = useState([]);
@@ -20,19 +21,26 @@ export const Empresas = () => {
   const [clique, setClique] = useState(false);
   const [modal, setModal] = useState('hidden')
   const [closeDropMenu, setCloseDropMenu] = useState(false)
+  const [showLoading, setShowLoading] = useState(false)
+  const [err, setErr] = useState('')
 
   const escreverNaBase = () => {
-    const id = uid();
-    set(ref(db, `empresas/${id}`), {
-      id,
-      nome,
-      cnpj,
-      cidade
-    });
-    setClique(true);
-    limparInput();
-    setClique(false);
-    modalShow()
+    if(nome !== ''){
+      setShowLoading(true)
+      const id = uid();
+      set(ref(db, `empresas/${id}`), {
+        id,
+        nome,
+        cnpj,
+        cidade
+      });
+      setClique(true);
+      limparInput();
+      setClique(false);
+      modalShow()
+    } else {
+      setErr('O campo Empresa não pode estar vazio!')
+    }
   };
   useEffect(() => {
     onValue(ref(db, "empresas"), (snapshot) => {
@@ -45,8 +53,6 @@ export const Empresas = () => {
       }
     });
   }, [clique]);
-
-  console.log(empresas);
 
   empresas.sort(function (a, b) {
     if (a.nome < b.nome) {
@@ -96,6 +102,8 @@ export const Empresas = () => {
     setCidade("");
     setCnpj("");
     setEditarId("");
+    setShowLoading(false)
+    setErr('')
   };
 
   const editarEmpresa = (itens) => {
@@ -108,6 +116,7 @@ export const Empresas = () => {
   };
 
   const salvarEdicao = () => {
+    setShowLoading(true)
     update(ref(db, `/empresas/${editarId}`), {
       id: editarId,
       nome,
@@ -116,7 +125,6 @@ export const Empresas = () => {
     });
     setEditar(false);
     limparInput();
-    console.log(editar);
     modalShow()
   };
 
@@ -165,7 +173,8 @@ export const Empresas = () => {
               placeholder="Nome da Empresa"
               value={nome}
               onChange={(e) => setNome(e.target.value)}
-            />
+              />
+              { err && <p className="Companies__RedMessage">{err}</p>}
             <span>CNPJ</span>
             <input
               placeholder="CNPJ"
@@ -200,6 +209,7 @@ export const Empresas = () => {
 
             <TableCompanies listaEmpresas={listaEmpresas} />
       <br />
+      { showLoading && <Spinner /> }
     </div>
   );
 };

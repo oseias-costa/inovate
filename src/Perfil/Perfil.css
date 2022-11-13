@@ -98,9 +98,8 @@
 
 .Perfil__Menu{
     display: flex;
-    margin-top: 1em;   
     position: relative;
-    bottom: 4em;
+    bottom: 2.5em;
     left: 1em;
 }
 

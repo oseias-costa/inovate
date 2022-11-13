@@ -18,8 +18,6 @@ export const Perfil = () => {
   const [open, setOpen] = useState(false)
   const [user, setUser] = useState({})
 
-  console.log('currentUser: ', currentUser)
-
   const dataUser = (result) => {
     tasks === '' && setTasks(result)
   }
@@ -38,7 +36,7 @@ export const Perfil = () => {
       }
     )
   }
-  }, [userLogged])
+  }, [userLogged, open])
   
   const openModal = () => {
     setOpen(true)

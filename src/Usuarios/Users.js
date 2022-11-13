@@ -14,6 +14,7 @@ import { AddUserIcon } from "./components/AddUserIcon";
 import { useContext } from "react";
 import { AuthContext } from "../context/UserAuthContext";
 import { Spinner } from "../Components/Spinner";
+import { useNavigate } from "react-router-dom";
 
 export const Users = () => {
   const { userLogged } = useContext(AuthContext)
@@ -30,6 +31,7 @@ export const Users = () => {
   });
   const [modal, setModal] = useState('hidden')
   const [ showLoading, setShowLoading ] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const id = uid();
@@ -101,7 +103,10 @@ export const Users = () => {
     limpaInput();
     modalShow()
     setShowLoading(false)
+    navigate('/')
     }
+    setShowLoading(false)
+    
 }
   const limpaInput = () => {
     setNome("");
@@ -119,6 +124,7 @@ export const Users = () => {
 
   const modalShow = () => {
     modal === 'hidden' ?  setModal('Users__Modal') : setModal('hidden')
+    limpaInput()
   }
 
 const admButton = userLogged[0].nivel === 'Usuário' ? '' : modalShow
