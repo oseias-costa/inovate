@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     auth.onAuthStateChanged(setCurrentUser);
     setCurrentUser(null)
-  }, []);
+  }, [currentUser]);
 
   useEffect(() => {
     onValue(ref(db, "/usuarios"), (snapshot) => {
@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
         });
       }
     })    
-  }, []);
+  }, [currentUser]);
 
   console.log('essa é a lista ' , list)
   console.log('esse é o currentUser ' , currentUser)
@@ -32,12 +32,13 @@ export const AuthProvider = ({ children }) => {
   
   useEffect (() => {
     if(currentUser){
-       const response = JSON.stringify(currentUser);
+      const response = JSON.stringify(currentUser);
       const convertedResponse = { ...JSON.parse(response) };
       const email = convertedResponse.email
 
-      function getData(id){
-      const novo = list.filter(item => item.email.includes(id))
+      async function getData(id){
+
+      const novo =  list.filter(item => item.email.includes(id))
       setUserLogged(novo)
       }
       getData(email) 
