@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     auth.onAuthStateChanged(setCurrentUser);
     setCurrentUser(null)
-  }, [currentUser]);
+  }, []);
 
   useEffect(() => {
     onValue(ref(db, "/usuarios"), (snapshot) => {
