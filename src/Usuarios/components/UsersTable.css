@@ -39,7 +39,9 @@
 }
 
 .Users__Table td > svg{
-    width: 40px;
-    height: 40px;
+    position: relative;
+    right: 0.25em;
+    width: 45px;
+    height: 45px;
     fill: var(--bege-light);
 }

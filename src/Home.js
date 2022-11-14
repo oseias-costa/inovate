@@ -16,22 +16,27 @@ export const Home = () => {
   const [ yearChart, setYearChart ] = useState(2022)
   const [ showLoading, setShowLoading ] = useState(false)
 
-  const total = list.length
-  const pendentes = list.filter(item => item.realizado.includes('Pendente')).length
-  const parcial = list.filter(item => item.realizado.includes('Parcial')).length
-  const lo = list.filter(item => item.realizado.includes('LO')).length
-  
+  const convertYearChartOnString = yearChart.toString()
+  const yearChartList = (item) => item.ano.toString().includes(convertYearChartOnString)
+
+  const total = list.filter(item => yearChartList(item)).length 
+  const pendentes = list.filter(item => yearChartList(item) &&  item.realizado.includes('Pendente')).length
+  const parcial = list.filter(item => yearChartList(item) && item.realizado.includes('Parcial')).length
+  const lo = list.filter(item => yearChartList(item) && item.realizado.includes('LO')).length
+  console.log('conta ano',  )
+  console.log('string', )
   let newYear = []
       const resultado = newYear.map( item => {
       list.map((itens) => itens.ano) == item || console.log(true)
-      }).sort((a, b) => a - b)
+      })
 
-      
+  list.sort((a, b) => a.ano - b.ano)
+  
   const yearTasks = list.filter(i => {
     return i.ano == 2022 
    })
   
-  const anoT = list.map(itens => {
+  const contemYear = list.map(itens => {
       newYear.some(numero => numero === itens.ano) || newYear.push(itens.ano)    
     })
 
@@ -73,10 +78,11 @@ export const Home = () => {
       </div>
     
       <TaskChart list={list} yearChart={yearChart} />
-      { newYear.map( (item, index) => {
+      <CalendarTasks list={list} yearChart={yearChart} />
+      { newYear.map( item => {
           return(
             <button 
-              key={index} 
+              key={item} 
               onClick={e => setYearChart(item)}
               className={ yearChart === item 
               ? 'YearChart__Button-active' 
@@ -86,7 +92,6 @@ export const Home = () => {
           )
         })
       }
-      <CalendarTasks list={list} yearChart={yearChart} />
       { showLoading && <Spinner /> }
     </div>
   );

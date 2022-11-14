@@ -31,6 +31,7 @@ export const TaskModal = ({open, handleModal, deleteAtiv, editAtiv}) => {
     const [delet, setDelet] = useState(false);
     const [modal, setModal] = useState('hidden');
     const [text, setText] = useState('Adicionar Atividade');
+    const [err, setErr] = useState({});
 
     const showModal = () => {
       modal == 'hidden' ? setModal('Tasks__Modal') : setModal('hidden')
@@ -75,6 +76,11 @@ export const TaskModal = ({open, handleModal, deleteAtiv, editAtiv}) => {
   }, []);
 
   const addAtividade = () => {
+    if(empresa === ''){
+        return setErr({...err, ['empresa'] : 'O campo Empresa é obrigatório!'})
+    } else if(prazo === ''){
+        return setErr({...err, ['prazo'] : 'O campo Prazo é obrigatório!'})
+    } else {
     set(ref(db, `atividades/${id}`), {
       id,
       empresa,
@@ -88,8 +94,10 @@ export const TaskModal = ({open, handleModal, deleteAtiv, editAtiv}) => {
       ano,
       createdAt: serverTimestamp()
     });
-    clearInputs();
+    clearInputs();}
   };
+
+  console.log('errooo', err)
 
   const getData = (item) => {
     setDelet(false);
@@ -162,6 +170,7 @@ export const TaskModal = ({open, handleModal, deleteAtiv, editAtiv}) => {
     setEditar(false);
     setDelet(false);
     setText('Adicionar Atividade')
+    setErr({})
   };
 
   let buttonForm;
@@ -211,7 +220,9 @@ export const TaskModal = ({open, handleModal, deleteAtiv, editAtiv}) => {
             <SelectEmpresas
               value={empresa}
               onChange={(e) => setEmpresa(e.target.value)}
+              onBlur={e => e.target.value !== '' && setErr({...err, ['empresa'] : ''})}
             />
+            {err.empresa && <p className="Task__Check-error">{err.empresa}</p>}
             <SpanModal value='Atividade' />
             <TextInput
               id="Atividade"
@@ -233,7 +244,8 @@ export const TaskModal = ({open, handleModal, deleteAtiv, editAtiv}) => {
               id="Status"
               data={StatusData}
               value={realizado}
-              onChange={(e) => setRealizado(e.target.value)}
+              onChange={(e) => {
+                setRealizado(e.target.value)}}
             />
             <SpanModal value='Frequência' />
             <FiltroSelect
@@ -247,7 +259,9 @@ export const TaskModal = ({open, handleModal, deleteAtiv, editAtiv}) => {
               type="date"
               value={prazo}
               onChange={(e) => setPrazo(e.target.value)}
+              onBlur={e => e.target.value !== '' && setErr({...err, ['prazo'] : ''})}
             />
+            {err.prazo && <p className="Task__Check-error">{err.prazo}</p>}
             <SpanModal value='Mês' />
             <RecebeDadosInput value={mes} />
             <SpanModal value='Ano' />

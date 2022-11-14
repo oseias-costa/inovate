@@ -4,6 +4,7 @@
 }
 
 .YearChart__Button-active {
+    margin-top: 1em;
     background-color: var(--blueLight-btn);
     color: var(--bg-primary);
     font-family: var(--font-primary);
@@ -18,6 +19,7 @@
 }
 
 .YearChart__Button-disable{
+    margin-top: 1em;
     color: var(--font-midle);
     font-family: var(--font-primary);
     padding: 0.2em 0.5em;

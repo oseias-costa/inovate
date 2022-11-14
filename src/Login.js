@@ -90,12 +90,14 @@ export const Login = () => {
             type='email'
             value={email}
             onChange={handleOnChangeEmail}
+            placeholder='Seu email'
             />
             <SpanInput content='Senha' />
             <InputLogin 
             type='password'
             value={password}
             onChange={handleOnChangePassword}
+            placeholder='Sua senha'
             />
             <button onClick={login} className='btn-blue'>Login</button>
         </div>

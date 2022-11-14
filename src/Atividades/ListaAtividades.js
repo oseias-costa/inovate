@@ -12,6 +12,7 @@ import {
 } from "./components/FilterData";
 import { EnviarBotao } from "./EnviarBotao";
 import { SelecUsuarios } from "../Usuarios/components/SelectUsuarios";
+import './TaskList.css'
 
 export const ListaAtividades = ({ onSubmit, deletAtiv }) => {
   const [company, setCompany] = useState("");
@@ -66,6 +67,7 @@ export const ListaAtividades = ({ onSubmit, deletAtiv }) => {
 
   return (
     <div>
+      <div className="TaskList_Filters">
       <SelectEmpresas
         value={company}
         onChange={(e) => setCompany(e.target.value)}
@@ -100,7 +102,7 @@ export const ListaAtividades = ({ onSubmit, deletAtiv }) => {
         onChange={(e) => setYear(e.target.value)}
       />
       <EnviarBotao id="Limpar" onClick={cleanFilter} className='btn-grey'/>
-
+      </div>
       <TableTasks
         data={busca(list)}
         callback={callback}

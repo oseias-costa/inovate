@@ -9,12 +9,13 @@ export const TableTasks = ({ data }) => {
   const [editAtiv, setEditAtiv] = useState('')
   const [itensPerPage, SetItensPerPage] = useState(10)
   const [currentPage, setCurrentPage] = useState(0)
-  const tasks = data
+  const tasks = data.sort((a, b) => b.createdAt - a.createdAt)
 
   const pages = Math.ceil(tasks.length / itensPerPage)
   const startIndex = currentPage * itensPerPage
   const endIndex = startIndex + itensPerPage
   const currentItens = tasks.slice(startIndex, endIndex)
+  console.log(tasks)
 
   useEffect(() => { 
     setCurrentPage(0)

@@ -2,7 +2,7 @@ import { onValue, ref } from "firebase/database";
 import { useEffect, useState } from "react";
 import { db } from "../firebase";
 
-export const SelectEmpresas = ({ value, onChange }) => {
+export const SelectEmpresas = ({ value, onChange, onBlur }) => {
   const [empresas, setEmpresas] = useState([]);
   useEffect(() => {
     onValue(ref(db, "empresas"), (snapshot) => {
@@ -31,7 +31,7 @@ export const SelectEmpresas = ({ value, onChange }) => {
   });
 
   return (
-    <select value={value} onChange={onChange} >
+    <select value={value} onChange={onChange} onBlur={onBlur}>
       <option disabled={+true} value=''>
         Empresa
       </option>
