@@ -1,7 +1,7 @@
 import { RecebeDadosInput } from "./RecebeDadosInput";
 import { TextInput } from "./TextInput";
 import { uid } from "uid";
-import { get, ref, remove, serverTimestamp, set, update } from "firebase/database";
+import { ref, remove, serverTimestamp, set, update } from "firebase/database";
 import { db } from "../firebase";
 import { MonthData, FrequencyData, StatusData } from "./components/FilterData";
 import { SelecUsuarios } from "../Usuarios/components/SelectUsuarios";
@@ -14,6 +14,7 @@ import { CloseX } from "../Components/icons/CloseX";
 import { TitleModal } from "./components/TitleModal";
 import './Tasks__Modal.css'
 import { SpanModal } from "./components/SpanModal";
+import { Logo } from "../Components/Logo";
 
 export const TaskModal = ({open, handleModal, deleteAtiv, editAtiv}) => {
     const [id, setId] = useState("");
@@ -97,8 +98,6 @@ export const TaskModal = ({open, handleModal, deleteAtiv, editAtiv}) => {
     clearInputs();}
   };
 
-  console.log('errooo', err)
-
   const getData = (item) => {
     setDelet(false);
     setIdEdit(item.id);
@@ -130,7 +129,11 @@ export const TaskModal = ({open, handleModal, deleteAtiv, editAtiv}) => {
   };
 
   const saveEdit = () => {
-    update(ref(db, `atividades/${idedit}`), {
+    if(empresa === ''){
+      return setErr({...err, ['empresa'] : 'O campo Empresa é obrigatório!'})
+  } else if(prazo === ''){
+      return setErr({...err, ['prazo'] : 'O campo Prazo é obrigatório!'})
+  } else { update(ref(db, `atividades/${idedit}`), {
       id: idedit,
       empresa,
       atividade,
@@ -140,10 +143,11 @@ export const TaskModal = ({open, handleModal, deleteAtiv, editAtiv}) => {
       frequencia,
       prazo,
       mes,
-      ano
+      ano,
+      createdAt: serverTimestamp()
     });
     setEditar(false);
-    clearInputs();
+    clearInputs();}
   };
 
   const deletAtiv = () => {
@@ -151,8 +155,6 @@ export const TaskModal = ({open, handleModal, deleteAtiv, editAtiv}) => {
     setDelet(false);
     clearInputs();
   };
-
-
 
   const clearInputs = () => {
     handleModal(open)
@@ -214,7 +216,10 @@ export const TaskModal = ({open, handleModal, deleteAtiv, editAtiv}) => {
             </div>
         </div>
         <div className="Tasks__Modal-content">
-          <div><p>Ilustracao</p></div>
+            <div className="Companies__Modal-warnings">
+                <p>Os campos: Empresa e Prazo são obrigatórios.</p>
+                <Logo />
+            </div>
           <div className="Tasks__Modal-inputs">
           <SpanModal value='Empresa' />
             <SelectEmpresas

@@ -7,6 +7,7 @@ import { DropMenuUser } from "./DropMenuUser";
 import { UserCircle } from "../../Components/icons/UserCircle";
 
 export const UsersTable = ({nivel}) => {
+  const { userLogged } = useContext(AuthContext)
   const [lista, setLista] = useState([]);
 
   useEffect(() => {
@@ -27,7 +28,7 @@ export const UsersTable = ({nivel}) => {
     } else {
       return true;
     }
-  });
+  })
 
   const deletItemCallback =  (itens) => {
     delUser(itens)
@@ -45,12 +46,10 @@ export const UsersTable = ({nivel}) => {
         <td>{itens.email}</td>
         <td>{ nivel === "Administrador" ? itens.senha : '***********'}</td>
         <td>{itens.nivel}</td>
-        <td><DropMenuUser itens={itens} deletItemCallback={admDelete}/></td>
+        <td><DropMenuUser itens={itens} deletItemCallback={userLogged[0].id !== itens.id && admDelete}/></td>
       </tr>
     );
   });
-
-  
 
   return (
     <>

@@ -3,18 +3,18 @@ import { NivelSelect } from "./components/NivelSelect";
 import { TextInput } from "./components/TextInput";
 import { uid } from "uid";
 import { set, ref } from "firebase/database";
-import { auth, db, storage } from "../firebase";
+import { auth, db } from "../firebase";
 import { createUserWithEmailAndPassword } from "@firebase/auth";
 import { UsersTable } from "./components/UsersTable";
 import { Head } from "../Components/Head";
 import './Users.css'
 import { CloseX } from "../Components/icons/CloseX";
-import { SpanInput } from "./components/SpanInput";
-import { AddUserIcon } from "./components/AddUserIcon";
+import { SpanInput } from "./components/SpanInput"; 
 import { useContext } from "react";
 import { AuthContext } from "../context/UserAuthContext";
 import { Spinner } from "../Components/Spinner";
 import { useNavigate } from "react-router-dom";
+import { Logo } from "../Components/Logo";
 
 export const Users = () => {
   const { userLogged } = useContext(AuthContext)
@@ -127,6 +127,12 @@ export const Users = () => {
     limpaInput()
   }
 
+  const handleOutsideClick = (event) => {
+    if(event.target === event.currentTarget){
+      modalShow()
+    }
+  }
+
 const admButton = userLogged[0].nivel === 'Usuário' ? '' : modalShow
 const admClass = userLogged[0].nivel === 'Usuário' ? 'btn-grey' : 'btn-blue'
   
@@ -137,7 +143,7 @@ const admClass = userLogged[0].nivel === 'Usuário' ? 'btn-grey' : 'btn-blue'
         <h1>Usuários</h1>
         <a onClick={admButton} className={admClass}>Adicionar</a>
       </div>
-      <div className={modal}>
+      <div className={modal} onClick={handleOutsideClick} >
         <div className="Users__Modal-container">
           <div className="Users__Modal-top">
             <h2>Adicionar Usuário</h2>
@@ -147,7 +153,11 @@ const admClass = userLogged[0].nivel === 'Usuário' ? 'btn-grey' : 'btn-blue'
           </div>
           <div className="Users__Modal-content">
             <div className="Users__Modal-iconUsers">
-              <AddUserIcon />
+              <div className="Users__Modal-warnings">
+                <p>Os campos: Nome, Email, Senha e Nível são obrigatórios.</p>
+                <p>A senha precisa ter no mínimo 6 dígitos.</p>
+                <Logo />
+              </div>
             </div>
             <div className="Users__Modal-inputs">
             <SpanInput content='Nome' />

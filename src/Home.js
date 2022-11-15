@@ -23,8 +23,7 @@ export const Home = () => {
   const pendentes = list.filter(item => yearChartList(item) &&  item.realizado.includes('Pendente')).length
   const parcial = list.filter(item => yearChartList(item) && item.realizado.includes('Parcial')).length
   const lo = list.filter(item => yearChartList(item) && item.realizado.includes('LO')).length
-  console.log('conta ano',  )
-  console.log('string', )
+  
   let newYear = []
       const resultado = newYear.map( item => {
       list.map((itens) => itens.ano) == item || console.log(true)

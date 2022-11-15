@@ -26,10 +26,6 @@ export const AuthProvider = ({ children }) => {
     })    
   }, [currentUser]);
 
-  console.log('essa é a lista ' , list)
-  console.log('esse é o currentUser ' , currentUser)
-  console.log('esse é o userLogged ' , userLogged)
-  
   useEffect (() => {
     if(currentUser){
       const response = JSON.stringify(currentUser);

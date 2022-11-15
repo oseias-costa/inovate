@@ -9,6 +9,7 @@ import { CloseX } from "../Components/icons/CloseX";
 import { FactoryIcon } from "../Menu/Icons/FactoryIcon";
 import { TableCompanies } from "./components/TableCompanies";
 import { Spinner } from "../Components/Spinner";
+import { Logo } from "../Components/Logo";
 
 export const Empresas = () => {
   const [empresas, setEmpresas] = useState([]);
@@ -165,7 +166,13 @@ export const Empresas = () => {
             </div>
           </div>
         <div className="Companies__Modal-content">
-        <div className="Companies__Modal-iconFactory"><FactoryIcon /></div>
+        <div className="Companies__Modal-iconFactory">
+        <div className="Companies__Modal-warnings">
+                <p>O campo Empresa é obrigatório</p>
+                <p></p>
+                <Logo />
+              </div>
+          </div>
         <div className="Companies__Modal-inputs">
           <span>Empresa</span>
             <input

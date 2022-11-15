@@ -16,8 +16,6 @@ export const SelectEmpresas = ({ value, onChange, onBlur }) => {
     });
   }, []);
 
-  console.log(empresas);
-
   empresas.sort(function (a, b) {
     if (a.nome < b.nome) {
       return -1;

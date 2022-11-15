@@ -15,7 +15,6 @@ export const TableTasks = ({ data }) => {
   const startIndex = currentPage * itensPerPage
   const endIndex = startIndex + itensPerPage
   const currentItens = tasks.slice(startIndex, endIndex)
-  console.log(tasks)
 
   useEffect(() => { 
     setCurrentPage(0)

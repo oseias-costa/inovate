@@ -1,5 +1,5 @@
 .Login{
-    background-color: aqua;
+    background-color: #fff;
 }
 
 .Login__Container{
@@ -33,8 +33,17 @@ to{
     width: 50%;
     border-radius: 0.4em 0 0 0.4em;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.Login__Logo > span{
+    color: #fff;
+    position: relative;
+    bottom: 0.7em;
+    right: 0.8em;
+    font-size: 7.5pt;
 }
 
 .Login__Form{
@@ -45,7 +54,7 @@ to{
 }
 
 .Login__Form input{
-        margin-bottom: 0.6em;
+    margin-bottom: 0.6em;
     border-radius: 0.2em;
     padding: 0.3em;
     font-family: var(--font-primary);
@@ -57,11 +66,13 @@ to{
 .Login__Form h1{
     padding-bottom: 1em;
     font-size: 19pt;
+    position: relative;
+    bottom: 0.4em;
 }
 
 .Login__Form-error{
     position: relative;
-    top: 5em;
+    bottom: 1em;
     text-align: center;
     color: #D94E41;
     border: 1px solid #d94e4163;
@@ -69,6 +80,7 @@ to{
     padding: 0.2em 0.5em;
     border-radius: 0.3em;
     font-size: 10pt;
+    font-family: var(--font-primary);
 }
 
 .hidden{

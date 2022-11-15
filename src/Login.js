@@ -1,4 +1,5 @@
-import { signInWithEmailAndPassword,
+import {
+  signInWithEmailAndPassword,
 } from "@firebase/auth";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
@@ -8,7 +9,7 @@ import { auth } from "./firebase";
 import './Login.css'
 import { SpanInput } from "./Usuarios/components/SpanInput";
 import { Logo } from './Components/Logo'
-import { Spinner } from "./Components/Spinner";
+import { Spinner } from "./Components/Spinner"
 
 export const Login = () => {
   const { currentUser } = useContext(AuthContext);
@@ -16,8 +17,8 @@ export const Login = () => {
   const [password, setPassword] = useState("");
   const [user, setUser] = useState([]);
   const [error, setError] = useState("");
-  const [ errorStyle, setErrorStyle ] = useState('hidden')
-  const [ showLoading, setShowLoading ] = useState(false)
+  const [errorStyle, setErrorStyle] = useState('hidden')
+  const [showLoading, setShowLoading] = useState(false)
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,6 +26,16 @@ export const Login = () => {
       setUser(user);
     });
   });
+
+  useEffect(() => {
+    document.addEventListener('keydown', detectKeyDown, true)
+  }, [])
+
+  const detectKeyDown = (e) => {
+    if(e.key == 'Enter'){
+      login()
+    }
+  }
 
   const handleOnChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -39,11 +50,11 @@ export const Login = () => {
   }
 
   const entrar = async () => {
-    
+
     await signInWithEmailAndPassword(auth, email, password)
-    .then(() => {
-      
-      limpaCampo();
+      .then(() => {
+
+        limpaCampo();
         setError("");
         return navigate("/");
       })
@@ -80,29 +91,29 @@ export const Login = () => {
     <div className="Login">
       <div className="Login__Container">
         <div className="Login__Logo">
-            <Logo fill='#fff'/>
+          <Logo fill='#fff' />  
+          <span>Soluções Ambientais</span>        
         </div>
         <div className="Login__Form">
-            <p className={errorStyle}>{error}</p>
-            <h1>Entrar</h1>
-            <SpanInput content='Email' />
-            <InputLogin 
+          <p className={errorStyle}>{error}</p>
+          <SpanInput content='Email' />
+          <InputLogin
             type='email'
             value={email}
             onChange={handleOnChangeEmail}
             placeholder='Seu email'
-            />
-            <SpanInput content='Senha' />
-            <InputLogin 
+          />
+          <SpanInput content='Senha' />
+          <InputLogin
             type='password'
             value={password}
             onChange={handleOnChangePassword}
             placeholder='Sua senha'
-            />
-            <button onClick={login} className='btn-blue'>Login</button>
+          />
+          <button onClick={login} className='btn-blue'>Entrar</button>
         </div>
       </div>
-      { showLoading && <Spinner /> }
+      {showLoading && <Spinner />}
     </div>
   );
 };

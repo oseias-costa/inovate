@@ -110,3 +110,28 @@ textarea:focus, input:focus {
     color: #D94E41 ;
     font-size: 8pt;
 }
+
+.Users__Modal-warnings{
+    background-color: var(--bg-grey);
+    border-radius: 0.2em;
+    width: 9em;
+    padding: 0.6em;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    /* border: 0.2px solid var(--font-light); */
+    position: relative;
+    top: 1em;
+}
+
+.Users__Modal-warnings > svg{
+    position: relative;
+    top: 1em;
+    left: 0.4em;
+    fill: var(--font-light)
+}
+
+.Users__Modal-warnings > p{
+    color: var(--font-color);
+    font-family: var(--font-primary);
+    font-size: 10pt;
+    padding-bottom: 0.4em;
+}
