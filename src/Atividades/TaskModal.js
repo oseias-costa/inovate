@@ -74,7 +74,9 @@ export const TaskModal = ({open, handleModal, deleteAtiv, editAtiv}) => {
   useEffect(() => {
     const id = uid();
     setId(id);
-  }, []);
+  }, [modal]);
+
+  console.log(id)
 
   const addAtividade = () => {
     if(empresa === ''){
@@ -83,16 +85,9 @@ export const TaskModal = ({open, handleModal, deleteAtiv, editAtiv}) => {
         return setErr({...err, ['prazo'] : 'O campo Prazo é obrigatório!'})
     } else {
     set(ref(db, `atividades/${id}`), {
-      id,
-      empresa,
-      atividade,
-      situacao,
-      responsavel,
-      realizado,
-      frequencia,
-      prazo,
-      mes,
-      ano,
+      id, empresa, atividade, situacao,
+      responsavel, realizado, frequencia,
+      prazo, mes, ano,
       createdAt: serverTimestamp()
     });
     clearInputs();}
@@ -135,15 +130,9 @@ export const TaskModal = ({open, handleModal, deleteAtiv, editAtiv}) => {
       return setErr({...err, ['prazo'] : 'O campo Prazo é obrigatório!'})
   } else { update(ref(db, `atividades/${idedit}`), {
       id: idedit,
-      empresa,
-      atividade,
-      realizado,
-      situacao,
-      responsavel,
-      frequencia,
-      prazo,
-      mes,
-      ano,
+      empresa, atividade, realizado,
+      situacao, responsavel, frequencia,
+      prazo, mes, ano,
       createdAt: serverTimestamp()
     });
     setEditar(false);

@@ -117,3 +117,9 @@
     font-size: 0.8em;
     color: var(--font-color);
 }
+
+.Tasks_Table-svgCheck{
+    fill: var(--font-midle);
+    width: 16px;
+    height: 16px;
+}

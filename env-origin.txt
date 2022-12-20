@@ -1,0 +1,21 @@
+
+
+invote em Produção
+
+REACT_APP_API_KEY=AIzaSyD4876lYnwEow9GJwHckL_LYJTMcmhimpU
+REACT_APP_AUTH_DOMAIN=curso-dev-2e4db.firebaseapp.com
+REACT_APP_DATABASE_URL=https://curso-dev-2e4db-default-rtdb.firebaseio.com
+REACT_APP_PROJECT_ID=curso-dev-2e4db
+REACT_APP_STORAGE_BUCKET=curso-dev-2e4db.appspot.com
+REACT_APP_MESSAGIN_SEND_ID=741981105417
+REACT_APP_ID=1:741981105417:web:3102d3bdb100edabcbf7d8
+
+Para desenvolvimento
+
+REACT_APP_API_KEY=AIzaSyBwTtgqa9WPzqrA0yZM-moFXrl8L7KNSnQ
+REACT_APP_AUTH_DOMAIN=ambiente-desenvolvimento-3fca2.firebaseapp.com
+REACT_APP_DATABASE_URL=https://ambiente-desenvolvimento-3fca2-default-rtdb.firebaseio.com
+REACT_APP_PROJECT_ID=ambiente-desenvolvimento-3fca2
+REACT_APP_STORAGE_BUCKET=ambiente-desenvolvimento-3fca2.appspot.com
+REACT_APP_MESSAGIN_SEND_ID=613648941030
+REACT_APP_ID=1:613648941030:web:3e59c18ffd05f0a14fa027
