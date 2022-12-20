@@ -2,6 +2,7 @@ import './TableTasks.css'
 import { DropMenu } from "../Components/DropMenu";
 import { TaskModal } from './TaskModal';
 import { useEffect, useState } from 'react';
+import { BsCheckCircleFill } from 'react-icons/bs'
 
 export const TableTasks = ({ data }) => {
   const [open, setOpen] = useState(false)
@@ -9,7 +10,11 @@ export const TableTasks = ({ data }) => {
   const [editAtiv, setEditAtiv] = useState('')
   const [itensPerPage, SetItensPerPage] = useState(10)
   const [currentPage, setCurrentPage] = useState(0)
-  const tasks = data.sort((a, b) => b.createdAt - a.createdAt)
+  const tasks = data.sort((a, b) => {
+    return b.realizado > a.realizado ? -1 : 0
+  })
+  //const tasks = data.sort((a, b) => b.createdAt - a.createdAt)
+  console.log(tasks)
 
   const pages = Math.ceil(tasks.length / itensPerPage)
   const startIndex = currentPage * itensPerPage
@@ -103,9 +108,11 @@ export const TableTasks = ({ data }) => {
               <td>{item.frequencia}</td>
               <td>{new Intl.DateTimeFormat('pt-BR').format(new Date(item.prazo + 'T10:00:00-03:00'))}</td>
               <td>
-                {Math.ceil(
-                  (difference(item.prazo) - dataHoje) / 1000 / 60 / 60 / 24
-                )}
+                {
+                item.realizado === 'Realizado' 
+                ? <BsCheckCircleFill className='Tasks_Table-svgCheck' />
+                : Math.ceil(
+                  (difference(item.prazo) - dataHoje) / 1000 / 60 / 60 / 24)}
               </td>
               <td>
                 <DropMenu 
