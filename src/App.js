@@ -12,6 +12,7 @@ import { MenuSideBar } from "./Menu/MenuSideBar";
 import { Header } from './Header/Header'
 import { useContext, useEffect, useState } from "react";
 import { Users } from "./Usuarios/Users";
+import { Lo } from "./LicencaOperacional/Lo";
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
               <Route element={<PrivateRoutes />}>
                 <Route path="/" element={<Home />} />
                 <Route path="Empresas" element={<Empresas />} />
+                <Route path="Licenças Operacionais" element={<Lo />} />
                 <Route path="Usuarios" element={<Users />} />
                 <Route path="Atividades" element={<Atividades />} />
                 <Route path="*" element={<NaoEncontrada />} />

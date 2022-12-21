@@ -1,0 +1,26 @@
+.Tasks__Top{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 1em;
+}
+
+select {
+    background-color: var(--bg-primary);
+    padding: 0.2em 0.5em;
+    border-radius: 0.2em;
+    font-size: 0.9em;
+    margin-right: 0.1em;
+    text-align: center;
+    border: 1px solid rgba(60, 64, 67, 0.15);
+    color: var(--font-color);
+
+}
+
+@media (max-width: 800px){
+
+    .Tasks__Table{
+        
+        min-width: auto;
+    }
+}

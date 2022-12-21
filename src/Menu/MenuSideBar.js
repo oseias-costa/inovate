@@ -35,6 +35,12 @@ export const MenuSideBar = () => {
           </NavLink>
         </li>
         <li className="nav-item">
+          <NavLink className="nav-link" to="Licenças Operacionais">
+            <span className="link-text">Licenças Operacionais</span>
+            <Tasks />
+          </NavLink>
+        </li>
+        <li className="nav-item">
           <NavLink className="nav-link" to="Empresas">
             <span className="link-text">Empresas</span>
             <FactoryIconMenu />
