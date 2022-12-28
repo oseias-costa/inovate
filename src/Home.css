@@ -18,6 +18,35 @@
     margin-right: 0.2em;
 }
 
+.TypeTask__Button-disable{
+    margin-top: 1em;
+    color: var(--font-midle);
+    font-family: var(--font-primary);
+    padding: 0.2em 0.5em;
+    border-radius: 0.2em;
+    font-size: 1em;
+    border: 1px solid var(--font-light);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    margin-right: 0.2em;
+    background-color: var(--bg-primary);
+}
+.TypeTask__Button-active {
+    margin-top: 1em;
+    background-color: var(--blueLight-btn);
+    color: var(--bg-primary);
+    font-family: var(--font-primary);
+    padding: 0.2em 0.5em;
+    border-radius: 0.2em;
+    font-size: 1em;
+    border: 1px solid var(--blueLight-btn);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    margin-right: 0.2em;
+}
+
 .YearChart__Button-disable{
     margin-top: 1em;
     color: var(--font-midle);

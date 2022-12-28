@@ -13,6 +13,7 @@ export const Home = () => {
   const { currentUser, userLogged } = useContext(AuthContext);
   const [ user, setUser] = useState({})
   const [ list, setList ] = useState([])
+  const [ typeTask, setTypeTask ] = useState('atividades')
   const [ yearChart, setYearChart ] = useState(2022)
   const [ showLoading, setShowLoading ] = useState(false)
 
@@ -40,7 +41,7 @@ export const Home = () => {
     })
 
   useEffect(() => {
-    onValue(ref(db, "atividades"), (snapshot) => {
+    onValue(ref(db, typeTask), (snapshot) => {
       setList([]);
       const data = snapshot.val();
       if (data !== null) {
@@ -49,7 +50,7 @@ export const Home = () => {
         });
       }
     });
-  }, [userLogged]);
+  }, [userLogged, typeTask]);
 
   useEffect(() => {
     if(userLogged[0] !== undefined){
@@ -69,11 +70,22 @@ export const Home = () => {
       <Head title="Home" />
       <span className="Numbers__span">Dashboard</span>
       <h1>Bem vindo {user.nome}!</h1>
+      <button 
+      onClick={() => setTypeTask('atividades')}
+      className={ typeTask === 'atividades'
+      ? 'TypeTask__Button-active' 
+      : 'TypeTask__Button-disable'}>Atividades</button>
+      <button 
+      onClick={() => setTypeTask('lo')}
+      className={ typeTask === 'lo'
+      ? 'TypeTask__Button-active' 
+      : 'TypeTask__Button-disable'
+      }>Licenças Operacionais</button>
+      
       <div className="Home">
-        <Numbers text='Atividades' number={total} />
+        <Numbers text='Total' number={total} />
         <Numbers text='Pendentes' number={pendentes} />
-        <Numbers text='Parcial' number={parcial} />
-        <Numbers text='LO' number={lo} />
+        <Numbers text='Parciais' number={parcial} />
       </div>
     
       <TaskChart list={list} yearChart={yearChart} />
