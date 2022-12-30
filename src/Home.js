@@ -8,6 +8,7 @@ import './Home.css'
 import { TaskChart } from "./Dashboard/TaskChart";
 import { CalendarTasks } from "./Dashboard/CalendarTasks";
 import { Spinner } from "./Components/Spinner";
+import { MyResponsivePie } from './Dashboard/PieChart'
 
 export const Home = () => {
   const { currentUser, userLogged } = useContext(AuthContext);
@@ -81,15 +82,6 @@ export const Home = () => {
       ? 'TypeTask__Button-active' 
       : 'TypeTask__Button-disable'
       }>Licenças Operacionais</button>
-      
-      <div className="Home">
-        <Numbers text='Total' number={total} />
-        <Numbers text='Pendentes' number={pendentes} />
-        <Numbers text='Parciais' number={parcial} />
-      </div>
-    
-      <TaskChart list={list} yearChart={yearChart} />
-      <CalendarTasks list={list} yearChart={yearChart} />
       { newYear.map( item => {
           return(
             <button 
@@ -104,6 +96,15 @@ export const Home = () => {
         })
       }
       { showLoading && <Spinner /> }
+      <div className="Home">
+        <Numbers text='Total' number={total} />
+        <Numbers text='Pendentes' number={pendentes} />
+        <Numbers text='Parciais' number={parcial} />
+      </div>
+      <MyResponsivePie list={list} yearChart={yearChart} />
+    
+      <TaskChart list={list} yearChart={yearChart} />
+      <CalendarTasks list={list} yearChart={yearChart} />
     </div>
   );
 };

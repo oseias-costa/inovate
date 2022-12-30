@@ -1,0 +1,15 @@
+.PieChart{
+    height: 300px;
+    width: 625px;
+    margin-top: 1em;
+    font-family: var(--font-primary);
+    box-shadow: var(--b-shadow);
+    border-radius: 0.4em;
+    text-align: center;
+    background-color: var(--bg-primary);
+}
+
+.PieChart-container{
+    width: 100%;
+    height: 100%;
+}
