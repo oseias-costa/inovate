@@ -137,7 +137,6 @@ textarea:focus, input:focus {
 .Tasks__Modal-warnings > svg{
     position: relative;
     top: 1em;
-    left: 0.4em;
     fill: var(--font-light)
 }
 

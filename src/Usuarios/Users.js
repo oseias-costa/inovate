@@ -14,7 +14,7 @@ import { useContext } from "react";
 import { AuthContext } from "../context/UserAuthContext";
 import { Spinner } from "../Components/Spinner";
 import { useNavigate } from "react-router-dom";
-import { Logo } from "../Components/Logo";
+import { LogoEscrito } from "../Components/LogoEscrito";
 
 export const Users = () => {
   const { userLogged } = useContext(AuthContext)
@@ -156,7 +156,7 @@ const admClass = userLogged[0].nivel === 'Usuário' ? 'btn-grey' : 'btn-blue'
               <div className="Users__Modal-warnings">
                 <p>Os campos: Nome, Email, Senha e Nível são obrigatórios.</p>
                 <p>A senha precisa ter no mínimo 6 dígitos.</p>
-                <Logo />
+                <LogoEscrito />
               </div>
             </div>
             <div className="Users__Modal-inputs">

@@ -14,7 +14,7 @@ import { CloseX } from "../Components/icons/CloseX";
 import { TitleModal } from "./components/TitleModal";
 import './Tasks__Modal.css'
 import { SpanModal } from "./components/SpanModal";
-import { Logo } from "../Components/Logo";
+import { LogoEscrito } from "../Components/LogoEscrito";
 
 export const TaskModal = ({open, handleModal, deleteAtiv, editAtiv}) => {
     const [id, setId] = useState("");
@@ -207,7 +207,7 @@ export const TaskModal = ({open, handleModal, deleteAtiv, editAtiv}) => {
         <div className="Tasks__Modal-content">
             <div className="Companies__Modal-warnings">
                 <p>Os campos: Empresa e Prazo são obrigatórios.</p>
-                <Logo />
+                <LogoEscrito />
             </div>
           <div className="Tasks__Modal-inputs">
           <SpanModal value='Empresa' />

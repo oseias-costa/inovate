@@ -6,10 +6,9 @@ import { useEffect, useState } from "react";
 import './Empresas.css'
 import { DropMenu } from "../Components/DropMenu";
 import { CloseX } from "../Components/icons/CloseX";
-import { FactoryIcon } from "../Menu/Icons/FactoryIcon";
 import { TableCompanies } from "./components/TableCompanies";
 import { Spinner } from "../Components/Spinner";
-import { Logo } from "../Components/Logo";
+import { LogoEscrito } from "../Components/LogoEscrito";
 
 export const Empresas = () => {
   const [empresas, setEmpresas] = useState([]);
@@ -170,7 +169,7 @@ export const Empresas = () => {
         <div className="Companies__Modal-warnings">
                 <p>O campo Empresa é obrigatório</p>
                 <p></p>
-                <Logo />
+                <LogoEscrito />
               </div>
           </div>
         <div className="Companies__Modal-inputs">
