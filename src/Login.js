@@ -92,7 +92,6 @@ export const Login = () => {
       <div className="Login__Container">
         <div className="Login__Logo">
           <Logo fill='#fff' />  
-          <span>Soluções Ambientais</span>        
         </div>
         <div className="Login__Form">
           <p className={errorStyle}>{error}</p>

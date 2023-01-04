@@ -7,6 +7,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/UserAuthContext";
 import { UserIconMenu } from "./Icons/UsersIconMenu";
 import { ProfileIconMenu } from "./Icons/ProfileIconMenu";
+import { LoIcon } from "./Icons/LoIcon";
 
 export const MenuSideBar = () => {
   const { currentUser } = useContext(AuthContext)
@@ -37,7 +38,7 @@ export const MenuSideBar = () => {
         <li className="nav-item">
           <NavLink className="nav-link" to="Licenças Operacionais">
             <span className="link-text">Licenças Operacionais</span>
-            <Tasks />
+            <LoIcon />
           </NavLink>
         </li>
         <li className="nav-item">
