@@ -2,7 +2,7 @@ export const Logo = ({fill}) => {
     return(
       <>
         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="400" height="225" viewBox="0 0 4000.000000 2250.000000"
+ width="350" height="180" viewBox="0 0 4000.000000 2250.000000"
  preserveAspectRatio="xMidYMid meet">
 
 <g transform="translate(0.000000,2250.000000) scale(0.100000,-0.100000)"
