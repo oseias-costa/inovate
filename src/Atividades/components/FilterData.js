@@ -22,7 +22,7 @@ export const FrequencyData = [
   "Bienal"
 ];
 
-export const StatusData = ["Realizado", "Parcial", "Pendente", 'LO'];
+export const StatusData = ["Realizado", "Parcial", "Pendente"];
 
 export const YearData = ["2022", "2023", "2024", "2025", "2026"];
 

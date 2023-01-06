@@ -8,13 +8,21 @@ export const TableTasks = ({ data }) => {
   const [open, setOpen] = useState(false)
   const [deleteAtiv, setDeleteAtiv] = useState('')
   const [editAtiv, setEditAtiv] = useState('')
-  const [itensPerPage, SetItensPerPage] = useState(10)
+  const [itensPerPage, SetItensPerPage] = useState(20)
   const [currentPage, setCurrentPage] = useState(0)
-  const tasks = data.sort((a, b) => {
-    return b.realizado > a.realizado ? -1 : 0
-  })
   //const tasks = data.sort((a, b) => b.createdAt - a.createdAt)
-  console.log(tasks)
+
+ {/* const format = (date) => {
+    const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul","Ago","Set","Out","Nov","Dez"]
+    const day = date.slice(0,2)
+    const month = meses[date.slice(3,5) - 1]
+    const year = date.slice(6,10)
+    const result = `${month} ${day} ${year}`
+    return result
+  }*/}
+  const orderDate = data.sort((a, b) => { return new Date(b.prazo) > new Date(a.prazo) ? -1 : 0})
+  const tasks = orderDate.sort((a, b) => { return b.realizado > a.realizado ? -1 : 0}) 
+
 
   const pages = Math.ceil(tasks.length / itensPerPage)
   const startIndex = currentPage * itensPerPage
@@ -78,10 +86,10 @@ export const TableTasks = ({ data }) => {
           <p>Itens por página:</p>
           <div>
             <select value={itensPerPage} onChange={e => SetItensPerPage(Number(e.target.value))} className='Task__Pagination-select'>
-              <option value={5}>5</option>
-              <option value={10}>10</option>
               <option value={20}>20</option>
               <option value={40}>40</option>
+              <option value={60}>60</option>
+              <option value={80}>80</option>
             </select>
           </div> 
       </div>
